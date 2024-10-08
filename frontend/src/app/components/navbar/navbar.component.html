@@ -1,0 +1,39 @@
+<nav
+  [@offcanvasTopAnimation]
+  #navbar
+  [ngClass]="{ scroll }"
+  [ngStyle]="{ '--navbar-height': navbar_height + 'px' }"
+>
+  <div class="content">
+    <a class="logo" routerLink="/">
+      <img src="../../../assets/images/mini-logo.png" alt="logo" />
+      CBLXTool
+    </a>
+
+    <div class="hamburger" [ngClass]="{ active: !navbar_hidden }">
+      <button
+        aria-label="menu"
+        mat-icon-button
+        (click)="navbar_hidden = !navbar_hidden"
+      >
+        <span class="line"></span>
+      </button>
+    </div>
+
+    <div class="menu {{ colapse }}" [ngClass]="{ hidden: navbar_hidden }">
+      <a mat-button routerLink="/">{{ 'navbar.home' | translate }}</a>
+      <a mat-button routerLink="/about">{{ 'navbar.about' | translate }}</a>
+      <a mat-button routerLink="/contact">{{ 'navbar.contact' | translate }}</a>
+      <lang-select></lang-select>
+    </div>
+  </div>
+</nav>
+
+<div
+  [@routeAnimations]="outlet && outlet.activatedRouteData"
+  *ngIf="!loading && !error"
+>
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
+
+<page-error [code]="error" *ngIf="error && !loading"></page-error>

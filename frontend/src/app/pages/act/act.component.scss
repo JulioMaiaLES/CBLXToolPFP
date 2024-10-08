@@ -1,0 +1,201 @@
+html, body {
+    background-color: var(--main-color);
+    min-height: 100vh;
+
+}
+
+
+header {
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+
+  
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+  
+        li {
+            display: inline-block;
+            margin: 0px 10px;
+        
+        
+            li a {
+                color: white;
+                text-decoration: none;
+            }
+            
+            li a:hover {
+                color: #222121;
+            }
+        }
+    }
+
+    .toggle-menu {
+        margin-right: 10px;
+    }
+
+    .tree{
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        > * {
+            display: inline-block;
+        }
+    }
+
+    .subir{
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .subir:hover{
+        text-decoration: underline;
+    }
+}
+
+h1{
+    font-size: 40px;
+    color: white;
+    font-family: Roboto;
+    font-weight: 450;
+}
+
+
+.title-archive{
+    margin-left: 100px;
+    font-size: 14px;
+}
+
+.button-archive{
+    margin-left: 100px;
+    background-color: rgb(1,155,158);
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.6;
+    transition: 0.3s;
+    height: 30px;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-archive:hover {opacity: 1}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+  
+.file-list > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+  
+.file-list > div p {
+    margin: 0; /* Remover margem padrão */
+}
+
+.file-icon{
+    width: 40px;
+    height: 50px;
+    margin-left: 100px;
+    cursor: pointer;
+}
+
+p{
+    font-size: 28px;
+    color: white;
+}
+
+.investigate{
+    position: fixed;
+    min-height: 100%;
+    border: transparent;
+    background-color: rgb(145,225,54);
+    top: 0;
+    left: 0;
+    width: 75px;
+    cursor: pointer;
+}
+
+.act-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+.act-image {
+    margin-right: 20px;
+}
+  
+.act-title {
+    margin-top: 20px;
+}
+
+.add-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    margin-right: 5px; /* Space between button and text area */
+    padding: 0; /* Remove default padding */
+    cursor: pointer; /* Change cursor to pointer for better UX */
+    transition: opacity 0.3s ease, border-radius 0.3s ease;
+    opacity: 0;
+  }
+  
+  .input-wrapper:hover .add-button {
+    opacity: 1; /* Make the button visible on hover */
+    border-radius: 50%; /* Circular hover effect */
+    background-color: rgba(255, 255, 255, 0.2); /* Optional background color on hover */
+  }
+  
+  .input-wrapper {
+    display: flex; /* Use Flexbox to align items */
+    align-items: center; /* Center items vertically */
+  }
+
+ .addLinha{
+    border: none;
+    color: white;
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+.container{
+    margin-left: 100px;
+}
+
+textarea{
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    color: white;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    min-width: 90%;
+    resize: none;
+    // overflow: hidden;
+    font-size: 16px;
+    overflow-y: hidden;
+    height: auto;
+}
+
+.images{
+    margin-left: 100px;
+}
+

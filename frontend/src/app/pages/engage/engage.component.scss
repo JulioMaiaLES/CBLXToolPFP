@@ -1,0 +1,192 @@
+html, body{
+    background-color: var(--main-color);
+    min-height: 100vh;
+    font-family: Roboto, sans-serif;
+
+}
+
+
+header {
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+  
+        li {
+            display: inline-block;
+            margin: 0px 10px;
+        
+        
+            li a {
+                color: white;
+                text-decoration: none;
+            }
+            
+            li a:hover {
+                color: #222121;
+            }
+        }
+    }
+
+    .toggle-menu {
+        margin-right: 10px;
+    }
+
+    .tree{
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        > * {
+            display: inline-block;
+        }
+    }
+
+    .subir{
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+    }
+    
+    .subir:hover{
+        text-decoration: underline;
+    }
+}
+
+h1{
+    font-size: 40px;
+    color: white;
+    font-family: Roboto, sans-serif;
+    font-weight: 450;
+}
+
+form{
+    padding: 0 450px;
+
+    label{
+        font-size: 30px;
+        color: white;
+    }
+
+    ::placeholder {
+        color: white;
+        opacity: 1;
+    } 
+
+    .textos {
+        width: 100%;
+        min-width: 150px;
+        resize: none;
+        overflow: hidden;
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-family: Roboto, 'Helvetica Neue', sans-serif;
+        font-size: 22px;
+        line-height: 24px;
+        outline: none; /* Remove a borda ao focar no textarea */
+    }
+
+    
+}
+
+.investigate{
+    position: fixed;
+    height: 100%;
+    border: transparent;
+    background-color: rgb(145,225,54);
+    width: 75px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.engage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin-bottom to create space between image and h1 */
+}
+  
+.engage-image {
+    margin-right: 20px; /* Adjust the margin-right as needed */
+}
+  
+.engage-title {
+    margin-top: 20px; /* Reset the left margin */
+}
+
+// .essential-questioning-container{
+//     margin-left: 100px;
+// }
+
+.essential-questioning{
+    background-color: rgb(252,43,22);
+    border: 2px solid white;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 250px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    height: 60px;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 100px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.essential-questioning:hover {opacity: 1}
+
+.title-archive{
+    margin-left: 100px;
+    font-size: 14px;
+    color: white;
+}
+
+.button-archive{
+    margin-left: 100px;
+    background-color: rgb(1,155,158);
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.6;
+    transition: 0.3s;
+    height: 30px;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-archive:hover {opacity: 1}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+  
+.file-list > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+  
+.file-list > div p {
+    margin: 0; /* Remover margem padrão */
+}

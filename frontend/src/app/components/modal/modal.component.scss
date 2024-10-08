@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    padding: 16px;
+  }
+  
+button {
+    margin-right: 8px;
+}
+ 
+ul{
+    list-style-type: none;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: flex-start; /* Align items to the start */
+    padding: 0;
+    margin: 0;
+    
+    
+    li{
+        display: flex; /* Use flexbox */
+        align-items: center; /* Align items vertically */
+        cursor: pointer;
+        text-align: left;
+    }
+}
+
+img{
+    height: 25px;
+    width: 25px;
+}

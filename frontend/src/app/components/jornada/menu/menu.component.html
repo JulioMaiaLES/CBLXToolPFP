@@ -1,0 +1,17 @@
+<div class="sidebar-container" [hidden]="!isMenuHidden">
+    <as-split [useTransition]="true" unit="percent" [gutterSize]="10">
+        <as-split-area style="background-color: white;" [size]="10" [order]="1" [visible]="keepLeft">
+            <ul>
+                <li *ngFor="let image of images">
+                    <img src="{{image.src}}" alt="{{image.alt}}">
+                    <p>{{image.alt}}</p>
+                </li>
+                <li>
+                    <button>+ Nova Jornada</button>
+                </li>
+            </ul>
+        </as-split-area>
+        <as-split-area [size]="10" [order]="2" [visible]="true">
+        </as-split-area>
+    </as-split>
+</div>

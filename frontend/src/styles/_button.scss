@@ -1,0 +1,59 @@
+.mat-mdc-button-base {
+  text-decoration: none;
+
+  &.mdc-button {
+    border-radius: var(--br);
+    padding: 21.5px 1rem;
+
+    &.primary {
+      background-color: var(--main-color);
+      color: var(--primary-bg);
+    }
+
+    &.mat-button-disabled,
+    &:disabled {
+      color: var(--primary-bg) !important;
+      opacity: 0.5;
+    }
+  }
+
+  i[icon] {
+    display: inline-flex;
+    height: 100%;
+    align-items: center;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  &.end {
+    justify-content: flex-end;
+  }
+  &.center {
+    justify-content: center;
+  }
+  &.wrap {
+    flex-wrap: wrap;
+  }
+  &.full {
+    button {
+      width: 100%;
+    }
+  }
+}
+
+html {
+  .mat-mdc-icon-button {
+    --mdc-icon-button-icon-size: 0.9rem;
+  }
+}
+
+.mat-datepicker-toggle {
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,287 @@
+:host {
+  display: block;
+  width: 80%; /* Aumenta o tamanho da tabela para a esquerda */
+  margin: auto; /* Centraliza a tabela horizontalmente */
+}
+
+.mat-header-cell {
+  text-align: center; /* Centraliza o texto das células do cabeçalho */
+  
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza o título da coluna */
+  position: relative;
+
+}
+
+
+
+.tablecell {
+  width: 100%;
+  min-width: 150px;
+  resize: none;
+  overflow: hidden;
+  background-color: #f1f3f8;
+  border: none;
+  padding: 0;
+  outline: none; /* Remove a borda ao focar no textarea */
+}
+
+td {
+  border: 1px solid #92e136;
+  background-color: #fff0db;
+}
+
+
+.mat-column-guidingQuestions, 
+.mat-column-guidingActivities, 
+.mat-column-guidingResources,
+.mat-column-resultados {
+  width: 25%; /* Define a largura fixa para cada coluna */
+}
+
+.mat-table {
+  margin-right: 20px;
+  
+}
+
+.cell-container {
+  position: relative;
+}
+
+.add-button {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  transform: translateY(-50%);
+  color: rgb(31, 116, 212);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.remove-row-button {
+  position: absolute;
+  top: 70%;
+  left: 0.8%;
+  transform: translateY(-50%);
+  color: rgb(196, 69, 69);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
+.mat-column-guidingQuestions, 
+.mat-column-guidingActivities, 
+.mat-column-guidingResources,
+.mat-column-resultados {
+  width: 25%; /* Define a largura fixa para cada coluna */
+}
+
+.mat-table {
+  margin-right: 20px;
+  
+}
+
+.cell-container {
+  position: relative;
+}
+
+.add-button {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  transform: translateY(-50%);
+  color: rgb(31, 116, 212);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.remove-row-button {
+  position: absolute;
+  top: 70%;
+  left: 0.8%;
+  transform: translateY(-50%);
+  color: rgb(196, 69, 69);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cell-container:hover .add-button {
+  opacity: 1;
+}
+
+.add-column-button {
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: none;
+  background: none;
+  color: rgb(31, 116, 212);
+  cursor: pointer;
+}
+
+.remove-column-button {
+  margin-right: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: rgb(196, 56, 56);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.header-title:hover .add-column-button,
+.header-title:hover .remove-column-button {
+  opacity: 1;
+  
+}
+
+.addLinha {
+  border: none;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  margin-top: 10px;
+}
+
+textarea {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto; /* Habilita a rolagem horizontal */
+}
+
+table {
+  min-width: 100%;
+}
+
+.no-columns-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Altura suficiente para centralizar o botão */
+}
+
+.mat-elevation-z8 {
+  border-radius: 20px; // Define o raio de 10px para arredondar os cantos
+  overflow: auto; // Garante que os cantos arredondados sejam exibidos corretamente
+}
+
+.filter-field {
+  transition: height 0.3s ease; // Adiciona uma transição suave para a animação de mostrar/esconder
+  justify-content: center;
+  align-items: center;
+  transition: margin-top 0.3s ease;
+  width: 30%;
+}
+
+.filter-field.ng-hide {
+  height: 0; // Define a altura do campo de filtro para 0 para escondê-lo
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.filter-toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: margin-top 0.3s ease;
+  width: 30%;
+}
+
+.filter-toggle-button {
+  border: none;
+  color: white;
+  background-color: transparent;
+  margin-bottom: 0px;
+}
+
+.cell-container:hover .remove-row-button {
+  opacity: 1;
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ff1c1c;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.header, .content, .footer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  position: relative;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #ff1c1c;
+}
+
+.delete-button:focus {
+  outline: none;
+}

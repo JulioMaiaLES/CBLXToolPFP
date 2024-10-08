@@ -1,0 +1,67 @@
+<body>
+  <header>
+    <div class="tree">
+      <app-togglemenu class="toggle-menu"></app-togglemenu>
+      <a routerLink="/jornada" class="subir">Turismo</a>
+      /Engage
+    </div>
+    <ul>
+      <li><a routerLink="/perfil"><img src="../../../assets/images/perfil.png" width="20" height="20"></a></li>
+      <li><a href="#"><img src="../../../assets/images/menu.png" width="20" height="20"></a></li>
+      <li><a href="#"><img src="../../../assets/images/config.png" width="20" height="20"></a></li>
+    </ul>
+  </header>
+  
+  <app-menu></app-menu>
+
+  <button class="essential-questioning" (click)="openModal()">+ Essential Questioning</button>
+
+  <div class="engage-container">
+    <img src="../../../assets/images/engage.jpeg" class="engage-image" alt="Engage Image">
+    <h1 class="engage-title">Engage</h1>
+  </div>
+
+  <form [formGroup]="engageForm">
+    <div formArrayName="big_idea">
+      <label>
+        <img src="../../../assets/images/lampada.png" alt="lampada" width="30" height="45">
+        Big Idea
+      </label><br><br>
+      <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
+        <textarea class="textos" formControlName="content" placeholder="Digite..." (keydown.enter)="onFormSubmit($event, 'big_idea', i)" type="text"></textarea>
+      </div>
+    </div>
+    <br>
+    <div formArrayName="essential_question">
+      <label>
+        <img src="../../../assets/images/pensando.png" alt="pensando" width="45" height="45">
+        Essential Question
+      </label><br><br>
+      <div *ngFor="let field of essentialQuestionFields.controls; let i = index" [formGroupName]="i">
+        <textarea class="textos" formControlName="content" placeholder="Digite..." (keydown.enter)="onFormSubmit($event, 'essential_question', i)" type="text"></textarea>
+      </div>
+    </div>
+    <br>
+    <div formArrayName="challenge">
+      <label>
+        <img src="../../../assets/images/alvo.png" alt="alvo" width="45" height="45">
+        Challenge
+      </label><br><br>
+      <div *ngFor="let field of challengeFields.controls; let i = index" [formGroupName]="i">
+        <textarea class="textos" formControlName="content" placeholder="Digite..." (keydown.enter)="onFormSubmit($event, 'challenge', i)" type="text"></textarea>
+      </div>
+    </div>
+  </form>
+
+  <div class="archives" *ngFor="let file of files">
+    <p class="title-archive">Arquivo: {{ file.name }}</p>
+    <!-- Uncomment this line to enable file download functionality -->
+    <!-- <a [href]="getFileUrl(file)" (click)="downloadFile(file)"><button class="button-archive" type="button">Download</button></a> -->
+  </div>
+
+  <div class="images" *ngFor="let image of images">
+    <img [src]="image.value" alt="Uploaded Image">
+  </div>
+
+  <a routerLink="/investigate"><button class="investigate" type="button"></button></a>
+</body>

@@ -1,0 +1,16 @@
+<section>
+  <div class="img">
+    <i icon="error"></i>
+  </div>
+  <h2>{{ 'errors.error' | translate }} {{ code || '' }}</h2>
+  <p>{{ 'errors.' + translated | translate }}</p>
+  <div class="buttons center">
+    <a mat-button class="primary" routerLink="/" *ngIf="code !== 401">
+      {{ 'navbar.home' | translate }}
+    </a>
+    <a mat-button routerLink="/login" *ngIf="code === 401">
+      {{ 'navbar.login' | translate }}
+    </a>
+    <a mat-button routerLink="/help">Ajuda</a>
+  </div>
+</section>

@@ -1,0 +1,83 @@
+<main class="content-home">
+  <!-- <app-skeleton-loading></app-skeleton-loading> -->
+  <div class="imgContainer">
+    <!-- <img zoomable src="../../../assets/images/logocblxtool.png" alt="logo" /> -->
+    <img data-aos="zoom-in" src="../../../assets/images/logocblxtool.png" alt="logo" />
+  </div>
+    <div class="intro-section">
+      <h2 data-aos="zoom-in">
+        <mat-label>
+          {{ 'home.description-top' | translate }}
+        </mat-label> 
+      </h2>
+      <a routerLink="/login"><button data-aos="zoom-in" class="button">
+        <mat-label>
+          {{ 'home.button' | translate }}
+        </mat-label> 
+        </button>
+      </a>
+    </div>
+    <br/>
+    
+  
+    <div class="mid-section">
+      <h2 data-aos="fade-left">
+        <mat-label>
+          {{ 'home.description-mid1' | translate }}
+        </mat-label> 
+      </h2>
+      <p data-aos="fade-left">
+        <mat-label>
+          {{ 'home.description-mid2' | translate }}
+        </mat-label>
+      </p>
+    </div>
+    <br/>
+
+    <div class="bottom-section">
+      <p data-aos="fade-left">
+        <mat-label>
+          {{ 'home.description-bottom' | translate }}
+        </mat-label>
+      </p>
+    </div>
+    <footer></footer>
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>busca</mat-label>
+    <input matInput type="text" [formControl]="search" />
+  </mat-form-field>
+
+  <ul>
+    <li *ngFor="let item of namesObj | filterData: search.value">
+      {{ item['name'] }}
+    </li>
+  </ul> -->
+
+  <!-- <mat-form-field appearance="outline">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Start date" />
+      <input matEndDate placeholder="End date" />
+    </mat-date-range-input>
+    <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field> -->
+
+  <!-- <ul>
+    <li *ngFor="let name of names">
+      {{ name }} ->
+      <span [initialLetters]="name"></span>
+    </li>
+  </ul> -->
+
+  <!-- <button mat-button (click)="showNotification()">notifier</button>
+  <button mat-button (click)="getLocation()">Location (console)</button> -->
+
+  <!-- <p>Agora: {{ now$ | async | date: 'dd/MM/yyyy HH:mm:ss' }}</p> -->
+
+  <!-- <div class="avatars">
+    <avatar *ngFor="let name of names" [name]="name" src=""></avatar>
+    <avatar name="Noclaf Tech" src="" color="light" bg="#000"> </avatar>
+  </div> -->
+</main>

@@ -1,0 +1,20 @@
+<mat-dialog-content>
+  <ul>
+    <li>
+      <img src="../../../assets/images/tabela.png">
+      <button mat-button mat-dialog-close>Tabela</button>
+    </li>
+    <li>
+      <img src="../../../assets/images/arquivo.png">
+      <input type="file" multiple style="display: none;" #uploadInput (change)="onFileSelected($event)">
+      <button mat-button (click)="uploadInput.click()">Arquivo</button>
+    </li>
+    <li>
+      <img src="../../../assets/images/imagem.png">
+      <input type="image" multiple style="display: none;" #uploadInput (change)="onFileSelected($event)">
+      <button mat-button (click)="uploadInput.click()">Imagem</button>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

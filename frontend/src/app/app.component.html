@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+
+<nb-layout>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+    <notifier-container></notifier-container>
+    <div *ngIf="loading()" class="fullpage-loader">
+      <page-loading></page-loading>
+    </div>
+  </nb-layout-column>
+</nb-layout>
+
+

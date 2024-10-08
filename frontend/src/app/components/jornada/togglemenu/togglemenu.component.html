@@ -1,0 +1,22 @@
+
+<!-- Toggle right icon when sidebar is closed -->
+<img
+  src="../../../../assets/images/setadireita.png"
+  *ngIf="!isSidebarOpen()"
+  (click)="toggleSidebar()"
+  width="25"
+  height="25"
+  alt="Open Sidebar"
+>
+
+<!-- Toggle left icon when sidebar is open -->
+<div>
+  <img
+    src="../../../../assets/images/setaesquerda.png"
+    *ngIf="isSidebarOpen()"
+    (click)="toggleSidebar()"
+    width="25"
+    height="25"
+    alt="Close Sidebar"
+  >
+</div>

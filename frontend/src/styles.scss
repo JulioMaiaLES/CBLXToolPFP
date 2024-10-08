@@ -1,0 +1,56 @@
+@import '@angular/material/theming';
+@include mat-core();
+
+@import 'styles/theming';
+
+
+$app-primary: mat-palette($custom-brand-primary);
+$app-accent: mat-palette($custom-brand-accent);
+$app-warn: mat-palette($custom-brand-warn);
+$brand-light-theme: mat-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn,
+    ),
+    density: 0,
+  )
+);
+@include angular-material-theme($brand-light-theme);
+
+@import 'node_modules/angular-notifier/styles';
+@import 'styles/animations';
+@import 'styles/button';
+@import 'styles/dialog';
+@import 'styles/hotfixes';
+@import 'styles/input';
+@import 'styles/media';
+@import 'styles/page';
+@import 'styles/scroll';
+@import 'styles/skeleton';
+@import 'styles/transitions';
+@import 'styles/typography';
+@import 'styles/variables';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}

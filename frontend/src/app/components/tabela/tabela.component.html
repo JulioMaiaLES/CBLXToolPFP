@@ -1,0 +1,54 @@
+<div *ngIf="dataSource.data.length > 0 && isVisible" class="table-container">
+  <button class="delete-button" (click)="removeCanvas()">×</button>
+  <div class="button-group filter-toggle-container">
+    <button class="filter-toggle-button" mat-raised-button (click)="toggleFilter()">Toggle Filter</button>
+  </div>
+  
+  <mat-form-field class="filter-field" *ngIf="showFilter">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter(input.value)" placeholder="Ex. educação" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="guidingQuestions">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-title">Guiding Questions</div>
+      </th>
+      <td mat-cell *matCellDef="let linha" class="cell-container">
+        <button class="add-button" (click)="adicionarLinha(linha)">+</button>
+        <button class="remove-row-button" (click)="removerLinha(linha)">-</button>
+        <textarea matInput [(ngModel)]="linha.guidingQuestions" class="tablecell" (input)="autoResize($event)"></textarea>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="guidingActivities">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-title">Guiding Activities</div>
+      </th>
+      <td mat-cell *matCellDef="let linha" class="cell-container">
+        <textarea matInput [(ngModel)]="linha.guidingActivities" class="tablecell" (input)="autoResize($event)"></textarea>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="guidingResources">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-title">Guiding Resources</div>
+      </th>
+      <td mat-cell *matCellDef="let linha" class="cell-container">
+        <textarea matInput [(ngModel)]="linha.guidingResources" class="tablecell" (input)="autoResize($event)"></textarea>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="resultados">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="header-title">Resultados</div>
+      </th>
+      <td mat-cell *matCellDef="let linha" class="cell-container">
+        <textarea matInput [(ngModel)]="linha.resultados" class="tablecell" (input)="autoResize($event)"></textarea>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let linha; columns: displayedColumns;"></tr>
+  </table>
+</div>

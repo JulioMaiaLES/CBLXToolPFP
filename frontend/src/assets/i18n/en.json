@@ -1,0 +1,84 @@
+{
+  "global": {
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "add": "Adicionar",
+    "search": "Pesquisar",
+    "confirm": "Confirmar"
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "help": "Help"
+  },
+  "login-register": {
+    "login-title": "Login",
+    "register-title": "Register",
+    "not-registered": "Don't have an account?",
+    "already-registered": "Already have an account?",
+    "go-register": "register",
+    "go-login": "log in",
+    "forgot-password": "Forgot your password?",
+    "remember-me": "Remember me",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "re-password": "Repeat password",
+    "cellphone": "Cellphone",
+    "cpf": "CPF",
+    "birth-date": "Date of birth",
+    "genre": "Sex",
+    "genres": {
+      "male": "Male",
+      "famale": "Female",
+      "do-not-inform": "Do not inform"
+    }
+  },
+  "forgot-password": {
+    "title": "Recover password",
+    "subtitle": "Enter your e-mail address to recover your password.",
+    "email": "E-mail",
+    "change-password": "Change password"
+  },
+  "languages": {
+    "pt-br": "Portuguese",
+    "en": "English"
+  },
+  "errors": {
+    "error": "Error",
+    "500": "Internal error on our servers",
+    "404": "This page you are trying to access does not exist, has been removed, or is temporarily unavailable",
+    "403": "You do not have permission to access this page",
+    "401": "You are not logged in",
+    "400": "Your request cannot be processed",
+    "default": "An unexpected error occurred",
+    "form": {
+      "required": "Required field",
+      "email": "Invalid email",
+      "mask": "Invalid value",
+      "cpf": "Invalid CPF",
+      "cnpj": "Invalid CNPJ",
+      "diff_password": "The passwords don't match",
+      "poor_password": "Weak password"
+    }
+  },
+  "profile":{
+    "profile-title": "Profile",
+    "name": "Name",
+    "surname": "Surname",
+    "email": "E-mail",
+    "change-password":"Change password",
+    "password": "Password",
+    "button": "Update"
+  },
+  "home":{
+    "description-top": "Find a new way to follow your Challenge Based Learning Journey!",
+    "button": "Start!",
+    "description-mid1": "Use the Challenge Based Learning Framework, integrated with the best practices and functionalities!",
+    "description-mid2": "Visualize the phases of CBL in a intuitive and flexible way!",  
+    "description-bottom": "Aplicable in schools, universities, academic area and companies. Implement in your classroom! Applie it on your working environment!"
+  }
+}

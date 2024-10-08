@@ -1,0 +1,44 @@
+:root {
+  font-size: calc(16px + 0.3125vw);
+  --ts: all 0.3s ease-in-out;
+  --br: 0.5rem;
+  --elastic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --text-color: #000000;
+  --main-color: #302b2b;
+  --primary-bg: #fff;
+  --secondary-bg: #e9e9e9;
+
+  --yellow-color: #f2af4c;
+  --green-color: #5dc983;
+  --red-color: #eb5769;
+
+  --skeleton-bg: #e9e9e9;
+  --skeleton-bg-dark: #d9d9d9;
+
+  --avatar-dark-color: #000000;
+  --avatar-light-color: #ffffff;
+  --avatar-br: 50%;
+  --avatar-ratio: 1/1;
+
+  --fullpage-loading-bg: #fff5;
+
+  // ? Scrollbar
+  --scroll-track: var(--secondary-bg);
+  --scroll-thumb: var(--text-color);
+
+  // ? Navbar variables
+  --navbar-max-width: 1024px;
+  --navbar-logo-height: 50px;
+  --navbar-position: relative;
+  --navbar-top-bg: #fff; // transparent
+  --navbar-top-color: #000000;
+  --navbar-top-padding: 20px 10px;
+  --navbar-scroll-bg: #f00;
+  --navbar-scroll-color: #fff;
+  --navbar-scroll-padding: 0 10px;
+
+  // ? Home Page variables
+  --home-max-width: 1024;
+  --home-position: relative;
+}

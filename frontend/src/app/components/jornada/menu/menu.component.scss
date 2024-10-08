@@ -1,0 +1,85 @@
+aside {
+    background-color: #ffffff;
+    border-right: 0.5rem solid var(--main-color);
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    overflow-y: auto;
+    z-index: 10;
+
+   
+}
+img {
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+button{
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    opacity: 1;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+button:hover {opacity: 0.6}
+    
+ul{
+    list-style-type: none;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: flex-start; /* Align items to the start */
+    padding: 0;
+    margin: 0;
+    
+    
+    li{
+        display: flex; /* Use flexbox */
+        align-items: center; /* Align items vertically */
+        padding: 10px;
+        cursor: pointer;
+        text-align: left;
+    }
+}
+
+a { 
+    color: inherit;
+    text-decoration: none; 
+}
+
+as-split{
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 10;
+}
+.as-horizontal > .as-split-area {
+    position: relative;
+    
+}
+
+.sidebar-container {
+    position: fixed;
+    left: 0;
+    top: 30px;
+    width: 500px;
+    height: 100vh;
+    z-index: 10; 
+}

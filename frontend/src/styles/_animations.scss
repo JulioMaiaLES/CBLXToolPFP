@@ -1,0 +1,49 @@
+.fa-spin {
+  --fa-animation-duration: 0.5s;
+}
+
+@mixin move-left-to-right() {
+  animation: move-left-to-right 1s var(--elastic);
+
+  @keyframes move-left-to-right {
+    0% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@mixin shake() {
+  animation: shake 0.2s var(--elastic);
+
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+
+    25% {
+      transform: translateX(5px);
+    }
+
+    50% {
+      transform: translateX(-5px);
+    }
+
+    75% {
+      transform: translateX(5px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+@mixin fade-in() {
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out forwards;
+  @keyframes fade-in {
+    100% {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<body>
+
+  <header>
+    <div class="tree">
+      <app-togglemenu class="toggle-menu"></app-togglemenu>
+      <a routerLink="/jornada" class="subir">Turismo</a>
+      /Investigate
+    </div>
+    <ul>
+      <li><a routerLink="/perfil"><img src="../../../assets/images/perfil.png" width="20" height="20"></a></li>
+      <li><a href="#"><img src="../../../assets/images/menu.png" width="20" height="20"></a></li>
+      <li><a href="#"><img src="../../../assets/images/config.png" width="20" height="20"> </a></li>
+    </ul>
+  </header>
+  
+  <div class="investigate-container">
+    <img src="../../../assets/images/investigate.jpeg" class="investigate-image">
+    <h1 class="investigate-title">Investigate</h1>
+  </div>
+
+  <app-menu></app-menu>
+  <!-- <div #modalPlaceholder></div>
+  <button class="investigate-button" (click)="showModal()">Investigar</button>
+  <app-modal-investigate [isVisible]="isModalVisible"></app-modal-investigate> -->
+  
+
+  <!-- <div #componenteContainer></div> -->
+  
+  <div class="container" *ngFor="let textarea of textAreas; let i = index">
+    <button mat-icon-button class="add-button" (click)="adicionarLinha()">+</button>
+    <textarea #textAreaRef class="textArea" placeholder="Digite '/' para opções" (input)="autoResize(textAreaRef)"></textarea>     
+  </div>
+
+  <div class="archives" *ngFor="let file of files">
+    <img class="file-icon" [src]="getFileIcon(file)" (click)="downloadFile(file)">
+    <p class="title-archive">{{ file.name }}</p>
+    <!-- <a [href]="getFileUrl(file)" (click)="downloadFile(file)"><button class="button-archive">Download</button></a> -->
+  </div>
+
+  <div class="images" *ngFor="let image of images">
+    <img [src]="image.value">
+  </div>
+
+  <br/> 
+
+  <a routerLink="/engage"><button class="engage"></button></a>
+  <a routerLink="/act"><button class="act"></button></a>
+
+</body>
