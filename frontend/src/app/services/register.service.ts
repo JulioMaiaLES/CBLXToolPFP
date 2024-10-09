@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:8000/usuario';  // Altere para o URL do seu backend Django
+  private apiUrl = 'http://localhost:8000/user';  // Altere para o URL do seu backend Django
 
   constructor(private http: HttpClient) {}
 

@@ -27,7 +27,7 @@ export class AuthService {
   }
   
 
-  private apiUrl = 'http://localhost:8000/usuario';
+  private apiUrl = 'http://localhost:8000/user';
 
 
   register(data: any): Observable<any> {

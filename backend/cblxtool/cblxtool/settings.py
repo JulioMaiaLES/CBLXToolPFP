@@ -124,8 +124,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cblxtoolpfp',
         'USER': 'root',
-        'PASSWORD': 'Les$#@!1234',
-        # 'PASSWORD': '588654785',
+        # 'PASSWORD': 'Les$#@!1234',
+         'PASSWORD': '588654785',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -188,7 +188,7 @@ AWS_LOCATION = 'static'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AUTHENTICATION_BACKENDS = [
-    'usuario.authentication_backends.EmailAuthBackend',  # Caminho para seu backend personalizado
     'django.contrib.auth.backends.ModelBackend',  # Mantenha o backend padrão, se necessário
 ]
 
+AUTH_USER_MODEL = 'user.Profile'

@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 import json
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from .models.user import Profile # Importar o modelo Perfil
 from datetime import datetime
 import traceback
@@ -27,8 +28,8 @@ def login_user(request):
         user = authenticate(request=request, username=email, password=password)
 
         if user is not None:
-            # Criar ou recuperar o token de autenticação
-            token, _ = Token.objects.get_or_create(user=user)
+            # Criar ou recuperar o token de autenticação associado ao modelo Profile
+            token, _ = Token.objects.get_or_create(user=user)  # Isso agora está vinculado ao modelo Profile
             return JsonResponse({"token": token.key}, status=200)
         else:
             return JsonResponse({"error": "Credenciais inválidas"}, status=401)
@@ -55,6 +56,7 @@ def register_user(request):
             return JsonResponse({"error": "As senhas não coincidem."}, status=400)
 
         # Verificar se o email já foi usado
+        User = get_user_model()  # Usar get_user_model() em vez de User diretamente
         if User.objects.filter(email=data['email']).exists():
             print("Este email já está em uso.")
             return JsonResponse({"error": "Este email já está em uso."}, status=400)
@@ -79,18 +81,16 @@ def register_user(request):
             print(f"Erro ao criar usuário: {traceback.format_exc()}")  # Log detalhado do erro
             return JsonResponse({"error": "Erro ao criar usuário."}, status=400)
 
-        # Criar o perfil associado ao usuário
-        print("Criando perfil...")
+        # Atualizar os campos de telefone e data de nascimento diretamente no perfil do usuário
+        print("Atualizando perfil...")
         try:
-            perfil = Profile.objects.create(
-                user=user,
-                telephone=data['phone'],
-                birth_date=birth_date
-            )
-            print(f"Perfil criado para o usuário: {perfil}")
+            user.telephone = data['phone']
+            user.birth_date = birth_date
+            user.save()
+            print(f"Perfil atualizado para o usuário: {user}")
         except Exception as e:
-            print(f"Erro ao criar perfil: {traceback.format_exc()}")  # Log detalhado do erro
-            return JsonResponse({"error": "Erro ao criar perfil."}, status=400)
+            print(f"Erro ao atualizar perfil: {traceback.format_exc()}")  # Log detalhado do erro
+            return JsonResponse({"error": "Erro ao atualizar perfil."}, status=400)
 
         print("Usuário e perfil criados com sucesso.")
         return JsonResponse({"message": "Usuário e perfil criados com sucesso."}, status=201)
