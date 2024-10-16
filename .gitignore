@@ -10,3 +10,6 @@ staticfiles/
 # Python
 venv/
 env/
+
+# Angular
+.angular/cache/

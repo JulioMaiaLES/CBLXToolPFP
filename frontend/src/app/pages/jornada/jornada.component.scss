@@ -4,8 +4,8 @@ html, body{
 }
 
 .center{
-    // width: 700px;
-    // height: 700px;
+    // width: 697px;
+    // height: 694px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -25,37 +25,39 @@ h1{
 }
 
 .tree{
-    font-size: 16px;
+    font-size: 36px;
+    padding-left: 15%;
     display: flex;
+    font-family: Helvetica, Bold;
     align-items: center;
     > * {
         display: inline-block;
     }
-    justify-content: center;
+    // justify-content: center;
 }
 
 
 
-.engageProgress{
-    position: absolute;
-    top: 350px;
-    right: 550px;
-    color: white;
-}
+// .engageProgress{
+//     position: absolute;
+//     top: 350px;
+//     right: 550px;
+//     color: white;
+// }
 
-.investigateProgress{
-    position: absolute;
-    top: 490px;
-    left: 600px;
-    color: white;
-}
+// .investigateProgress{
+//     position: absolute;
+//     top: 490px;
+//     left: 600px;
+//     color: white;
+// }
 
-.actProgress{
-    position: absolute;
-    top: 350px;
-    left: 525px;
-    color: white;
-}
+// .actProgress{
+//     position: absolute;
+//     top: 350px;
+//     left: 525px;
+//     color: white;
+// }
 
 
 header {
@@ -65,6 +67,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin: 0;
+    padding-top: 5%;
   
     ul {
         list-style: none;
