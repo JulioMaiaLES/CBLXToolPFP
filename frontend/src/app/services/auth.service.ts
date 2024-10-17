@@ -23,15 +23,15 @@ export class AuthService {
     const loginData = { email: email, password: password };
     console.log("Sending login data:", loginData);  // Apenas para debug, remover em produção
     console.log("Email", email, "Password", password);  // Apenas para debug, remover em produção
-    return this.http.post<IToken>(`${this.apiUrl}/auth-user/`, loginData);
+    return this.http.post<IToken>(`${this.apiUrl}auth-login/`, loginData);
   }
   
 
-  private apiUrl = 'http://localhost:8000/user';
+  private apiUrl = 'http://localhost:8000/';
 
 
   register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register/`, data);
+    return this.http.post(`${this.apiUrl}register/`, data);
   }
   
 
@@ -69,7 +69,7 @@ export class AuthService {
 
   logout() {
     this.setToken('', false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['login/']);
   }
 
   forgotPassword(email: string) {
