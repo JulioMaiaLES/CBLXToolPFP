@@ -6,10 +6,24 @@ html, body{
 .center{
     // width: 697px;
     // height: 694px;
+    position: relative;
     display: block;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
+    
+    .roda-fundo{
+        position: absolute;
+        // top: 0;
+        // bottom: 0;
+        // left: 0;
+        // right: 0;
+    }
+
+    .roda-frente{
+        position: relative;
+    }
+
 }
 
 h1{
