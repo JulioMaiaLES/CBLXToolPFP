@@ -13,6 +13,6 @@ export class RegisterService {
 
   // Método para registrar um novo usuário
   register_user(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register/`, data);
+    return this.http.post(`${this.apiUrl}register/`, data);
   }
 }
