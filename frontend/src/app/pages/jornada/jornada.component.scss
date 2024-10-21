@@ -7,40 +7,41 @@ html, body{
     // width: 697px;
     // height: 694px;
     position: relative;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    padding-top: 4%;
     
     .roda-fundo{
         position: absolute;
-        // top: 0;
-        // bottom: 0;
-        // left: 0;
-        // right: 0;
     }
 
     .roda-frente{
         position: relative;
+        left: 10px;
+        bottom: 10px;
+        width: 594px;
+        height: 575px;
     }
 
 }
 
-h1{
-    font-size: 40px;
-    padding-top: 20px;
-    color: white;
-    font-family: Roboto, sans-serif;
-    font-weight: 450;
-}
+
+// h1{
+//     font-size: 40px;
+//     padding-top: 20px;
+//     color: white;
+//     font-family: Roboto, sans-serif;
+//     font-weight: 450;
+// }
 
 .toggle-menu {
     margin-right: 10px;
 }
 
 .tree{
-    font-size: 36px;
-    padding-left: 15%;
+    font-size: 30px;
+    padding-left: 10%;
     display: flex;
     font-family: Helvetica, Bold;
     align-items: center;
@@ -48,6 +49,8 @@ h1{
         display: inline-block;
     }
     // justify-content: center;
+    gap: 10px;
+
 }
 
 

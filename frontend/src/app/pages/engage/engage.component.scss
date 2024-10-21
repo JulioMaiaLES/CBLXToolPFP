@@ -2,7 +2,6 @@ html, body{
     background-color: var(--main-color);
     min-height: 100vh;
     font-family: Roboto, sans-serif;
-
 }
 
 
@@ -10,11 +9,13 @@ header {
     background-color: var(--main-color);
     color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 0;
+    // margin: 0;
     position: relative;
-    z-index: 1;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    padding-right: 337px;
   
     ul {
         list-style: none;
@@ -23,35 +24,52 @@ header {
   
         li {
             display: inline-block;
-            margin: 0px 10px;
-        
-        
-            li a {
-                color: white;
-                text-decoration: none;
-            }
-            
-            li a:hover {
-                color: #222121;
-            }
+            margin: 0px 15px;
         }
     }
 
-    .toggle-menu {
-        margin-right: 10px;
-    }
-
     .tree{
-        font-size: 16px;
+        font-size: 30px;
+        // padding-left: 10%;
         display: flex;
+        font-family: Helvetica, Bold;
         align-items: center;
         > * {
             display: inline-block;
         }
+        // justify-content: center;
+        gap: 10px;
+
+    }
+    
+
+    .nav-acessar-investigate{
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-acessar-investigate:hover{
+        color: #F5C949
+    }
+
+    .nav-acessar-act{
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-acessar-act:hover{
+        color: #428CD3
+    }
+
+    .nav-engage-select{
+        background-color: #58BC68;
+        padding: 10px;
+        border-radius: 10px;
+        color: #000000;
     }
 
     .subir{
-        font-size: 16px;
+        font-size: 30px;
         color: white;
         text-decoration: none;
     }
@@ -61,25 +79,15 @@ header {
     }
 }
 
-h1{
-    font-size: 40px;
-    color: white;
-    font-family: Roboto, sans-serif;
-    font-weight: 450;
-}
 
 form{
     padding: 0 450px;
+    position: relative;
 
     label{
-        font-size: 30px;
+        font-size: 28px;
         color: white;
     }
-
-    ::placeholder {
-        color: white;
-        opacity: 1;
-    } 
 
     .textos {
         width: 100%;
@@ -95,59 +103,70 @@ form{
         outline: none; /* Remove a borda ao focar no textarea */
     }
 
+    .align-vertical{
+        display: inline-flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .step-container{
+        background-color: #262626;
+        padding: 20px;
+        border-radius: 10px;
+    }
     
+} 
+
+.main-content{
+    display: inline;
+    gap: 20px;
 }
 
-.investigate{
+.navigation{
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.pagination{
+    color: white;
+    padding-left: 250px;
+    position: absolute;
+}
+
+.current-block{
+    width: 178px;
+    height: 100px;
+    background-color: #58BC68;
+    border: 5px solid white;
+    border-radius: 10px;
+}
+
+.new-block{
+    width: 178px;
+    height: 100px;
+    background-color: #262626;
+    border-radius: 10px;    
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 50;
+}
+
+.new-block:hover{
+    cursor: pointer;
+}
+
+.visual-tab{
     position: fixed;
     height: 100%;
-    border: transparent;
-    background-color: rgb(145,225,54);
-    width: 75px;
+    background-color: #262626;
+    width: 337px;
     top: 0;
     right: 0;
-    cursor: pointer;
 }
-
-.engage-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; /* Add margin-bottom to create space between image and h1 */
-}
-  
-.engage-image {
-    margin-right: 20px; /* Adjust the margin-right as needed */
-}
-  
-.engage-title {
-    margin-top: 20px; /* Reset the left margin */
-}
-
-// .essential-questioning-container{
-//     margin-left: 100px;
-// }
-
-.essential-questioning{
-    background-color: rgb(252,43,22);
-    border: 2px solid white;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 250px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    height: 60px;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-    margin-left: 100px;
-    margin-top: 10px;
-    margin-bottom: 0;
-}
-
-.essential-questioning:hover {opacity: 1}
 
 .title-archive{
     margin-left: 100px;

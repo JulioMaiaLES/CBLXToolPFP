@@ -1,34 +1,81 @@
-<body>
+<header>
+  <div class="tree">
+    <!-- <app-togglemenu class="toggle-menu"></app-togglemenu> -->
+    Projetos > <a routerLink="/jornada" class="subir">Projeto CBL</a> > <b>Act</b>
+  </div>
+  <div class="navigation">
+    <ul>
+      <li><a routerLink="/engage" class="nav-acessar-engage">Engage</a></li>
+      <li><a routerLink="/investigate" class="nav-acessar-investigate">Investigate</a></li>
+      <li class="nav-act-select">Act</li>
+    </ul>
+  </div>
+</header>
+<app-menu></app-menu>
+
+<body>    
     
-    <header>
-      <div class="tree">
-        <!-- <app-togglemenu class="toggle-menu"></app-togglemenu> -->
-        Projetos > <a routerLink="/jornada" class="subir">Projeto CBL</a> > <b>Act</b>
-      </div>
-      <!-- <ul>
-        <li><a routerLink="/perfil"><img src="../../../assets/images/perfil.png" width="20" height="20"></a></li>
-        <li><a href="#"><img src="../../../assets/images/menu.png" width="20" height="20"></a></li>
-        <li><a href="#"><img src="../../../assets/images/config.png" width="20" height="20"> </a></li>
-      </ul> -->
-    </header>
-    
-    <app-menu></app-menu>
-    
-    <div class="act-container">
-      <img src="../../../assets/images/act.jpeg" class="act-image">
-      <h1 class="act-title">Act</h1>
-    </div>
-    
+        
    
-    <div class="container" *ngFor="let textarea of textAreas; let i = index">
+
+    <div class="main-content">
+      <div class="pagination">
+        <div class="current-block">
+  
+        </div>
+        <div class="new-block">
+          +
+        </div>
+      </div>
+     
+      <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
+      <form>
+        <div class="step-container">
+          <label class="align-vertical">
+            <img src="../../../assets/images/evaluation.png">
+            Evaluation
+          </label><br><br>
+          <div>
+            <textarea class="textos"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="step-container">
+          <label class="align-vertical">
+            <img src="../../../assets/images/implementation.png">
+            Implementation
+          </label><br><br>
+          <div>
+            <textarea class="textos"></textarea>
+          </div>
+        </div>
+        <br>
+        <div formArrayName="challenge" class="step-container">
+          <label class="align-vertical">
+            <img src="../../../assets/images/solution.png">
+            Solution
+          </label><br><br>
+          <div>
+            <textarea class="textos"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+  
+    <div class="visual-tab">
+      Templates
+    </div>
+
+
+    <!-- Lógica Modal  -->
+    <!-- <div class="container" *ngFor="let textarea of textAreas; let i = index">
       <div class="input-wrapper">      
         <button mat-icon-button class="add-button" (click)="adicionarLinha()" >+</button>
         <textarea #textAreaRef class="textArea" placeholder="Digite '/' para opções" (input)="autoResize($event)"></textarea>
       </div>
-    </div>
-    
-    
-  
+    </div> -->  
+
     <div class="archives" *ngFor="let file of files">
       <img class="file-icon" [src]="getFileIcon(file)" (click)="downloadFile(file)">
       <p class="title-archive">{{ file.name }}</p>
@@ -38,5 +85,4 @@
       <img [src]="image.value">
     </div>
 
-    <a routerLink="/investigate"><button class="investigate"></button></a>
   </body>
