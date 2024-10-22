@@ -1,33 +1,110 @@
+<header>
+  <div class="tree">
+    <!-- <app-togglemenu class="toggle-menu"></app-togglemenu> -->
+    <a routerLink="/projeto" class="subir">Projetos</a> > <a routerLink="/jornada" class="subir">Projeto CBL</a> > <b>Investigate</b>
+  </div>
+  <div class="navigation">
+    <ul>
+      <li><a routerLink="/engage" class="nav-acessar-engage">Engage</a></li>
+      <li class="nav-investigate-select">Investigate</li>
+      <li><a routerLink="/act" class="nav-acessar-act">Act</a></li>
+    </ul>
+  </div>
+</header>
+
 <body>
 
-  <header>
-    <div class="tree">
-      <!-- <app-togglemenu class="toggle-menu"></app-togglemenu> -->
-      Projetos > <a routerLink="/jornada" class="subir">Projeto CBL</a> > <b>Investigate</b>
+  <div class="main-content">
+    <div class="pagination">
+      <div class="current-block">
+
+      </div>
+      <div class="new-block">
+        +
+      </div>
     </div>
-    <!-- <ul>
-      <li><a routerLink="/perfil"><img src="../../../assets/images/perfil.png" width="20" height="20"></a></li>
-      <li><a href="#"><img src="../../../assets/images/menu.png" width="20" height="20"></a></li>
-      <li><a href="#"><img src="../../../assets/images/config.png" width="20" height="20"> </a></li>
-    </ul> -->
-  </header>
-  
-  <div class="investigate-container">
-    <img src="../../../assets/images/investigate.jpeg" class="investigate-image">
-    <h1 class="investigate-title">Investigate</h1>
+   
+    <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
+    <form>
+      <div class="step-container">
+        <label class="align-vertical">
+          <img src="../../../assets/images/guiding-questions.png">
+          Guiding Questions
+        </label><br><br>
+        <div>
+          <textarea class="textos"></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="step-container">
+        <label class="align-vertical">
+          <img src="../../../assets/images/activities.png">
+          Activities and Resources
+        </label><br><br>
+        <div>
+          <textarea class="textos"></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="step-container">
+        <label class="align-vertical">
+          <img src="../../../assets/images/synthesis.png">
+          Synthesis
+        </label><br><br>
+        <div>
+          <textarea class="textos"></textarea>
+        </div>
+      </div>
+    </form>
   </div>
 
-  <app-menu></app-menu>
-  <!-- <div #modalPlaceholder></div>
-  <button class="investigate-button" (click)="showModal()">Investigar</button>
-  <app-modal-investigate [isVisible]="isModalVisible"></app-modal-investigate> -->
-  
 
-  <!-- <div #componenteContainer></div> -->
-  
-  <div class="container" *ngFor="let textarea of textAreas; let i = index">
-    <button mat-icon-button class="add-button" (click)="adicionarLinha()">+</button>
-    <textarea #textAreaRef class="textArea" placeholder="Digite '/' para opções" (input)="autoResize(textAreaRef)"></textarea>     
+  <div class="visual-tab">
+    <ul>
+      <li>
+        <div class="tab-selected">
+          <img src="../../../assets/images/conteudos.png">
+          <br>
+          Conteúdos
+        </div>
+      </li>
+      <li>
+        <div>
+          <img src="../../../assets/images/templates.png">
+          <br>
+          Templates
+        </div>
+      </li>
+    </ul>
+    
+    <div class="tab-search">
+      <input placeholder="Busca">
+      <img src="../../../assets/images/lupa.png">
+    
+    </div>
+    
+    <div class="content-grid">
+      <div>
+        <img src="../../../assets/images/textos.png">
+        <br>
+        Texto
+      </div>
+      <div>
+        <img src="../../../assets/images/imagens.png">
+        <br>
+        Imagem
+      </div>
+      <div>
+        <img src="../../../assets/images/tabelas.png">
+        <br>
+        Tabela
+      </div>
+      <div>
+        <img src="../../../assets/images/arquivos.png">
+        <br>
+        Arquivo
+      </div>        
+    </div>
   </div>
 
   <div class="archives" *ngFor="let file of files">

@@ -1,0 +1,97 @@
+html, body {
+    background-color: var(--main-color);
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    // margin: 0;
+    position: relative;
+    padding-top: 5%;
+    padding-bottom: 2%;  
+}
+
+.tab-search{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
+    width: 300px; 
+    padding: 10px 10px;
+    // margin-bottom: 30px;
+
+    input{
+        font-size: 16px;
+        color: black;
+        width: 250px;
+        text-decoration: none;
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+
+    li {
+        display: inline-block;
+        margin: 0px 25px;
+    }
+    
+    li div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+.projects-list{
+    padding-left: 15%;
+}
+
+.project {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: #262626;
+    border-radius: 10px;
+    color: white;
+    padding: 40px;
+    width: 180px;
+    height: 180px; /* Ensures consistent size */
+    text-align: center;
+}
+
+.new-project {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: #262626;
+    border-radius: 10px;
+    color: white;
+    padding: 40px;
+    width: 180px;
+    height: 180px; /* Ensures consistent size */
+    text-align: center;
+}
+
+.big-font{
+    font-size: 89px;
+    font-weight: 100;
+    color: white;
+}

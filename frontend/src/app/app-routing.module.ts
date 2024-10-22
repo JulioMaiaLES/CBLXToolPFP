@@ -24,6 +24,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'projeto',
+    loadChildren: () =>
+      import('@pages/project/project.module').then(
+        (m) => m.ProjectModule
+      ),
+  },
+  {
     path: 'jornada',
     loadChildren: () =>
       import('@pages/jornada/jornada.module').then(
