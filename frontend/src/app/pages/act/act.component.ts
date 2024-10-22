@@ -25,18 +25,19 @@ export class ActComponent {
   private fileReader: FileReader = new FileReader();  // No changes needed, properly initialized
   private objectUrls: string[] = [];
 
-  actForm: FormGroup;
+  // actForm: FormGroup;
 
   constructor(
     public dialog: MatDialog, 
     public dialogRef: MatDialogRef<ModalComponent>, 
     private sidebarService: SidebarService,
-    private actService: ActService) {
-      this.actForm = new FormGroup({
-        image: new FormControl('', Validators.required),
-        file: new FormControl('', Validators.required),
-        text_input: new FormControl('', Validators.required),
-      });
+    // private actService: ActService
+  ) {
+      // this.actForm = new FormGroup({
+      //   image: new FormControl('', Validators.required),
+      //   file: new FormControl('', Validators.required),
+      //   text_input: new FormControl('', Validators.required),
+      // });
   }
 
   toggleMenu(): void {
@@ -46,8 +47,6 @@ export class ActComponent {
   adicionarLinha():void {
     this.textAreas.push('');
   }
-  
-  
 
   onFileSelected(event: any): void {
     const inputElement = event?.target as HTMLInputElement;
@@ -148,16 +147,16 @@ export class ActComponent {
     });
   }
 
-  createAct(actData: any){
-    this.actService.createEngage(actData).subscribe(
-      (response) => {
-        console.log('Act created Successfully');
-      },
-      (error) => {
-        console.error('Error creating engage:', error)
-      }
-    )
-  }
+  // createAct(actData: any){
+  //   this.actService.createEngage(actData).subscribe(
+  //     (response) => {
+  //       console.log('Act created Successfully');
+  //     },
+  //     (error) => {
+  //       console.error('Error creating engage:', error)
+  //     }
+  //   )
+  // }
 
   getFileIcon(file: File) {
     if (file.type.includes('pdf')) {
@@ -175,18 +174,18 @@ export class ActComponent {
     }
   }
 
-autoResize(event: any) {
-  const target = event.target;
-  // Reset height to auto to calculate new height
-  target.style.height = 'auto';
-  // Set new height based on scrollHeight
-  target.style.height = target.scrollHeight + 'px';
+  autoResize(event: any) {
+    const target = event.target;
+    // Reset height to auto to calculate new height
+    target.style.height = 'auto';
+    // Set new height based on scrollHeight
+    target.style.height = target.scrollHeight + 'px';
 
-  // Reset width to auto to calculate new width
-  target.style.width = 'auto';
-  // Set new width based on scrollWidth
-  target.style.width = target.scrollWidth + 'px';
-}
+    // Reset width to auto to calculate new width
+    target.style.width = 'auto';
+    // Set new width based on scrollWidth
+    target.style.width = target.scrollWidth + 'px';
+  }
 
 
 }

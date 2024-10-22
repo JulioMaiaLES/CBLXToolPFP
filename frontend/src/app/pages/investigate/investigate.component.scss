@@ -4,15 +4,18 @@ html, body{
     font-family: Roboto, sans-serif;
 
 }
+
 header {
     background-color: var(--main-color);
     color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 0;
+    // margin: 0;
     position: relative;
-    z-index: 1;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    padding-right: 337px;
   
     ul {
         list-style: none;
@@ -21,34 +24,51 @@ header {
   
         li {
             display: inline-block;
-            margin: 0px 10px;
-        
-        
-            li a {
-                color: white;
-                text-decoration: none;
-            }
-            
-            li a:hover {
-                color: #222121;
-            }
+            margin: 0px 15px;
         }
-    }
-    .toggle-menu {
-        margin-right: 10px;
     }
 
     .tree{
-        font-size: 16px;
+        font-size: 30px;
+        // padding-left: 10%;
         display: flex;
+        font-family: Helvetica, Bold;
         align-items: center;
         > * {
             display: inline-block;
         }
+        // justify-content: center;
+        gap: 10px;
+
+    }
+    
+    .nav-acessar-engage{
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-acessar-engage:hover{
+        color: #58BC68
+    }
+
+    .nav-acessar-act{
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-acessar-act:hover{
+        color: #428CD3
+    }
+    
+    .nav-investigate-select{
+        background-color: #F5C949;
+        padding: 10px;
+        border-radius: 10px;
+        color: #000000;
     }
 
     .subir{
-        font-size: 16px;
+        font-size: 30px;
         color: white;
         text-decoration: none;
     }
@@ -59,71 +79,93 @@ header {
 }
 
 
+form{
+    padding: 0 450px;
+    position: relative;
 
-.voltar{
-    background-color: rgb(145,225,54);
-    border: 2px solid white;
+    label{
+        font-size: 28px;
+        color: white;
+    }
+
+    .textos {
+        width: 100%;
+        min-width: 150px;
+        resize: none;
+        overflow: hidden;
+        background-color: transparent;
+        color: white;
+        border: none;
+        font-family: Roboto, 'Helvetica Neue', sans-serif;
+        font-size: 22px;
+        line-height: 24px;
+        outline: none; /* Remove a borda ao focar no textarea */
+    }
+
+    .align-vertical{
+        display: inline-flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .step-container{
+        background-color: #262626;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    
+} 
+
+.main-content{
+    display: inline;
+    gap: 20px;
+}
+
+.navigation{
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.pagination{
     color: white;
-    padding: 15px 32px;
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    margin-bottom: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    opacity: 1;
-    transition: 0.3s;
+    padding-left: 250px;
+    position: absolute;
+}
+
+.current-block{
+    width: 178px;
+    height: 100px;
+    background-color: #F5C949;
+    border: 5px solid white;
+    border-radius: 10px;
+}
+
+.new-block{
+    width: 178px;
+    height: 100px;
+    background-color: #262626;
+    border-radius: 10px;    
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 50;
+}
+
+.new-block:hover{
     cursor: pointer;
 }
 
-.voltar:hover {opacity: 0.6}
-
-.act{
+.visual-tab{
     position: fixed;
     height: 100%;
-    border: transparent;
-    background-color: rgb(1,155,158);
+    background-color: #262626;
+    width: 337px;
     top: 0;
     right: 0;
-    width: 75px;
-    cursor: pointer;
 }
-
-.engage{
-    position: fixed;
-    height: 100%;
-    border: transparent;
-    background-color: rgb(252,43,22);
-    top: 0;
-    left: 0;
-    width: 75px;
-    cursor: pointer;
-}
-
-h1{
-    font-size: 40px;
-    color: white;
-    font-family: Roboto, sans-serif;
-    font-weight: 450;
-}
-
-.investigate-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .investigate-image {
-    margin-right: 20px;
-  }
-  
-  .investigate-title {
-    margin-top: 20px;
-  }
 
   .add-tabela {
     background-color: #007bff;
