@@ -1,37 +1,92 @@
 <header>
   <div class="tree">
-    <!-- <app-togglemenu class="toggle-menu"></app-togglemenu> -->
     <a routerLink="/projeto" class="subir">Projetos</a> > <b> Projeto CBL</b>
   </div>
-  <!-- <ul>
-    <li><a routerLink="/perfil"><img src="../../../assets/images/perfil.png" width="20" height="20"></a></li>
-    <li><a href="#"><img src="../../../assets/images/menu.png" width="20" height="20"></a></li>
-    <li><a href="#"><img src="../../../assets/images/config.png" width="20" height="20"> </a></li>
-  </ul> -->
 </header>
 <app-menu></app-menu>
 
 <body>
 
-  <!-- <h1 align = "center">Turismo</h1> -->
-
   <main>
     <div class="center">
+      <div><a routerLink="/act" class="act">Act</a></div>
+
       <img src="../../../assets/images/roda-fundo.png" alt="Jornada" class="roda-fundo">
       <img src="../../../assets/images/roda-frente.png" class="roda-frente" usemap="#image-map">
+      <div><a routerLink="/engage" class="engage">Engage</a></div>
+    
     </div>
+    
+
     <map name="image-map">
-      <area target="" alt="big_idea" title="big_idea" href="/engage" coords="363,2,419,56" shape="rect">
-      <area target="" alt="essential_question" title="essential_question" href="/engage" coords="497,121,558,179" shape="rect">
-      <area target="" alt="challenge" title="challenge" href="/engage" coords="519,296,594,344" shape="rect">
-      <area target="" alt="guiding_questions" title="guiding_questions" href="/investigate" coords="435,452,482,511" shape="rect">
-      <area target="" alt="activities_resources" title="activities_resources" href="/investigate" coords="264,513,312,574" shape="rect">
-      <area target="" alt="synthesis" title="synthesis" href="/investigate" coords="89,448,143,517" shape="rect">
-      <area target="" alt="solution" title="solution" href="/act" coords="0,287,52,344" shape="rect">
-      <area target="" alt="implementation" title="implementation" href="/act" coords="14,126,74,180" shape="rect">
-      <area target="" alt="evaluation" title="evaluation" href="/act" coords="159,0,205,58" shape="rect">
+      <area
+        target=""
+        alt="big_idea"
+        title="big_idea"
+        href="/engage?phase=big_idea"
+        coords="363,2,419,56"
+        shape="rect">
+      <area
+        target=""
+        alt="essential_question"
+        title="essential_question"
+        href="/engage?phase=essential_question"
+        coords="497,121,558,179"
+        shape="rect">
+      <area
+        target=""
+        alt="challenge"
+        title="challenge"
+        href="/engage?phase=challenge"
+        coords="519,296,594,344"
+        shape="rect">
+      <area 
+        target="" 
+        alt="guiding_questions" 
+        title="guiding_questions" 
+        href="/investigate?phase=guiding_questions" 
+        coords="435,452,482,511" 
+        shape="rect">
+      <area 
+        target="" 
+        alt="activities_resources" 
+        title="activities_resources" 
+        href="/investigate?phase=activities" 
+        coords="264,513,312,574" 
+        shape="rect">
+      <area 
+        target="" 
+        alt="synthesis" 
+        title="synthesis" 
+        href="/investigate?phase=synthesis" 
+        coords="89,448,143,517" 
+        shape="rect">
+      <area 
+        target="" 
+        alt="solution" 
+        title="solution" 
+        href="/act?phase=solution" 
+        coords="0,287,52,344" 
+        shape="rect">
+      <area 
+        target="" 
+        alt="implementation" 
+        title="implementation" 
+        href="/act?phase=implementation"
+        coords="14,126,74,180" 
+        shape="rect">
+      <area 
+        target="" 
+        alt="evaluation" 
+        title="evaluation" 
+        href="/act?phase=evaluation" 
+        coords="159,0,205,58" 
+        shape="rect">
     </map>
   </main>
+  <div class="investigate-container"><a routerLink="/investigate" class="investigate">Investigate</a></div>
+
+
   <!-- <p class="engageProgress">{{ progressService.engageProgress }}%</p>
   <p class="investigateProgress">Guiding Questions: {{ progressService.answeredQuestions }}/{{ progressService.totalQuestions }}</p>
   <p class="actProgress">Uploads: {{ progressService.totalUploads }}</p> -->

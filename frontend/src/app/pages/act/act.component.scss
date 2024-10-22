@@ -107,9 +107,36 @@ form{
     }
 
     .step-container{
+        position: relative;
         background-color: #262626;
         padding: 20px;
         border-radius: 10px;
+        height: 150px; /* Default height for all phases */
+        overflow: hidden; /* Prevent content overflow */
+        transition: height 0.5s ease-in-out, flex-grow 0.5s ease-in-out;
+        flex-grow: 0;
+        cursor: pointer;
+    }
+    
+    .step-container.expanded {
+        height: 500px; /* Expanded height */
+        flex-grow: 1; /* Allows this phase to take up more space smoothly */
+    }
+
+    .step-container.drag-over {
+        background-color: #333;
+    }
+
+    .phase-controls {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    
+    .toggle-symbol{
+        width: 18px;
+        height: 22px;
     }
     
 } 
@@ -172,6 +199,11 @@ form{
     background-color: #707070;
     border-radius: 10px;
     padding: 15px;
+}
+
+.tab-item {
+    text-align: center;
+    cursor: grab;
 }
 
 ul {

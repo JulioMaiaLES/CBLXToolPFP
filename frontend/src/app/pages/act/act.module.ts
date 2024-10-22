@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TabComponent } from '@app/components/tab/tab.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActRoutingModule,
     TogglemenuComponent,
     MenuComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabComponent
   ]
 })
 export class ActModule { }

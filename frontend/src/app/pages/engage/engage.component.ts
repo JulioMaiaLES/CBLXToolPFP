@@ -7,6 +7,7 @@ import { EngageService } from '@app/services/engage.service';
 import { FormArray, FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SidebarService } from '../../../app/services/sidebar.service'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-engage',
@@ -22,7 +23,7 @@ export class EngageComponent implements OnInit{
     challenge: string[];
   } = { big_idea: [], essential_question: [], challenge: [] };
   
-  
+  expandedPhase: string | null = null;
   isMenuHidden: boolean = true;  // Explicitly declare boolean type (optional)
   files: File[] = [];  // No changes needed, already correctly typed
   renderedFiles: RenderedFile[] = [];  // Properly typed with the interface defined
@@ -46,17 +47,40 @@ export class EngageComponent implements OnInit{
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ModalComponent>,
     private progressService: ProgressService,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    // Initialize the form with FormArrays for each phase
     this.engageForm = this.fb.group({
       big_idea: this.fb.array([this.createField()]),
       essential_question: this.fb.array([this.createField()]),
       challenge: this.fb.array([this.createField()]),
     });
-
+  
+    // Load the engage data (if needed for pre-existing data)
     this.loadEngageData();
+  
+    // Handle query parameters to determine the expanded phase
+    this.route.queryParamMap.subscribe(params => {
+      const phase = params.get('phase');
+      if (phase) {
+        this.expandedPhase = phase;
+      }
+    });
+  }
+  
+  isExpanded(phase: string): boolean {
+    return this.expandedPhase === phase;
+  }
+
+  togglePhase(phase: string): void {
+    if (this.expandedPhase === phase) {
+      this.expandedPhase = null; // Collapse if already expanded
+    } else {
+      this.expandedPhase = phase; // Expand the selected phase
+    }
   }
 
   loadEngageData(): void {

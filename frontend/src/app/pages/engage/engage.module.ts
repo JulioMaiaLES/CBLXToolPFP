@@ -6,6 +6,7 @@ import { EngageComponent } from './engage.component';
 import { TogglemenuComponent } from '../../components/jornada/togglemenu/togglemenu.component';
 import { MenuComponent } from '../../components/jornada/menu/menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TabComponent } from '@app/components/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     EngageRoutingModule,
     TogglemenuComponent,
     MenuComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabComponent
   ]
 })
 export class EngageModule { }

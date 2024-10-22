@@ -1,6 +1,5 @@
 <header>
   <div class="tree">
-    <!-- <app-togglemenu class="toggle-menu"></app-togglemenu> -->
     <a routerLink="/projeto" class="subir">Projetos</a> > <a routerLink="/jornada" class="subir">Projeto CBL</a> > <b>Act</b>
   </div>
   <div class="navigation">
@@ -11,7 +10,6 @@
     </ul>
   </div>
 </header>
-<!-- <app-menu></app-menu> -->
 
 <body>    
 
@@ -27,30 +25,48 @@
      
       <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
       <form>
-        <div class="step-container">
-          <label class="align-vertical">
-            <img src="../../../assets/images/evaluation.png">
-            Evaluation
-          </label><br><br>
-          <div>
-            <textarea class="textos"></textarea>
-          </div>
-        </div>
-        <br>
-        <div class="step-container">
-          <label class="align-vertical">
-            <img src="../../../assets/images/implementation.png">
-            Implementation
-          </label><br><br>
-          <div>
-            <textarea class="textos"></textarea>
-          </div>
-        </div>
-        <br>
-        <div class="step-container">
+        <div class="step-container" 
+          [class.expanded]="isExpanded('solution')" 
+          (dragover)="onDragOver($event)"
+          (drop)="onDrop($event, 'big_idea')">
           <label class="align-vertical">
             <img src="../../../assets/images/solution.png">
             Solution
+            <div class="phase-controls">
+              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
+            </div>
+          </label><br><br>
+          <div>
+            <textarea class="textos"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="step-container" 
+          [class.expanded]="isExpanded('implementation')"
+          (dragover)="onDragOver($event)"
+          (drop)="onDrop($event, 'big_idea')">
+          <label class="align-vertical">
+            <img src="../../../assets/images/implementation.png">
+            Implementation
+            <div class="phase-controls">
+              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
+            </div>
+          </label><br><br>
+          <div>
+            <textarea class="textos"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="step-container" 
+          [class.expanded]="isExpanded('evaluation')"
+          (dragover)="onDragOver($event)"
+          (drop)="onDrop($event, 'big_idea')">
+          <label class="align-vertical">
+            <img src="../../../assets/images/evaluation.png">
+            Evaluation
+            <div class="phase-controls">
+              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
+            </div>
           </label><br><br>
           <div>
             <textarea class="textos"></textarea>
@@ -59,71 +75,6 @@
       </form>
     </div>
   
-  
-    <div class="visual-tab">
-      <ul>
-        <li>
-          <div class="tab-selected">
-            <img src="../../../assets/images/conteudos.png">
-            <br>
-            Conteúdos
-          </div>
-        </li>
-        <li>
-          <div>
-            <img src="../../../assets/images/templates.png">
-            <br>
-            Templates
-          </div>
-        </li>
-      </ul>
-      
-      <div class="tab-search">
-        <input placeholder="Busca">
-        <img src="../../../assets/images/lupa.png">
-      
-      </div>
-      
-      <div class="content-grid">
-        <div>
-          <img src="../../../assets/images/textos.png">
-          <br>
-          Texto
-        </div>
-        <div>
-          <img src="../../../assets/images/imagens.png">
-          <br>
-          Imagem
-        </div>
-        <div>
-          <img src="../../../assets/images/tabelas.png">
-          <br>
-          Tabela
-        </div>
-        <div>
-          <img src="../../../assets/images/arquivos.png">
-          <br>
-          Arquivo
-        </div>        
-      </div>
-    </div>
-
-
-    <!-- Lógica Modal  -->
-    <!-- <div class="container" *ngFor="let textarea of textAreas; let i = index">
-      <div class="input-wrapper">      
-        <button mat-icon-button class="add-button" (click)="adicionarLinha()" >+</button>
-        <textarea #textAreaRef class="textArea" placeholder="Digite '/' para opções" (input)="autoResize($event)"></textarea>
-      </div>
-    </div> -->  
-
-    <div class="archives" *ngFor="let file of files">
-      <img class="file-icon" [src]="getFileIcon(file)" (click)="downloadFile(file)">
-      <p class="title-archive">{{ file.name }}</p>
-    </div>
-
-    <div class="images" *ngFor="let image of images">
-      <img [src]="image.value">
-    </div>
+    <app-tab></app-tab>
 
   </body>

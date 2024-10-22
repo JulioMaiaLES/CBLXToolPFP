@@ -12,6 +12,7 @@ import { InvestigateService } from '@app/services/investigate.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SidebarService } from '../../../app/services/sidebar.service'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-investigate',
@@ -22,6 +23,7 @@ export class InvestigateComponent {
   @ViewChild('componenteContainer', { read: ViewContainerRef }) componenteContainer!: ViewContainerRef;
   @ViewChild(ModalInvestigateComponent) modal!: ModalInvestigateComponent;
   
+  expandedPhase: string | null = null;
   isMenuHidden: boolean = true;  // Explicitly declare boolean type (optional)
   textAreas: string[] = [''];
   files: File[] = [];  // No changes needed, already correctly typed
@@ -40,7 +42,8 @@ export class InvestigateComponent {
     private investigateService: InvestigateService,
     public dialog: MatDialog, 
     public dialogRef: MatDialogRef<ModalComponent>,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private route: ActivatedRoute
   ) {
     this.investigateForm = new FormGroup({
       guiding_question: new FormControl('', Validators.required),
@@ -50,6 +53,27 @@ export class InvestigateComponent {
       date_start: new FormControl('', Validators.required),
       date_end: new FormControl('', Validators.required)
     });
+  }
+
+  ngOnInit() {
+    this.route.queryParamMap.subscribe(params => {
+      const phase = params.get('phase');
+      if (phase) {
+        this.expandedPhase = phase;
+      }
+    });
+  }
+
+  isExpanded(phase: string): boolean {
+    return this.expandedPhase === phase;
+  }
+
+  togglePhase(phase: string): void {
+    if (this.expandedPhase === phase) {
+      this.expandedPhase = null; // Collapse if already expanded
+    } else {
+      this.expandedPhase = phase; // Expand the selected phase
+    }
   }
   
   toggleMenu(): void {

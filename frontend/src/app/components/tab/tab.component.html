@@ -1,0 +1,43 @@
+<div class="visual-tab">
+    <ul>
+      <li>
+        <div class="tab-selected">
+          <img src="../../../assets/images/conteudos.png">
+          <br>
+          Conteúdos
+        </div>
+      </li>
+      <li>
+        <div>
+          <img src="../../../assets/images/templates.png">
+          <br>
+          Templates
+        </div>
+      </li>
+    </ul>
+    
+    <div class="tab-search">
+      <input placeholder="Busca">
+      <img src="../../../assets/images/lupa.png">
+    
+    </div>
+    
+    <div class="content-grid">
+      <div class="tab-item" draggable="true" (dragstart)="onDragStart($event, 'text')">
+        <img src="../../../assets/images/textos.png" alt="Texto">
+        Texto
+      </div>
+      <div class="tab-item" draggable="true" (dragstart)="onDragStart($event, 'image')">
+        <img src="../../../assets/images/imagens.png" alt="Imagem">
+        Imagem
+      </div>
+      <div class="tab-item" draggable="true" (dragstart)="onDragStart($event, 'table')">
+        <img src="../../../assets/images/tabelas.png" alt="Tabela">
+        Tabela
+      </div>
+      <div class="tab-item" draggable="true" (dragstart)="onDragStart($event, 'file')">
+        <img src="../../../assets/images/arquivos.png" alt="Arquivo">
+        Arquivo
+      </div>
+    </div>
+  </div>

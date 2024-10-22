@@ -24,31 +24,41 @@
         +
       </div>
     </div>
+    
     <form [formGroup]="engageForm">
-      <div formArrayName="big_idea" class="step-container">
+      <div formArrayName="big_idea" class="step-container" [class.expanded]="isExpanded('big_idea')">
         <label class="align-vertical">
           <img src="../../../assets/images/big_idea.png" alt="lampada">
           Big Idea
+          <div class="phase-controls">
+            <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('big_idea')">
+          </div>
         </label><br><br>
         <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
           <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'big_idea', i)" type="text"></textarea>
         </div>
       </div>
       <br>
-      <div formArrayName="essential_question" class="step-container">
+      <div formArrayName="essential_question" class="step-container" [class.expanded]="isExpanded('essential_question')">
         <label class="align-vertical">
           <img src="../../../assets/images/essential_question.png" alt="pensando">
           Essential Question
+          <div class="phase-controls">
+            <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('essential_question')">
+          </div>
         </label><br><br>
         <div *ngFor="let field of essentialQuestionFields.controls; let i = index" [formGroupName]="i">
           <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'essential_question', i)" type="text"></textarea>
         </div>
       </div>
       <br>
-      <div formArrayName="challenge" class="step-container">
+      <div formArrayName="challenge" class="step-container" [class.expanded]="isExpanded('challenge')">
         <label class="align-vertical">
           <img src="../../../assets/images/challenge.png" alt="alvo">
           Challenge
+          <div class="phase-controls">
+            <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('challenge')">
+          </div>
         </label><br><br>
         <div *ngFor="let field of challengeFields.controls; let i = index" [formGroupName]="i">
           <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'challenge', i)" type="text"></textarea>
@@ -57,54 +67,7 @@
     </form>
   </div>
 
-
-  <div class="visual-tab">
-    <ul>
-      <li>
-        <div class="tab-selected">
-          <img src="../../../assets/images/conteudos.png">
-          <br>
-          Conteúdos
-        </div>
-      </li>
-      <li>
-        <div>
-          <img src="../../../assets/images/templates.png">
-          <br>
-          Templates
-        </div>
-      </li>
-    </ul>
-    
-    <div class="tab-search">
-      <input placeholder="Busca">
-      <img src="../../../assets/images/lupa.png">
-    
-    </div>
-    
-    <div class="content-grid">
-      <div>
-        <img src="../../../assets/images/textos.png">
-        <br>
-        Texto
-      </div>
-      <div>
-        <img src="../../../assets/images/imagens.png">
-        <br>
-        Imagem
-      </div>
-      <div>
-        <img src="../../../assets/images/tabelas.png">
-        <br>
-        Tabela
-      </div>
-      <div>
-        <img src="../../../assets/images/arquivos.png">
-        <br>
-        Arquivo
-      </div>        
-    </div>
-  </div>
+  <app-tab></app-tab>
 
   <div class="archives" *ngFor="let file of files">
     <p class="title-archive">Arquivo: {{ file.name }}</p>
@@ -116,5 +79,4 @@
     <img [src]="image.value" alt="Uploaded Image">
   </div>
 
-  <!-- <a routerLink="/investigate"><button class="investigate" type="button"></button></a> -->
 </body>

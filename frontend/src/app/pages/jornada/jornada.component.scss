@@ -3,28 +3,142 @@ html, body{
     height: 100vh;
 }
 
-.center{
-    // width: 697px;
-    // height: 694px;
+main {
+    display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 80vh; /* Take the full height of the screen */
+}
+  
+.center {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 4%;
-    
-    .roda-fundo{
-        position: absolute;
-    }
-
-    .roda-frente{
-        position: relative;
-        left: 10px;
-        bottom: 10px;
-        width: 594px;
-        height: 575px;
-    }
-
+    gap: 180px; /* Adjust space between elements */
 }
+
+.roda-fundo {
+    position: absolute;
+}
+
+.roda-frente {
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    width: 594px;
+    height: 575px;
+}
+
+.engage {
+    position: absolute;
+    right: 0;
+    font-size: 36px;
+    font-weight: bold;
+    color: #58BC68;
+    text-decoration: none;
+}
+
+.engage:hover {
+    text-decoration: underline;
+}
+
+.act {
+    position: absolute;
+    left: 5%;
+    font-size: 36px;
+    font-weight: bold;
+    color: #428CD3;
+    text-decoration: none;
+}
+
+.act:hover {
+    text-decoration: underline;
+}
+
+.investigate-container {
+    display: flex;
+    justify-content: center;
+}
+
+.investigate {
+    font-size: 36px;
+    font-weight: bold;
+    color: #F5C949;
+    text-decoration: none;
+}
+
+.investigate:hover {
+    text-decoration: underline;
+}
+// main{
+//     .center{
+//         // width: 697px;
+//         // height: 694px;
+//         position: relative;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         padding-top: 4%;
+        
+//         .roda-fundo{
+//             position: absolute;
+//         }
+
+//         .roda-frente{
+//             position: relative;
+//             left: 10px;
+//             bottom: 10px;
+//             width: 594px;
+//             height: 575px;
+//         }
+
+//         .engage{
+//             position: absolute;
+//             padding-left: 4%;
+//             font-size: 36px;
+//             font-weight: bold;
+//             color: #58BC68;
+//             text-decoration: none;
+//         }
+
+//         .engage:hover{
+//             text-decoration: underline;
+//         }
+        
+
+//         .act{
+//             position: flex;
+//             font-size: 36px;
+//             padding-right: 80%;
+//             font-weight: bold;
+//             color:#428CD3;
+//             text-decoration: none;
+//         }
+
+//         .act:hover{
+//             text-decoration: underline;
+//         }
+//     }
+
+//     .investigate{
+//         position: absolute;
+//         align-items: center;
+//         justify-content: center;
+//         padding-top: 5%;
+//         font-size: 36px;
+//         font-weight: bold;
+//         color:#F5C949;
+//         text-align: center;
+//         text-decoration: none;
+//     }
+    
+//     .investigate:hover{
+//         text-decoration: underline;
+//     }
+// }
+
 
 
 // h1{
@@ -53,28 +167,6 @@ html, body{
 
 }
 
-
-
-// .engageProgress{
-//     position: absolute;
-//     top: 350px;
-//     right: 550px;
-//     color: white;
-// }
-
-// .investigateProgress{
-//     position: absolute;
-//     top: 490px;
-//     left: 600px;
-//     color: white;
-// }
-
-// .actProgress{
-//     position: absolute;
-//     top: 350px;
-//     left: 525px;
-//     color: white;
-// }
 
 
 header {
