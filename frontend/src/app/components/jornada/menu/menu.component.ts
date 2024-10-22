@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ResizableModule } from 'angular-resizable-element';
 import { AngularSplitModule } from 'angular-split';
 import { SidebarService } from '../../../services/sidebar.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu',
@@ -31,7 +32,7 @@ export class MenuComponent implements OnInit {
     }
   ];  
 
-  constructor(public sidebarService: SidebarService) {}
+  constructor(public sidebarService: SidebarService, private http: HttpClient) {}
 
   ngOnInit(): void {
     // Subscribe to sidebar state changes
@@ -43,5 +44,12 @@ export class MenuComponent implements OnInit {
   // Toggle sidebar visibility and update SidebarService state
   toggleSidebar(): void {
     this.sidebarService.toggleSidebar();  // This method handles the toggle internally
+  }
+
+  novaJornada() {
+    this.http.get('http://localhost:8000/api/get-user-email/')
+      .subscribe((response: any) => {
+        console.log('Email do usuário:', response.email);
+      });
   }
 }
