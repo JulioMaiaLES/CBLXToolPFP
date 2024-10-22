@@ -27,6 +27,7 @@ from login import urls as login_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('engage/', include(template_urls)),
+    path('api/', include('user.urls')),  # Incluindo as URLs da app 'user'
     path('investigate/', create_investigate, name='investigate'),
     path('act/', create_act, name='act'),
     path('', include(login_urls)),
