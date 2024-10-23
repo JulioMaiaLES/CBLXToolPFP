@@ -27,6 +27,7 @@ import { PageLoadingComponent } from './page-loading/page-loading.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PasswordStregthComponent } from './password-stregth/password-stregth.component';
 import { SkeletonLoadingComponent } from './skeleton-loading/skeleton-loading.component';
+import { NewProjectName } from '../modals/new-project-name/new-project-name.component';
 
 const IMPORTS = [
   MatButtonModule,
@@ -58,6 +59,7 @@ const DECLARATIONS = [
   FormErrorPipe,
   ScrollToDirective,
   ForgotPasswordComponent,
+  NewProjectName
 ];
 
 @NgModule({
