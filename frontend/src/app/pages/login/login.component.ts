@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         this.loading = false;
         this.authService.setToken(response.token, remember as boolean);  // `remember` já foi extraído
-        this.router.navigate(['/']);
+        this.router.navigate(['/projeto']);
       },
       error: () => {
         this.loading = false;
