@@ -1,3 +1,4 @@
+//project.component.ts
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -45,15 +46,18 @@ export class ProjectComponent implements OnInit {
   }
 
   handleCreateProject() {
+    console.log('Creating project...');
     this.dialog.open(NewProjectName, {
       data: {
         email: this.login_form.get('email')?.value,
         message: 'Insira o nome do novo projeto:' // nova mensagem personalizada
       },
+      
     });
   }
 
   openCookieDialog() {
+    console.log('Opening cookie dialog...');
     const dialogRef = this.dialog.open(CookiesLoginComponent, {
       panelClass: 'cookies-dialog',
       disableClose: true,

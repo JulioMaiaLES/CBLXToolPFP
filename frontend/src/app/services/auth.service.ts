@@ -65,7 +65,20 @@ export class AuthService {
     } else {
       sessionStorage.setItem('token', token);
     }
+  }  
+
+  getToken(): string | null {
+    let token: string | null;
+    if (this.storage.cookies) {
+      token = this.cookieService.get('token');
+      console.log('Token from cookies:', token);
+    } else {
+      token = sessionStorage.getItem('token');
+      console.log('Token from sessionStorage:', token);
+    }
+    return token;
   }
+  
 
   logout() {
     this.setToken('', false);
@@ -80,4 +93,5 @@ export class AuthService {
     body['new_password'] = Md5.init(body['new_password']).toUpperCase();
     return this.http.post('core/change-password-forgot-password/', body);
   }
+
 }

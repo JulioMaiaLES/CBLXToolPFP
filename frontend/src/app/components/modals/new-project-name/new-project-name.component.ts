@@ -1,9 +1,12 @@
+// new-project-name.component.ts
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
 import { AuthService } from './../../../services/auth.service';
+import { ProjectService } from '../../../services/project.service';
+import { Router } from '@angular/router';
 
 interface Data {
   name: string;
@@ -19,13 +22,15 @@ export class NewProjectName {
     @Inject(DIALOG_DATA) private data: Data,
     private fb: FormBuilder,
     private authService: AuthService,
+    private projectService: ProjectService,
     private dialogRef: MatDialogRef<NewProjectName>,
-    private notifier: NotifierService
+    private notifier: NotifierService,
+    private router: Router // Importa o Router para fazer o redirecionamento
   ) {}
 
   loading = false;
   form = this.fb.group({
-    email: [this.data.name, [Validators.required, Validators.email]],
+    name: [this.data.name, [Validators.required]],
   });
 
   handleFormSubmit() {
@@ -34,15 +39,33 @@ export class NewProjectName {
       return;
     }
 
+    // Pegar o token do AuthService
+    const token = this.authService.getToken();
+    if (!token) {
+      // Se não houver token, redirecionar para a página de login manualmente
+      this.notifier.notify('error', 'Usuário não autenticado. Faça login.');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const projectName = this.form.value.name ?? ''; // Garantir que não seja null ou undefined
+    const userEmail = 'usuario@example.com'; // Ajuste aqui para recuperar o email do AuthService ou de outro local
+
+    const projectData = {
+      name: projectName,
+      email: userEmail,
+    };
+
     this.setLoading(true);
-    this.authService.forgotPassword(this.form.value as string).subscribe({
+    this.projectService.createProject(projectData).subscribe({
       next: () => {
         this.setLoading(false);
         this.notifier.notify('success', 'Projeto criado com sucesso!');
         this.dialogRef.close();
       },
-      error: () => {
+      error: (err) => {
         this.setLoading(false);
+        this.notifier.notify('error', 'Erro ao criar projeto: ' + err.message);
       },
     });
   }
