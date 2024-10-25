@@ -192,3 +192,5 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = 'user.Profile'
+
+LOGIN_URL = '/auth-login/'  # Defina uma URL para login
