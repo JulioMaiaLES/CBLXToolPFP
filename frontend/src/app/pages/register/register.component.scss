@@ -1,6 +1,18 @@
 @import 'src/styles/media';
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
+main{
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  text-align: center;
+}
 
 #register {
   min-height: 100vh;
@@ -21,27 +33,27 @@
     .lang {
       position: absolute;
       top: 1rem;
-      left: 1rem;
+      right: 1rem;
     }
 
     .col {
       width: 100%;
 
-      .logo {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 100%;
-          max-width: 350px;
-          @include media('<=tablet') {
-            max-width: 250px;
-            width: 50%;
-          }
-        }
-      }
+      // .logo {
+      //   width: 100%;
+      //   height: 100%;
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   img {
+      //     width: 100%;
+      //     max-width: 350px;
+      //     @include media('<=tablet') {
+      //       max-width: 250px;
+      //       width: 50%;
+      //     }
+      //   }
+      // }
 
       .form {
         width: 100%;
@@ -72,4 +84,56 @@
       }
     }
   }
+}
+
+.process-button{
+  background-color: #F5C949;
+  border-radius: 100px;
+  width: 50px;
+}
+
+/* Background Image Container */
+.background-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Ensures no overflow */
+  z-index: -1; /* Behind all content */
+}
+
+/* Image Styling */
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes the image cover the container */
+  object-position: center; /* Centers the image */
+}
+
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+  .background-image {
+    object-position: top; /* Adjust the image position on smaller screens */
+  }
+}
+
+h3{
+  text-align: left;
+}
+
+.row-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.short-input {
+  width: 80%; /* Adjust the size as needed */
+  max-width: 250px; 
 }
