@@ -1,13 +1,63 @@
 @import 'src/styles/media';
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+// img {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 1207px;
+//   height: 1034px;
+//   // background-image: url('https://via.placeholder.com/1920x1080'); /* Test image */
+//   // background-image: url('../../../assets/images/config.png');
+//   // background-repeat: no-repeat;
+//   // background-size: cover;
+//   // background-position: center;
+//   // background-color: red;
+//   z-index: -1;
+// }
+
+/* Background Image Container */
+.background-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Ensures no overflow */
+  z-index: -1; /* Behind all content */
+}
+
+/* Image Styling */
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes the image cover the container */
+  object-position: center; /* Centers the image */
+}
+
+main{
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
 #login {
   min-height: 100vh;
   width: 100%;
   background-color: var(--main-color);
   overflow: hidden;
+  color: white;
 
   .row {
+    color: white;
     padding: 2rem 8%;
     width: 100%;
     height: 100vh;
@@ -22,7 +72,8 @@
     .lang {
       position: absolute;
       top: 1rem;
-      left: 1rem;
+      // left: 1rem;
+      right: 1rem;
     }
 
     .version {
@@ -34,33 +85,35 @@
 
     .col {
       width: 100%;
+      color: white;
 
-      .logo {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 100%;
-          max-width: 350px;
-          @include media('<=tablet') {
-            max-width: 250px;
-            width: 50%;
-          }
-        }
-      }
+      // .logo {
+      //   width: 100%;
+      //   height: 100%;
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   img {
+      //     width: 100%;
+      //     max-width: 350px;
+      //     @include media('<=tablet') {
+      //       max-width: 250px;
+      //       width: 50%;
+      //     }
+      //   }
+      // }
 
       .form {
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: left;
         flex-direction: column;
+        color: white;
 
         form {
-          background-color: var(--primary-bg);
+          color: white;
           padding: 2rem;
           border-radius: var(--br);
           width: 100%;
@@ -68,19 +121,22 @@
 
           h1 {
             text-align: center;
+            color: white;
           }
           p {
-            margin: 0.2rem 0 0.5rem;
+            margin: 1rem 0 0.5rem;
             text-align: center;
+            color: white;
             a {
-              color: var(--text-color);
+              color: #F5C949;
             }
           }
 
           .forgot-password {
             text-align: end;
+            color: white;
             a {
-              color: var(--main-color);
+              color: white;
               text-decoration: none;
               &:hover {
                 text-decoration: underline;
@@ -90,5 +146,26 @@
         }
       }
     }
+  }
+}
+
+h3{
+  color: white;
+}
+
+.process-button{
+  background-color: #F5C949;
+  border-radius: 100px;
+  width: 50px;
+}
+
+.remember{
+  color: white;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+  .background-image {
+    object-position: top; /* Adjust the image position on smaller screens */
   }
 }
