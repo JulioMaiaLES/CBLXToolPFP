@@ -7,6 +7,14 @@ from rest_framework import status
 from .models import Project
 from traceback import print_exc
 import json
+from django.shortcuts import get_list_or_404
+from django.http import JsonResponse
+from .models import Project
+from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from django.http import JsonResponse
 
 class CreateProjectView(APIView):
     authentication_classes = [TokenAuthentication]
@@ -39,3 +47,17 @@ class CreateProjectView(APIView):
 
         except json.JSONDecodeError:
             return Response({"error": "Erro ao decodificar JSON. Verifique os dados enviados."}, status=status.HTTP_400_BAD_REQUEST)
+        
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def user_projects(request):
+    user_projects = Project.objects.filter(email=request.user.email)
+    projects_data = [
+        {
+            "name": project.name,
+            "image": request.build_absolute_uri(project.image.url) if project.image else None
+        }
+        for project in user_projects
+    ]
+    return JsonResponse(projects_data, safe=False)

@@ -22,7 +22,9 @@ from template.views import create_investigate, create_act
 from template import urls as template_urls
 from register import urls as register_urls
 from login import urls as login_urls
-from project import urls as project_urls  # Importando as URLs da aplicação de projetos
+from project import urls as project_urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +35,4 @@ urlpatterns = [
     path('api/projects/', include(project_urls)),
     path('', include(login_urls)),
     path('', include(register_urls)),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

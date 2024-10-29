@@ -194,3 +194,6 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'user.Profile'
 
 LOGIN_URL = '/auth-login/'  # Defina uma URL para login
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
