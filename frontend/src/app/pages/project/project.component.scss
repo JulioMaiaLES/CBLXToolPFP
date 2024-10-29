@@ -69,6 +69,13 @@ ul {
     object-fit: cover;   /* Ajusta a imagem para preencher a área sem distorcer */
 }
 
+.profile img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;  /* Para que a imagem fique circular, como no exemplo */
+    object-fit: cover;   /* Ajusta a imagem para preencher a área sem distorcer */
+}
+
 
 .project {
     display: flex;

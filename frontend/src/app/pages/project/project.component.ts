@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProjectService } from '@services/project.service';
 import { AuthService } from '@services/auth.service';
+import { UserService } from '@services/user.service';
 import { StorageService } from '@services/storage.service';
 import { NewProjectName } from '@app/components/modals/new-project-name/new-project-name.component';
 import { ChangeDetectorRef } from '@angular/core';
@@ -17,6 +18,7 @@ import { CookiesLoginComponent } from '@components/modals/cookies-login/cookies-
 })
 export class ProjectComponent implements OnInit {
   projects: any[] = [];
+  profileImage: string | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -25,7 +27,8 @@ export class ProjectComponent implements OnInit {
     private authService: AuthService,
     private projectService: ProjectService,
     public router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private userService: UserService
   ) {}
 
   login_form = this.fb.group({
@@ -37,6 +40,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.awaitRemember();
     this.loadUserProjects();
+    this.loadUserProfile();
   }
 
   awaitRemember() {
@@ -77,6 +81,18 @@ export class ProjectComponent implements OnInit {
       },
       (error) => {
         console.error('Erro ao carregar os projetos:', error);
+      }
+    );
+  }
+
+  loadUserProfile() {
+    this.userService.getUserProfile().subscribe(
+      (data) => {
+        this.profileImage = data.profile_image || '../../../assets/images/perfil-prototipo.png';
+      },
+      (error) => {
+        console.error('Erro ao carregar o perfil do usuário:', error);
+        this.profileImage = '../../../assets/images/perfil-prototipo.png'; // Imagem padrão em caso de erro
       }
     );
   }
