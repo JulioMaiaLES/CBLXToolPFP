@@ -5,7 +5,7 @@
         <img src="../../../assets/images/lupa.png">  
     </div>
     <div class="profile">
-        <img [src]="profileImage" alt="User Profile Image">
+        <img [src]="profileImage" alt="User Profile Image" (error)="profileImage = '../../../assets/images/perfil-prototipo.png'">
     </div>
 </header>
 
@@ -14,7 +14,9 @@
         <li *ngFor="let project of projects">
             <a routerLink="/jornada">
                 <div class="project">
-                    <img [src]="project.image || '../../../assets/images/project-icon.png'" alt="Project Image">
+                    <img [src]="project.image || '../../../assets/images/cbl-back.png'" 
+                         alt="Project Image" 
+                         (error)="project.image = '../../../assets/images/cbl-back.png'">
                     <br>
                     {{ project.name }}
                 </div>
