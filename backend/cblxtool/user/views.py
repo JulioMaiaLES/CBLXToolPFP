@@ -8,6 +8,10 @@ import json
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .models.user import Profile # Importar o modelo Perfil
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.response import Response
 from datetime import datetime
 import traceback
 
@@ -24,4 +28,14 @@ def get_user_email(request):
     else:
         return JsonResponse({'error': 'Usuário não autenticado'}, status=401)
     
-    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def user_profile(request):
+    user = request.user
+    profile_image_url = request.build_absolute_uri(user.image.url) if user.image else None
+    return Response({
+        "username": user.username,
+        "email": user.email,
+        "profile_image": profile_image_url,
+    })

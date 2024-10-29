@@ -1,15 +1,15 @@
-//project.component.ts
+// project.component.ts
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { zoomInAnimation } from '@animations/route-animation';
-import { NewProjectName } from '@app/components/modals/new-project-name/new-project-name.component';
-import { CookiesLoginComponent } from '@components/modals/cookies-login/cookies-login.component';
-import { environment } from '@env';
+import { ProjectService } from '@services/project.service';
 import { AuthService } from '@services/auth.service';
-import { BodyJson } from '@services/http.service';
+import { UserService } from '@services/user.service';
 import { StorageService } from '@services/storage.service';
+import { NewProjectName } from '@app/components/modals/new-project-name/new-project-name.component';
+import { ChangeDetectorRef } from '@angular/core';
+import { CookiesLoginComponent } from '@components/modals/cookies-login/cookies-login.component';
 
 @Component({
   selector: 'app-project',
@@ -17,12 +17,18 @@ import { StorageService } from '@services/storage.service';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+  projects: any[] = [];
+  profileImage: string | undefined;
+
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     public storage: StorageService,
     private authService: AuthService,
-    public router: Router
+    private projectService: ProjectService,
+    public router: Router,
+    private cdr: ChangeDetectorRef,
+    private userService: UserService
   ) {}
 
   login_form = this.fb.group({
@@ -33,6 +39,8 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.awaitRemember();
+    this.loadUserProjects();
+    this.loadUserProfile();
   }
 
   awaitRemember() {
@@ -46,14 +54,47 @@ export class ProjectComponent implements OnInit {
   }
 
   handleCreateProject() {
-    console.log('Creating project...');
-    this.dialog.open(NewProjectName, {
+    console.log('Opening create project dialog...');
+    const dialogRef = this.dialog.open(NewProjectName, {
       data: {
         email: this.login_form.get('email')?.value,
-        message: 'Insira o nome do novo projeto:' // nova mensagem personalizada
+        message: 'Insira o nome do novo projeto:'
       },
-      
     });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadUserProjects();
+      } else {
+        console.log('Create project dialog was closed without data.');
+      }
+    });
+  }
+  
+
+  loadUserProjects() {
+    this.projectService.getUserProjects().subscribe(
+      (data) => {
+        console.log('Projects loaded:', data);  // Verifica se os projetos estão sendo retornados
+        this.projects = data;  // Armazena os projetos retornados na variável `projects`
+        this.cdr.detectChanges();  // Força a atualização da tela
+      },
+      (error) => {
+        console.error('Erro ao carregar os projetos:', error);
+      }
+    );
+  }
+
+  loadUserProfile() {
+    this.userService.getUserProfile().subscribe(
+      (data) => {
+        this.profileImage = data.profile_image || '../../../assets/images/perfil-prototipo.png';
+      },
+      (error) => {
+        console.error('Erro ao carregar o perfil do usuário:', error);
+        this.profileImage = '../../../assets/images/perfil-prototipo.png'; // Imagem padrão em caso de erro
+      }
+    );
   }
 
   openCookieDialog() {
@@ -71,5 +112,4 @@ export class ProjectComponent implements OnInit {
       }
     });
   }
-
 }

@@ -38,7 +38,7 @@ export class NewProjectName {
       this.form.markAllAsTouched();
       return;
     }
-
+  
     // Pegar o token do AuthService
     const token = this.authService.getToken();
     if (!token) {
@@ -47,21 +47,22 @@ export class NewProjectName {
       this.router.navigate(['/login']);
       return;
     }
-
+  
     const projectName = this.form.value.name ?? ''; // Garantir que não seja null ou undefined
     const userEmail = 'usuario@example.com'; // Ajuste aqui para recuperar o email do AuthService ou de outro local
-
+  
     const projectData = {
       name: projectName,
       email: userEmail,
     };
-
+  
     this.setLoading(true);
     this.projectService.createProject(projectData).subscribe({
       next: () => {
         this.setLoading(false);
         this.notifier.notify('success', 'Projeto criado com sucesso!');
-        this.dialogRef.close();
+        // Feche o diálogo e retorne os dados do projeto para o componente pai
+        this.dialogRef.close(projectData);
       },
       error: (err) => {
         this.setLoading(false);

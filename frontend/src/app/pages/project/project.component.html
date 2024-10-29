@@ -5,27 +5,31 @@
         <img src="../../../assets/images/lupa.png">  
     </div>
     <div class="profile">
-        <img src="../../../assets/images/perfil-prototipo.png">
+        <img [src]="profileImage" alt="User Profile Image" (error)="profileImage = '../../../assets/images/perfil-prototipo.png'">
     </div>
 </header>
 
 <body>
     <ul class="projects-list">
-    <li>
-        <a routerLink="/jornada"><div class="project">
-            <img src="../../../assets/images/project-icon.png">
-            <br>
-            Projeto CBL
-        </div></a>
-    </li>
-    <li>
-        <div class="new-project" (click)="handleCreateProject()">
-            <br>
-            <div class="big-font">+</div>
-            <br>
-            <br>
-            Novo Projeto
-        </div>
-    </li>
-    </ul>
+        <li *ngFor="let project of projects">
+            <a routerLink="/jornada">
+                <div class="project">
+                    <img [src]="project.image || '../../../assets/images/cbl-back.png'" 
+                         alt="Project Image" 
+                         (error)="project.image = '../../../assets/images/cbl-back.png'">
+                    <br>
+                    {{ project.name }}
+                </div>
+            </a>
+        </li>
+        <li>
+            <div class="new-project" (click)="handleCreateProject()">
+                <br>
+                <div class="big-font">+</div>
+                <br>
+                <br>
+                Novo Projeto
+            </div>
+        </li>
+    </ul>    
 </body>
