@@ -62,9 +62,15 @@
               </a>
             </div>
 
-            <mat-checkbox  formControlName="remember">
+            <!-- <mat-checkbox  formControlName="remember" class="custom-checkbox">
               <h3>{{ 'login-register.remember-me' | translate }}</h3>
-            </mat-checkbox>
+            </mat-checkbox> -->
+
+            <label class="custom-checkbox">
+              <input type="checkbox" formControlName="remember" />
+              <span class="checkmark"></span>
+              <h3>{{ 'login-register.remember-me' | translate }}</h3>
+            </label>
 
             <div class="buttons full">
               <button

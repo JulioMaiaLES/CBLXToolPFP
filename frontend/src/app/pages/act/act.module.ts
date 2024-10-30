@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TabComponent } from '@app/components/tab/tab.component';
+import { TabModule } from '@app/components/tab/tab.module';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { TabComponent } from '@app/components/tab/tab.component';
     TogglemenuComponent,
     MenuComponent,
     ReactiveFormsModule,
-    TabComponent
+    TabModule
   ]
 })
 export class ActModule { }

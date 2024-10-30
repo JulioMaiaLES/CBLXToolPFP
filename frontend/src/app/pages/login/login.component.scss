@@ -151,6 +151,7 @@ main{
 
 h3{
   color: white;
+  text-align: left;
 }
 
 .process-button{
@@ -168,4 +169,67 @@ h3{
   .background-image {
     object-position: top; /* Adjust the image position on smaller screens */
   }
+}
+
+// .custom-checkbox {
+//   display: flex;
+//   align-items: center;
+//   color: white; /* Ensures text and checkbox are white */
+//   --mat-checkbox-ripple-color: rgba(255, 255, 255, 0.2); /* White ripple effect */
+// }
+
+// .custom-checkbox .mat-checkbox-layout {
+//   display: flex;
+//   align-items: center; /* Aligns checkbox and text vertically */
+// }
+
+.custom-checkbox h3 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5; /* Adjust text spacing for alignment */
+}
+
+// .mat-checkbox .mat-checkbox-frame {
+//   border-color: white; /* White border for the checkbox */
+// }
+
+// .mat-checkbox .mat-checkbox-background {
+//   background-color: white; /* White background for the checkbox when checked */
+// }
+
+.custom-checkbox {
+  display: flex;
+  align-items: center; /* Vertically align checkbox and text */
+  cursor: pointer; /* Cursor pointer for better UX */
+  gap: 10px; /* Space between checkbox and text */
+  color: white; /* Text color */
+}
+
+.custom-checkbox input {
+  display: none; /* Hide the default checkbox */
+}
+
+.custom-checkbox .checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid white; /* White border */
+  border-radius: 3px;
+  position: relative;
+  display: inline-block;
+}
+
+.custom-checkbox input:checked + .checkmark {
+  background-color: white; /* White background when checked */
+}
+
+.custom-checkbox input:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 10px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }

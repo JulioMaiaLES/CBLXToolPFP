@@ -39,6 +39,13 @@ import { FormsModule } from '@angular/forms';
 import { CblCanvasModule } from './components/cbl-canvas/cbl-canvas.module';
 import { ModalInvestigateComponent } from './components/modals/modal-investigate/modal-investigate.component';
 import { TabComponent } from './components/tab/tab.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatOptionModule } from '@angular/material/core';
+import { TabModule } from './components/tab/tab.module';
 
   export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -58,9 +65,14 @@ import { TabComponent } from './components/tab/tab.component';
   };
 
   @NgModule({
-    declarations: [AppComponent, NavbarComponent, ExpandedimageComponent, ModalComponent,
+    declarations: [AppComponent, NavbarComponent, ExpandedimageComponent, ModalComponent, AutocompleteComponent,
       ],
     imports: [
+      MatAutocompleteModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatOptionModule,
+      ReactiveFormsModule,
       BrowserModule,
       FormsModule,
       MatButtonModule,
@@ -74,7 +86,7 @@ import { TabComponent } from './components/tab/tab.component';
       SharedModule,
       NbLayoutModule,
       MenuComponent,
-      TabComponent,
+      TabModule,
       NbSidebarModule.forRoot(), 
       ResizableModule, 
       NbThemeModule.forRoot({ name: 'default' }),
@@ -94,6 +106,7 @@ import { TabComponent } from './components/tab/tab.component';
         },
         defaultLanguage: 'pt-br',
       }),
+      TabModule,
     ],
     providers: [
       ProgressService,
