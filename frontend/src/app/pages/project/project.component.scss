@@ -13,27 +13,80 @@ header {
     position: relative;
     padding-top: 5%;
     padding-bottom: 2%;  
+
+    h1{
+        padding-right: 10%;
+    }
 }
 
-.tab-search{
-    align-items: center;
+.right-corner{
+    display: flex; /* Use Flexbox to align items horizontally */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Add space between the search and profile */
+    gap: 10px;
+}
+
+// .tab-search{
+    // align-items: center;
+    // display: flex;
+    // justify-content: space-between;
+    // background-color: white;
+    // border-radius: 20px;
+    // width: 300px; 
+    // padding: 10px 10px;
+    // // margin-bottom: 30px;
+
+    // input{
+    //     font-size: 16px;
+    //     color: black;
+    //     width: 250px;
+    //     text-decoration: none;
+    //     background: transparent;
+    //     border: none;
+    //     outline: none;
+    // }
+// }
+
+.tab-search {
     display: flex;
-    justify-content: space-between;
+    align-items: center; /* Center input and icon vertically */
     background-color: white;
     border-radius: 20px;
-    width: 300px; 
-    padding: 10px 10px;
-    // margin-bottom: 30px;
+    padding: 5px 10px;
+    width: 250px;
+}
+  
+.search-field {
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    align-items: center;
+    margin-right: 10px; 
+    width: 100%;
+}
+  
+.search-field input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%; /* Use full width inside the field */
+    background: transparent;
+}
 
-    input{
-        font-size: 16px;
-        color: black;
-        width: 250px;
-        text-decoration: none;
-        background: transparent;
-        border: none;
-        outline: none;
-    }
+  
+.search-field .mat-form-field-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.search-field .mat-form-field-outline {
+    border: none; /* Remove outline borders */
+}
+
+.mat-mdc-form-field {
+    flex-direction: row;
+    border: none;
+    outline: none;
 }
 
 ul {

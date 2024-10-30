@@ -1,7 +1,7 @@
 // project.component.ts
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProjectService } from '@services/project.service';
 import { AuthService } from '@services/auth.service';
@@ -10,6 +10,9 @@ import { StorageService } from '@services/storage.service';
 import { NewProjectName } from '@app/components/modals/new-project-name/new-project-name.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { CookiesLoginComponent } from '@components/modals/cookies-login/cookies-login.component';
+import { Observable, of } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-project',
@@ -18,7 +21,10 @@ import { CookiesLoginComponent } from '@components/modals/cookies-login/cookies-
 })
 export class ProjectComponent implements OnInit {
   projects: any[] = [];
+  filteredProjects!: Observable<any[]>;
   profileImage: string | undefined;
+
+  searchControl = new FormControl('');
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +47,27 @@ export class ProjectComponent implements OnInit {
     this.awaitRemember();
     this.loadUserProjects();
     this.loadUserProfile();
+    
+    this.filteredProjects = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filterProjects(value || ''))
+    );
+  }
+
+  filterProjects(value: string): { id: number; name: string }[] {
+    const filterValue = value.toLowerCase();
+    return this.projects.filter(project =>
+      project.name.toLowerCase().includes(filterValue)
+    );
+  }
+
+  onOptionSelected(selectedProject: string): void {
+    console.log('Selected Project:', selectedProject);
+    // Implement your logic here, e.g., navigate to the project details
+    const selected = this.projects.find(project => project.name === selectedProject);
+    if (selected) {
+      this.router.navigate(['/projects', selected.id]);
+    }
   }
 
   awaitRemember() {

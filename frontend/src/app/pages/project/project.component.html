@@ -1,11 +1,33 @@
 <header>
     <h1>Projetos</h1>
-    <div class="tab-search">
-        <input placeholder="Busca">
-        <img src="../../../assets/images/lupa.png">  
-    </div>
-    <div class="profile">
-        <img [src]="profileImage" alt="User Profile Image" (error)="profileImage = '../../../assets/images/perfil-prototipo.png'">
+    <div class="right-corner">
+        <div class="tab-search">
+            <mat-form-field appearance="outline" class="search-field">
+              <input
+                type="text"
+                matInput
+                [formControl]="searchControl"
+                [matAutocomplete]="auto"
+                placeholder="Busca"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let project of filteredProjects | async"
+                  [value]="project.name"
+                  (click)="onOptionSelected(project.name)">
+                  {{ project.name }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <img src="../../../assets/images/lupa.png" alt="Search Icon" />
+          </div>
+        <!-- <div class="tab-search">
+            <input placeholder="Busca">
+            <img src="../../../assets/images/lupa.png">  
+        </div> -->
+        <div class="profile">
+            <img [src]="profileImage" alt="User Profile Image" (error)="profileImage = '../../../assets/images/perfil-prototipo.png'">
+        </div>
     </div>
 </header>
 
