@@ -34,9 +34,19 @@
             <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('big_idea')">
           </div>
         </label><br><br>
-        <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
-          <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'big_idea', i)" type="text"></textarea>
+        <div [class.collapsed]="!isExpanded('big_idea')">
+          <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
+            <textarea
+              class="textos"
+              formControlName="content"
+              (keydown.enter)="onFormSubmit($event, 'essential_question', i)" 
+              (input)="autoResize($event)"
+            ></textarea>
+          </div>
         </div>
+        <!-- <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
+          <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'big_idea', i)" type="text"></textarea>
+        </div> -->
       </div>
       <br>
       <div formArrayName="essential_question" class="step-container" [class.expanded]="isExpanded('essential_question')">
@@ -47,8 +57,16 @@
             <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('essential_question')">
           </div>
         </label><br><br>
-        <div *ngFor="let field of essentialQuestionFields.controls; let i = index" [formGroupName]="i">
-          <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'essential_question', i)" type="text"></textarea>
+        <div [class.collapsed]="!isExpanded('essential_question')">
+          <div *ngFor="let field of essentialQuestionFields.controls; let i = index" [formGroupName]="i">
+            <textarea 
+            class="textos" 
+            formControlName="content" 
+            (keydown.enter)="onFormSubmit($event, 'essential_question', i)"
+            (input)="autoResize($event)"
+            type="text">
+            </textarea>
+          </div>
         </div>
       </div>
       <br>
@@ -60,8 +78,16 @@
             <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('challenge')">
           </div>
         </label><br><br>
-        <div *ngFor="let field of challengeFields.controls; let i = index" [formGroupName]="i">
-          <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'challenge', i)" type="text"></textarea>
+        <div [class.collapsed]="!isExpanded('challenge')">
+          <div *ngFor="let field of challengeFields.controls; let i = index" [formGroupName]="i">
+            <textarea 
+            class="textos" 
+            formControlName="content" 
+            (keydown.enter)="onFormSubmit($event, 'challenge', i)"
+            (input)="autoResize($event)"
+            type="text">
+            </textarea>
+          </div>
         </div>
       </div>
     </form>

@@ -56,16 +56,14 @@ export class ActComponent {
     });
   }
 
+  // Method to track if a phase is expanded
   isExpanded(phase: string): boolean {
     return this.expandedPhase === phase;
   }
 
+  // Toggle phase open or close based on `phase`
   togglePhase(phase: string): void {
-    if (this.expandedPhase === phase) {
-      this.expandedPhase = null; // Collapse if already expanded
-    } else {
-      this.expandedPhase = phase; // Expand the selected phase
-    }
+    this.expandedPhase = this.isExpanded(phase) ? null : phase;
   }
 
   onDragStart(event: DragEvent, itemType: string) {
@@ -280,17 +278,10 @@ export class ActComponent {
   //   }
   // }
 
-  autoResize(event: any) {
-    const target = event.target;
-    // Reset height to auto to calculate new height
-    target.style.height = 'auto';
-    // Set new height based on scrollHeight
-    target.style.height = target.scrollHeight + 'px';
-
-    // Reset width to auto to calculate new width
-    target.style.width = 'auto';
-    // Set new width based on scrollWidth
-    target.style.width = target.scrollWidth + 'px';
+  autoResize(event: Event): void {
+    const target = event.target as HTMLTextAreaElement;
+    target.style.height = 'auto'; // Reset height to auto first
+    target.style.height = `${Math.min(target.scrollHeight, 400)}px`; // Restrict height, max 400px
   }
 
 

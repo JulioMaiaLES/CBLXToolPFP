@@ -224,12 +224,11 @@ export class InvestigateComponent {
     }
   }
   
-  autoResize(event: any) {
-    const target = event.target;
-    if (target.scrollHeight !== target.clientHeight) {
-      target.style.height = 'auto';
-      target.style.height = target.scrollHeight + 'px';
-    }
+  // Automatically resize the textarea height based on content
+  autoResize(event: Event): void {
+    const target = event.target as HTMLTextAreaElement;
+    target.style.height = 'auto'; // Reset height to auto first
+    target.style.height = `${Math.min(target.scrollHeight, 400)}px`; // Restrict height, max 400px
   }
 
 }

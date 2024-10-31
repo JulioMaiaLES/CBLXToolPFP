@@ -36,8 +36,8 @@
               <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
             </div>
           </label><br><br>
-          <div>
-            <textarea class="textos"></textarea>
+          <div [class.collapsed]="!isExpanded('solution')">
+            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
         </div>
         <br>
@@ -52,8 +52,8 @@
               <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
             </div>
           </label><br><br>
-          <div>
-            <textarea class="textos"></textarea>
+          <div [class.collapsed]="!isExpanded('implementation')">
+            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
         </div>
         <br>
@@ -68,8 +68,8 @@
               <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
             </div>
           </label><br><br>
-          <div>
-            <textarea class="textos"></textarea>
+          <div [class.collapsed]="!isExpanded('evaluation')">
+            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
         </div>
       </form>

@@ -90,13 +90,28 @@ form{
         color: white;
     }
 
+    // .textos {
+    //     width: 100%;
+    //     height: 100%;
+    //     min-width: 150px;
+    //     min-height: 150px;
+    //     resize: none;
+    //     overflow: hidden;
+    //     background-color: transparent;
+    //     color: white;
+    //     border: none;
+    //     font-family: Roboto, 'Helvetica Neue', sans-serif;
+    //     font-size: 22px;
+    //     line-height: 24px;
+    //     outline: none;
+    //     box-sizing: border-box;
+    // }
+
     .textos {
         width: 100%;
-        height: 100%;
         min-width: 150px;
-        min-height: 150px;
         resize: none;
-        overflow: hidden;
+        overflow-y: hidden;
         background-color: transparent;
         color: white;
         border: none;
@@ -104,7 +119,13 @@ form{
         font-size: 22px;
         line-height: 24px;
         outline: none;
-        box-sizing: border-box;
+        transition: height 0.2s ease; /* Smooth transition for resizing */
+        max-height: 400px; /* Max height constraint */
+    }
+      
+    .collapsed .textos {
+        max-height: 60px; /* Height when collapsed */
+        overflow-y: auto; /* Show scroll when height is exceeded */
     }
 
     .align-vertical{
@@ -128,6 +149,10 @@ form{
     .step-container.expanded {
         height: 500px; /* Expanded height */
         flex-grow: 1; /* Allows this phase to take up more space smoothly */
+    }
+
+    .step-container.collapsed {
+        max-height: 150px; /* Height when collapsed */
     }
 
     .phase-controls {

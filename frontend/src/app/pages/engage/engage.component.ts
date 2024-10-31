@@ -15,6 +15,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./engage.component.scss'],
 })
 export class EngageComponent implements OnInit{
+
+  // Track the number of Enter presses
+  private enterPressCount: number = 0;
+
   
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
@@ -22,7 +26,8 @@ export class EngageComponent implements OnInit{
     essential_question: string[];
     challenge: string[];
   } = { big_idea: [], essential_question: [], challenge: [] };
-  
+
+  // Boolean to track whether the content box is collapsed or expanded
   expandedPhase: string | null = null;
   isMenuHidden: boolean = true;  // Explicitly declare boolean type (optional)
   files: File[] = [];  // No changes needed, already correctly typed
@@ -69,18 +74,6 @@ export class EngageComponent implements OnInit{
         this.expandedPhase = phase;
       }
     });
-  }
-  
-  isExpanded(phase: string): boolean {
-    return this.expandedPhase === phase;
-  }
-
-  togglePhase(phase: string): void {
-    if (this.expandedPhase === phase) {
-      this.expandedPhase = null; // Collapse if already expanded
-    } else {
-      this.expandedPhase = phase; // Expand the selected phase
-    }
   }
 
   loadEngageData(): void {
@@ -179,7 +172,7 @@ export class EngageComponent implements OnInit{
   
 
   onFormSubmit(event: Event, fieldName: string, index: number): void {
-    event.preventDefault();
+    // event.preventDefault();
   
     const fieldArray = this.engageForm.get(fieldName) as FormArray;
     const field = fieldArray.at(index); // Get the specific field by index
@@ -210,6 +203,31 @@ export class EngageComponent implements OnInit{
     this.addFields(fieldName, 1);
   }
   
+
+  // handleEnterAndSubmit(event: Event, fieldName: string, index: number): void {
+  //   // event.preventDefault(); 
+
+  //   // Submit the form data for the current field
+  //   this.onFormSubmit(event, fieldName, index);
+
+  //   // Retrieve the current form control and its value
+  //   const fieldArray = this.engageForm.get(fieldName) as FormArray;
+  //   const field = fieldArray.at(index);
+  //   const currentValue = field.get('content')?.value || '';
+
+  //   // Add a new line after submission in the same textarea
+  //   field.get('content')?.setValue(currentValue + '\n');
+
+  //   // Delay refocusing to ensure the cursor stays in the same textarea
+  //   setTimeout(() => {
+  //     const textArea = document.querySelectorAll('.textos')[index] as HTMLTextAreaElement;
+  //     if (textArea) {
+  //       textArea.focus();
+  //       // Move the cursor to the end of the text in the current field
+  //       textArea.setSelectionRange(textArea.value.length, textArea.value.length);
+  //     }
+  //   }, 0); // Delay to allow the DOM update to complete
+  // }
 
   saveData(formData: any): Observable<any> {
     return this.engageService.createOrUpdateEngage(formData);
@@ -320,14 +338,22 @@ export class EngageComponent implements OnInit{
     this.fileReader.readAsDataURL(file); // Read the image file as a Data URL
   }
   
-  autoResize(event: any) {
-    const target = event.target;
-    if (target.scrollHeight !== target.clientHeight) {
-      target.style.height = 'auto';
-      target.style.height = target.scrollHeight + 'px';
-    }
-  }
+// Method to track if a phase is expanded
+isExpanded(phase: string): boolean {
+  return this.expandedPhase === phase;
+}
 
+// Toggle phase open or close based on `phase`
+togglePhase(phase: string): void {
+  this.expandedPhase = this.isExpanded(phase) ? null : phase;
+}
+
+// Automatically resize the textarea height based on content
+autoResize(event: Event): void {
+  const target = event.target as HTMLTextAreaElement;
+  target.style.height = 'auto'; // Reset height to auto first
+  target.style.height = `${Math.min(target.scrollHeight, 400)}px`; // Restrict height, max 400px
+}
   
 }
 

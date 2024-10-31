@@ -91,14 +91,21 @@ form{
         width: 100%;
         min-width: 150px;
         resize: none;
-        overflow: hidden;
+        overflow-y: hidden;
         background-color: transparent;
         color: white;
         border: none;
         font-family: Roboto, 'Helvetica Neue', sans-serif;
         font-size: 22px;
         line-height: 24px;
-        outline: none; /* Remove a borda ao focar no textarea */
+        outline: none;
+        transition: height 0.2s ease; /* Smooth transition for resizing */
+        max-height: 400px; /* Max height constraint */
+    }
+    
+    .collapsed .textos {
+        max-height: 60px; /* Height when collapsed */
+        overflow-y: auto; /* Show scroll when height is exceeded */
     }
 
     .align-vertical{

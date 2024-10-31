@@ -34,8 +34,8 @@
             <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('guiding_questions')">
           </div>
         </label><br><br>
-        <div>
-          <textarea class="textos"></textarea>
+        <div [class.collapsed]="!isExpanded('guiding_questions')">
+          <textarea class="textos" (input)="autoResize($event)"></textarea>
         </div>
       </div>
       <br>
@@ -47,8 +47,8 @@
             <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('activities')">
           </div>
         </label><br><br>
-        <div>
-          <textarea class="textos"></textarea>
+        <div [class.collapsed]="!isExpanded('activities')">
+          <textarea class="textos" (input)="autoResize($event)"></textarea>
         </div>
       </div>
       <br>
@@ -60,8 +60,8 @@
             <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('synthesis')">
           </div>
         </label><br><br>
-        <div>
-          <textarea class="textos"></textarea>
+        <div [class.collapsed]="!isExpanded('synthesis')">
+          <textarea class="textos" (input)="autoResize($event)"></textarea>
         </div>
       </div>
     </form>
