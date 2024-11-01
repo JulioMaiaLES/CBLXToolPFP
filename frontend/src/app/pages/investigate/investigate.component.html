@@ -17,7 +17,7 @@
   <div class="main-content">
     <div class="pagination">
       <div class="current-block">
-
+        1
       </div>
       <div class="new-block">
         +
@@ -66,8 +66,16 @@
       </div>
     </form>
   </div>
+  <div class="investigate-container" [class.collapsed]="isTabCollapsed">
+    <app-toggleicon 
+      [isCollapsed]="isTabCollapsed" 
+      (toggle)="toggleTab()"
+      class="toggle-icon">
+    </app-toggleicon>
+    <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+  </div>
+    
 
-  <app-tab></app-tab>
 
   <div class="archives" *ngFor="let file of files">
     <img class="file-icon" [src]="getFileIcon(file)" (click)="downloadFile(file)">

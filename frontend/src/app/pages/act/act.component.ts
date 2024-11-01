@@ -15,7 +15,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./act.component.scss'],
 })
 export class ActComponent {
-  
+
+  isTabCollapsed: boolean = false;
   expandedPhase: string | null = null;
   draggedItem: string | null = null;
   isMenuHidden: boolean = true;
@@ -54,6 +55,10 @@ export class ActComponent {
         this.expandedPhase = phase;
       }
     });
+  }
+
+  toggleTab() {
+    this.isTabCollapsed = !this.isTabCollapsed;
   }
 
   // Method to track if a phase is expanded

@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ModalInvestigateModule } from '@app/components/modals/modal-investigate/modal-investigate.module';
 import { TabComponent } from '@app/components/tab/tab.component';
 import { TabModule } from '@app/components/tab/tab.module';
+import { ToggleiconModule } from '@app/components/toggleicon/toggleicon.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TabModule } from '@app/components/tab/tab.module';
     ModalInvestigateModule,
     MenuComponent,
     CblCanvasModule,
-    TabModule
+    TabModule,
+    ToggleiconModule
   ]
 })
 export class InvestigateModule { }

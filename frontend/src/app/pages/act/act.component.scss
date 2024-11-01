@@ -4,6 +4,24 @@ html, body {
 
 }
 
+.act-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-icon {
+    position: fixed;
+    top: 10px;
+    right: 340px; // Adjust as needed
+    transition: right 0.3s ease; 
+}
+  
+.act-container.collapsed .toggle-icon {
+    right: 10px; // Adjust as needed for collapsed position
+}
+
+
 header {
     background-color: var(--main-color);
     color: white;
@@ -32,7 +50,7 @@ header {
         font-size: 30px;
         // padding-left: 10%;
         display: flex;
-        font-family: Helvetica, Bold;
+        font-family: "Helvetica Neue", Helvetica, Bold;
         align-items: center;
         > * {
             display: inline-block;
@@ -95,7 +113,7 @@ form{
         background-color: transparent;
         color: white;
         border: none;
-        font-family: Roboto, 'Helvetica Neue', sans-serif;
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 22px;
         line-height: 24px;
         outline: none;
@@ -173,6 +191,11 @@ form{
     background-color: #428CD3;
     border: 5px solid white;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 50;
 }
 
 .new-block{

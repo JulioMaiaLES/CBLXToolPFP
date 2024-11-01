@@ -8,7 +8,15 @@
     width: 337px;
     top: 0;
     right: 0;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    // position: relative;
 }
+
+.visual-tab.collapsed {
+    width: 0; /* Collapsed width */
+}
+
 
 .tab-selected{
     background-color: #707070;

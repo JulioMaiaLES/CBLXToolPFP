@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Input } from '@angular/core';
 import { TabelaComponent } from '../tabela/tabela.component';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ export class TabComponent implements OnInit {
   draggedItem: string | null = null;
   searchControl = new FormControl();
   // searchQuery: string = '';
+  @Input() isCollapsed: boolean = false;
 
   items = [
     { label: 'Texto', icon: 'textos', component: 'Texto' },

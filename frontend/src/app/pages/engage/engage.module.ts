@@ -8,6 +8,7 @@ import { MenuComponent } from '../../components/jornada/menu/menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TabComponent } from '@app/components/tab/tab.component';
 import { TabModule } from '@app/components/tab/tab.module';
+import { ToggleiconModule } from '@app/components/toggleicon/toggleicon.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TabModule } from '@app/components/tab/tab.module';
     TogglemenuComponent,
     MenuComponent,
     ReactiveFormsModule,
-    TabModule
+    TabModule,
+    ToggleiconModule
   ]
 })
 export class EngageModule { }

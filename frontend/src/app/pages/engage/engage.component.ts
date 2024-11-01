@@ -16,10 +16,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EngageComponent implements OnInit{
 
-  // Track the number of Enter presses
-  private enterPressCount: number = 0;
+  contentHeight = 500; // Initial height of content wrapper (fictional value)
+  maxContentHeight = 800; // Maximum height before stopping expansion (fictional value)
+  expansionStep = 20; // Amount to expand each time
+  isTabCollapsed: boolean = false;
+  isPaginationCollapsed: boolean = false;
 
-  
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
     big_idea: string[];
@@ -42,8 +44,16 @@ export class EngageComponent implements OnInit{
   private saveTimeout!: ReturnType<typeof setTimeout>; // Declare saveTimeout
 
 
-  toggleMenu(): void {
-    this.sidebarService.toggleSidebar();  // Delegate toggling to the SidebarService
+  // toggleMenu(): void {
+  //   this.sidebarService.toggleSidebar();  // Delegate toggling to the SidebarService
+  // }
+
+  toggleTab() {
+    this.isTabCollapsed = !this.isTabCollapsed;
+  }
+
+  togglePagination(): void {
+    this.isPaginationCollapsed = !this.isPaginationCollapsed;
   }
 
   constructor(
@@ -74,6 +84,24 @@ export class EngageComponent implements OnInit{
         this.expandedPhase = phase;
       }
     });
+  }
+
+   // Method to handle textarea resizing and content wrapper expansion
+   handleTextareaResize(event: Event): void {
+    const target = event.target as HTMLTextAreaElement;
+    
+    // Reset textarea height to auto to correctly calculate scroll height
+    target.style.height = 'auto';
+    const newHeight = target.scrollHeight;
+
+    // Check if the textarea height exceeds the wrapper's current height
+    if (newHeight >= this.contentHeight && this.contentHeight < this.maxContentHeight) {
+      // Increase content wrapper height by the expansion step
+      this.contentHeight += this.expansionStep;
+    }
+
+    // Apply the new height to the textarea
+    target.style.height = `${newHeight}px`;
   }
 
   loadEngageData(): void {

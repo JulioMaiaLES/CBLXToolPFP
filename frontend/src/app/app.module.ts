@@ -46,6 +46,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { TabModule } from './components/tab/tab.module';
+import { ToggleiconComponent } from './components/toggleicon/toggleicon.component';
+import { ToggleiconModule } from './components/toggleicon/toggleicon.module';
 
   export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -107,6 +109,7 @@ import { TabModule } from './components/tab/tab.module';
         defaultLanguage: 'pt-br',
       }),
       TabModule,
+      // ToggleiconModule
     ],
     providers: [
       ProgressService,

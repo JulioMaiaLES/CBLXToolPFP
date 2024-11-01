@@ -23,6 +23,7 @@ export class InvestigateComponent {
   @ViewChild('componenteContainer', { read: ViewContainerRef }) componenteContainer!: ViewContainerRef;
   @ViewChild(ModalInvestigateComponent) modal!: ModalInvestigateComponent;
   
+  isTabCollapsed: boolean = false;
   expandedPhase: string | null = null;
   isMenuHidden: boolean = true;  // Explicitly declare boolean type (optional)
   textAreas: string[] = [''];
@@ -62,6 +63,10 @@ export class InvestigateComponent {
         this.expandedPhase = phase;
       }
     });
+  }
+
+  toggleTab() {
+    this.isTabCollapsed = !this.isTabCollapsed;
   }
 
   isExpanded(phase: string): boolean {

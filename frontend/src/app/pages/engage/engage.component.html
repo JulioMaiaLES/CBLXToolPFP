@@ -18,7 +18,7 @@
   <div class="main-content">
     <div class="pagination">
       <div class="current-block">
-
+        1
       </div>
       <div class="new-block">
         +
@@ -39,7 +39,7 @@
             <textarea
               class="textos"
               formControlName="content"
-              (keydown.enter)="onFormSubmit($event, 'essential_question', i)" 
+              (keydown.enter)="onFormSubmit($event, 'big_idea', i)" 
               (input)="autoResize($event)"
             ></textarea>
           </div>
@@ -92,8 +92,14 @@
       </div>
     </form>
   </div>
-
-  <app-tab></app-tab>
+  <div class="engage-container" [class.collapsed]="isTabCollapsed">
+    <app-toggleicon 
+      [isCollapsed]="isTabCollapsed" 
+      (toggle)="toggleTab()"
+      class="toggle-icon">
+    </app-toggleicon>
+    <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+  </div>
 
   <div class="archives" *ngFor="let file of files">
     <p class="title-archive">Arquivo: {{ file.name }}</p>
