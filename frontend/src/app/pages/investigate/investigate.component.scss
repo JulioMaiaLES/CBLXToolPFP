@@ -5,7 +5,7 @@ html, body{
 
 }
 
-.investigate-container {
+.tab-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -18,7 +18,7 @@ html, body{
     transition: right 0.3s ease; 
 }
   
-.investigate-container.collapsed .toggle-icon {
+.tab-container.collapsed .toggle-icon {
     right: 10px; // Adjust as needed for collapsed position
 }
 
@@ -98,10 +98,101 @@ header {
     }
 }
 
+.main-content{
+    display: flex;
+    gap: 20px;
+}
+
+.investigate-container {
+    display: flex;
+    align-items: flex-start; // Align top with pagination and content
+    width: 100%;
+    transition: all 0.3s ease;
+    
+
+    &.full-width {
+        flex-direction: column; // Stack elements vertically in full-width mode
+    }
+
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    
+    &.collapsed .pagination {
+        width: 0;
+        overflow: hidden;
+    }
+
+    .toggle-icon {
+        position: relative;
+        left: 200px;
+        transition: left 0.3s ease;
+    }
+}
+
+.pagination {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-left: 250px;
+    transition: width 0.3s ease;
+}
+
+.current-block, .new-block {
+    width: 178px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 26px;
+    font-weight: 50;
+    transition: opacity 0.3s ease;
+}
+
+.current-block {
+    background-color: #F5C949;
+    border: 5px solid white;
+}
+
+.new-block {
+    background-color: #262626;
+    margin-top: 20px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+
 
 form{
-    padding: 0 450px;
+    padding: 0 80px;
     position: relative;
+    flex-grow: 1; // Allows the form to take up the remaining space
+    transition: width 0.3s ease, max-width 0.3s ease;
+    max-width: 1100px; // Limit the form's width so it doesn't grow too large on very wide screens
+    width: 100%;
+    
+     // Default form width when nothing is collapsed
+    &.default-width {
+        max-width: 1085px; // Default width, adjust as needed
+        margin-left: 0;
+    }
+
+    // Expanded form width when pagination is collapsed, shifts left to cover more screen space
+    &.expanded-width {
+        max-width: 1318px; // Fixed expanded width
+        margin-left: -50px; // Shift form left to give it more screen space
+    }
+
+    // Full width when both pagination and tab are collapsed
+    &.full-width {
+        width: 100%;
+        max-width: none;
+        margin-left: -5px; // Reset to center align if both are collapsed
+    }
 
     label{
         font-size: 28px;
@@ -141,7 +232,7 @@ form{
         background-color: #262626;
         padding: 20px;
         border-radius: 10px;
-        height: 150px; /* Default height for all phases */
+        height: 90px; /* Default height for all phases */
         overflow: hidden; /* Prevent content overflow */
         transition: height 0.5s ease-in-out, flex-grow 0.5s ease-in-out;
         flex-grow: 0;
@@ -167,10 +258,6 @@ form{
     
 } 
 
-.main-content{
-    display: inline;
-    gap: 20px;
-}
 
 .navigation{
     background-color: #262626;
@@ -179,136 +266,21 @@ form{
     margin-left: 12%;
 }
 
-.pagination{
-    color: white;
-    padding-left: 250px;
-    position: absolute;
-}
 
-.current-block{
-    width: 178px;
-    height: 100px;
-    background-color: #F5C949;
-    border: 5px solid white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    font-weight: 50;
-}
-
-.new-block{
-    width: 178px;
-    height: 100px;
-    background-color: #262626;
-    border-radius: 10px;    
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    font-weight: 50;
-}
-
-.new-block:hover{
-    cursor: pointer;
-}
-
-.visual-tab{
-    display: flex; 
-    flex-direction: column; 
-    align-items: center;
-    position: fixed;
-    height: 100%;
-    background-color: #262626;
-    width: 337px;
-    top: 0;
-    right: 0;
-}
-
-.tab-selected{
-    background-color: #707070;
-    border-radius: 10px;
-    padding: 15px;
-}
-
-ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 40px 0;
-    color: white;
-    font-size: 16px;
-
-    li {
-        display: inline-block;
-        margin: 0px 25px;
-    }
-    
-    li div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-}
-
-.tab-search{
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    border-radius: 20px;
-    width: 200px; 
-    padding: 0 10px;
-    margin-bottom: 30px;
-
-    input{
-        font-size: 16px;
-        color: black;
-        width: 150px;
-        text-decoration: none;
-        background: transparent;
-        border: none;
-        outline: none;
-    }
-}
-
-.content-grid {
-    color: white;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two items per row */
-    gap: 20px;
-    justify-items: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-}
-
-.content-grid div {
-    text-align: center;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    padding: 0 30px;
-}
-
-  .add-tabela {
+.add-tabela {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     margin-bottom: 20px;
-  }
+}
   
-  .add-tabela:hover {
+.add-tabela:hover {
     background-color: #0056b3;
-  }
+}
   
-  .add-button {
+.add-button {
     border: none;
     background-color: transparent;
     color: white;
@@ -316,9 +288,7 @@ ul {
     transform: translateY(-100%);
     transition: opacity 0.3s ease;
     opacity: 0;
-    
-    
- }
+}
 
 .add-button:hover {
     opacity: 1;
@@ -388,19 +358,19 @@ p{
     margin-left: 100px;
 }
 
-textarea{
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    color: white;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    min-width: 90%;
-    resize: none;
-    // overflow: hidden;
-    font-size: 16px;
-    overflow-y: hidden;
-    height: auto;
-}
+// textarea{
+//     font-family: "Helvetica Neue", Helvetica, sans-serif;
+//     color: white;
+//     border: none;
+//     background-color: transparent;
+//     outline: none;
+//     min-width: 90%;
+//     resize: none;
+//     // overflow: hidden;
+//     font-size: 16px;
+//     overflow-y: hidden;
+//     height: auto;
+// }
 
 .images{
     margin-left: 100px;

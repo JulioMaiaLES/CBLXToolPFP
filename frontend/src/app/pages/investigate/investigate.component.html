@@ -15,64 +15,78 @@
 <body>
 
   <div class="main-content">
-    <div class="pagination">
-      <div class="current-block">
-        1
+    <div class="investigate-container">
+      <div class="pagination-container" [class.collapsed]="isPaginationCollapsed">
+        <app-toggleicon 
+          [isCollapsed]="isPaginationCollapsed"
+          (toggle)="togglePagination()"
+          class="toggle-icon">
+        </app-toggleicon>
+        
+        <div class="pagination">
+          <div class="current-block">
+            1
+          </div>
+          <div class="new-block">
+            +
+          </div>
+        </div>
       </div>
-      <div class="new-block">
-        +
-      </div>
-    </div>
    
-    <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
-    <form>
-      <div class="step-container" [class.expanded]="isExpanded('guiding_questions')" >
-        <label class="align-vertical">
-          <img src="../../../assets/images/guiding-questions.png">
-          Guiding Questions
-          <div class="phase-controls">
-            <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('guiding_questions')">
+      <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
+      <form
+        [class.full-width]="isFullWidth"
+        [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+        [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+      >
+        <div class="step-container" [class.expanded]="isExpanded('guiding_questions')" >
+          <label class="align-vertical">
+            <img src="../../../assets/images/guiding-questions.png">
+            Guiding Questions
+            <div class="phase-controls">
+              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('guiding_questions')">
+            </div>
+          </label><br><br>
+          <div [class.collapsed]="!isExpanded('guiding_questions')">
+            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
-        </label><br><br>
-        <div [class.collapsed]="!isExpanded('guiding_questions')">
-          <textarea class="textos" (input)="autoResize($event)"></textarea>
         </div>
-      </div>
-      <br>
-      <div class="step-container" [class.expanded]="isExpanded('activities')">
-        <label class="align-vertical">
-          <img src="../../../assets/images/activities.png">
-          Activities and Resources
-          <div class="phase-controls">
-            <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('activities')">
+        <br>
+        <div class="step-container" [class.expanded]="isExpanded('activities')">
+          <label class="align-vertical">
+            <img src="../../../assets/images/activities.png">
+            Activities and Resources
+            <div class="phase-controls">
+              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('activities')">
+            </div>
+          </label><br><br>
+          <div [class.collapsed]="!isExpanded('activities')">
+            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
-        </label><br><br>
-        <div [class.collapsed]="!isExpanded('activities')">
-          <textarea class="textos" (input)="autoResize($event)"></textarea>
         </div>
-      </div>
-      <br>
-      <div class="step-container" [class.expanded]="isExpanded('synthesis')">
-        <label class="align-vertical">
-          <img src="../../../assets/images/synthesis.png">
-          Synthesis
-          <div class="phase-controls">
-            <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('synthesis')">
+        <br>
+        <div class="step-container" [class.expanded]="isExpanded('synthesis')">
+          <label class="align-vertical">
+            <img src="../../../assets/images/synthesis.png">
+            Synthesis
+            <div class="phase-controls">
+              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('synthesis')">
+            </div>
+          </label><br><br>
+          <div [class.collapsed]="!isExpanded('synthesis')">
+            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
-        </label><br><br>
-        <div [class.collapsed]="!isExpanded('synthesis')">
-          <textarea class="textos" (input)="autoResize($event)"></textarea>
         </div>
-      </div>
-    </form>
-  </div>
-  <div class="investigate-container" [class.collapsed]="isTabCollapsed">
-    <app-toggleicon 
-      [isCollapsed]="isTabCollapsed" 
-      (toggle)="toggleTab()"
-      class="toggle-icon">
-    </app-toggleicon>
-    <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+      </form>
+    </div>
+    <div class="tab-container" [class.collapsed]="isTabCollapsed">
+      <app-toggleicon 
+        [isCollapsed]="isTabCollapsed" 
+        (toggle)="toggleTab()"
+        class="toggle-icon">
+      </app-toggleicon>
+      <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+    </div>
   </div>
     
 

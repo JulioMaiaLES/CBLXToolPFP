@@ -17,6 +17,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ActComponent {
 
   isTabCollapsed: boolean = false;
+  isPaginationCollapsed: boolean = false;
+  isFullWidth: boolean = false;
   expandedPhase: string | null = null;
   draggedItem: string | null = null;
   isMenuHidden: boolean = true;
@@ -59,6 +61,16 @@ export class ActComponent {
 
   toggleTab() {
     this.isTabCollapsed = !this.isTabCollapsed;
+    this.updateFormWidth();
+  }
+
+  togglePagination(): void {
+    this.isPaginationCollapsed = !this.isPaginationCollapsed;
+    this.updateFormWidth();
+  }
+
+  private updateFormWidth(): void {
+    this.isFullWidth = this.isTabCollapsed || (this.isTabCollapsed && this.isPaginationCollapsed);
   }
 
   // Method to track if a phase is expanded

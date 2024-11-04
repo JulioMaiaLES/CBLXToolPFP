@@ -21,6 +21,7 @@ export class EngageComponent implements OnInit{
   expansionStep = 20; // Amount to expand each time
   isTabCollapsed: boolean = false;
   isPaginationCollapsed: boolean = false;
+  isFullWidth: boolean = false;
 
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
@@ -50,10 +51,16 @@ export class EngageComponent implements OnInit{
 
   toggleTab() {
     this.isTabCollapsed = !this.isTabCollapsed;
+    this.updateFormWidth();
   }
 
   togglePagination(): void {
     this.isPaginationCollapsed = !this.isPaginationCollapsed;
+    this.updateFormWidth();
+  }
+
+  private updateFormWidth(): void {
+    this.isFullWidth = this.isTabCollapsed || (this.isTabCollapsed && this.isPaginationCollapsed);
   }
 
   constructor(

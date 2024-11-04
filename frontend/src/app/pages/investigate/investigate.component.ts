@@ -24,6 +24,8 @@ export class InvestigateComponent {
   @ViewChild(ModalInvestigateComponent) modal!: ModalInvestigateComponent;
   
   isTabCollapsed: boolean = false;
+  isPaginationCollapsed: boolean = false;
+  isFullWidth: boolean = false;
   expandedPhase: string | null = null;
   isMenuHidden: boolean = true;  // Explicitly declare boolean type (optional)
   textAreas: string[] = [''];
@@ -67,7 +69,18 @@ export class InvestigateComponent {
 
   toggleTab() {
     this.isTabCollapsed = !this.isTabCollapsed;
+    this.updateFormWidth();
   }
+
+  togglePagination(): void {
+    this.isPaginationCollapsed = !this.isPaginationCollapsed;
+    this.updateFormWidth();
+  }
+
+  private updateFormWidth(): void {
+    this.isFullWidth = this.isTabCollapsed || (this.isTabCollapsed && this.isPaginationCollapsed);
+  }
+
 
   isExpanded(phase: string): boolean {
     return this.expandedPhase === phase;

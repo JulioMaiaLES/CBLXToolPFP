@@ -14,73 +14,87 @@
 <body>    
 
     <div class="main-content">
-      <div class="pagination">
-        <div class="current-block">
-          1
+      <div class="act-container">
+        <div class="pagination-container" [class.collapsed]="isPaginationCollapsed">
+          <app-toggleicon 
+            [isCollapsed]="isPaginationCollapsed"
+            (toggle)="togglePagination()"
+            class="toggle-icon">
+          </app-toggleicon>
+          
+          <div class="pagination">
+            <div class="current-block">
+              1
+            </div>
+            <div class="new-block">
+              +
+            </div>
+          </div>
         </div>
-        <div class="new-block">
-          +
-        </div>
-      </div>
      
-      <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
-      <form>
-        <div class="step-container" 
-          [class.expanded]="isExpanded('solution')" 
-          (dragover)="onDragOver($event)"
-          (drop)="onDrop($event, 'big_idea')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/solution.png">
-            Solution
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
+        <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
+        <form
+          [class.full-width]="isFullWidth"
+          [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+          [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+        >
+          <div class="step-container" 
+            [class.expanded]="isExpanded('solution')" 
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event, 'big_idea')">
+            <label class="align-vertical">
+              <img src="../../../assets/images/solution.png">
+              Solution
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
+              </div>
+            </label><br><br>
+            <div [class.collapsed]="!isExpanded('solution')">
+              <textarea class="textos" (input)="autoResize($event)"></textarea>
             </div>
-          </label><br><br>
-          <div [class.collapsed]="!isExpanded('solution')">
-            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
-        </div>
-        <br>
-        <div class="step-container" 
-          [class.expanded]="isExpanded('implementation')"
-          (dragover)="onDragOver($event)"
-          (drop)="onDrop($event, 'big_idea')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/implementation.png">
-            Implementation
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
+          <br>
+          <div class="step-container" 
+            [class.expanded]="isExpanded('implementation')"
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event, 'big_idea')">
+            <label class="align-vertical">
+              <img src="../../../assets/images/implementation.png">
+              Implementation
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
+              </div>
+            </label><br><br>
+            <div [class.collapsed]="!isExpanded('implementation')">
+              <textarea class="textos" (input)="autoResize($event)"></textarea>
             </div>
-          </label><br><br>
-          <div [class.collapsed]="!isExpanded('implementation')">
-            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
-        </div>
-        <br>
-        <div class="step-container" 
-          [class.expanded]="isExpanded('evaluation')"
-          (dragover)="onDragOver($event)"
-          (drop)="onDrop($event, 'big_idea')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/evaluation.png">
-            Evaluation
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
+          <br>
+          <div class="step-container" 
+            [class.expanded]="isExpanded('evaluation')"
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event, 'big_idea')">
+            <label class="align-vertical">
+              <img src="../../../assets/images/evaluation.png">
+              Evaluation
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
+              </div>
+            </label><br><br>
+            <div [class.collapsed]="!isExpanded('evaluation')">
+              <textarea class="textos" (input)="autoResize($event)"></textarea>
             </div>
-          </label><br><br>
-          <div [class.collapsed]="!isExpanded('evaluation')">
-            <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
-        </div>
-      </form>
-    </div>
-    <div class="act-container" [class.collapsed]="isTabCollapsed">
-      <app-toggleicon 
-        [isCollapsed]="isTabCollapsed" 
-        (toggle)="toggleTab()"
-        class="toggle-icon">
-      </app-toggleicon>
-      <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+        </form>
+      </div>
+      <div class="tab-container" [class.collapsed]="isTabCollapsed">
+        <app-toggleicon 
+          [isCollapsed]="isTabCollapsed" 
+          (toggle)="toggleTab()"
+          class="toggle-icon">
+        </app-toggleicon>
+        <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+      </div>
     </div>
 
   </body>
