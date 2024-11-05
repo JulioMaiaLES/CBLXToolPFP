@@ -1,0 +1,21 @@
+<div class="pagination" [ngClass]="{ 'collapsed': isCollapsed }">
+    <!-- Dynamic list of pages -->
+    <div
+      *ngFor="let page of pages"
+      class="current-block"
+      [class.selected]="page === selectedPage"
+      (click)="selectPage(page)"
+      [ngStyle]="{'background-color': backgroundColor}"
+    >
+      {{ page }}
+    </div>
+  
+    <!-- Button to add new pages -->
+    <div
+      class="new-block"
+      (click)="addNewPage()"
+      *ngIf="pages.length < maxPages"
+    >
+      +
+    </div>
+  </div>

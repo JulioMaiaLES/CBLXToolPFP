@@ -1,0 +1,42 @@
+.pagination {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-left: 250px;
+    transition: width 0.3s ease;
+
+    &.collapsed {
+      width: 0;
+      padding-left: 0;
+      overflow: hidden;
+    }
+  }
+  
+  .current-block,
+  .new-block {
+    width: 178px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 26px;
+    font-weight: 50;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .current-block {
+    background-color: #58bc68;
+    margin-bottom: 10px;
+  }
+  
+  .new-block {
+    background-color: #262626;
+    font-size: 40px;
+  }
+  
+  // Style for the selected page
+  .current-block.selected {
+    border: 5px solid white;
+  }

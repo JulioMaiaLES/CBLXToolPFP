@@ -23,14 +23,7 @@
           class="toggle-icon">
         </app-toggleicon>
         
-        <div class="pagination">
-          <div class="current-block">
-            1
-          </div>
-          <div class="new-block">
-            +
-          </div>
-        </div>
+        <app-pagination [backgroundColor]="'#F5C949'" [isCollapsed]="isPaginationCollapsed"></app-pagination>
       </div>
    
       <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
@@ -40,39 +33,45 @@
         [class.default-width]="!isFullWidth && !isPaginationCollapsed"
       >
         <div class="step-container" [class.expanded]="isExpanded('guiding_questions')" >
-          <label class="align-vertical">
-            <img src="../../../assets/images/guiding-questions.png">
-            Guiding Questions
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('guiding_questions')">
-            </div>
-          </label><br><br>
+          <div class="header">
+            <label class="align-vertical">
+              <img src="../../../assets/images/guiding-questions.png">
+              Guiding Questions
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('guiding_questions')">
+              </div>
+            </label><br><br>
+          </div>
           <div [class.collapsed]="!isExpanded('guiding_questions')">
             <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
         </div>
         <br>
         <div class="step-container" [class.expanded]="isExpanded('activities')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/activities.png">
-            Activities and Resources
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('activities')">
-            </div>
-          </label><br><br>
+          <div class="header">
+            <label class="align-vertical">
+              <img src="../../../assets/images/activities.png">
+              Activities and Resources
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('activities')">
+              </div>
+            </label><br><br>
+          </div>
           <div [class.collapsed]="!isExpanded('activities')">
             <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
         </div>
         <br>
         <div class="step-container" [class.expanded]="isExpanded('synthesis')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/synthesis.png">
-            Synthesis
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('synthesis')">
-            </div>
-          </label><br><br>
+          <div class="header">
+            <label class="align-vertical">
+              <img src="../../../assets/images/synthesis.png">
+              Synthesis
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('synthesis')">
+              </div>
+            </label><br><br>
+          </div>
           <div [class.collapsed]="!isExpanded('synthesis')">
             <textarea class="textos" (input)="autoResize($event)"></textarea>
           </div>
@@ -80,12 +79,13 @@
       </form>
     </div>
     <div class="tab-container" [class.collapsed]="isTabCollapsed">
-      <app-toggleicon 
+      <!-- <app-toggleicon 
         [isCollapsed]="isTabCollapsed" 
         (toggle)="toggleTab()"
         class="toggle-icon">
-      </app-toggleicon>
-      <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+      </app-toggleicon> -->
+      <!-- <app-tab [isCollapsed]="isTabCollapsed"></app-tab> -->
+      <app-tab (toggleEvent)="handleTabToggle($event)"></app-tab>
     </div>
   </div>
     

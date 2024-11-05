@@ -22,14 +22,7 @@
             class="toggle-icon">
           </app-toggleicon>
           
-          <div class="pagination">
-            <div class="current-block">
-              1
-            </div>
-            <div class="new-block">
-              +
-            </div>
-          </div>
+          <app-pagination [backgroundColor]="'#428CD3'" [isCollapsed]="isPaginationCollapsed"></app-pagination>
         </div>
      
         <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
@@ -42,13 +35,15 @@
             [class.expanded]="isExpanded('solution')" 
             (dragover)="onDragOver($event)"
             (drop)="onDrop($event, 'big_idea')">
-            <label class="align-vertical">
-              <img src="../../../assets/images/solution.png">
-              Solution
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
-              </div>
-            </label><br><br>
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/solution.png">
+                Solution
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
+                </div>
+              </label><br><br>
+            </div>
             <div [class.collapsed]="!isExpanded('solution')">
               <textarea class="textos" (input)="autoResize($event)"></textarea>
             </div>
@@ -58,13 +53,15 @@
             [class.expanded]="isExpanded('implementation')"
             (dragover)="onDragOver($event)"
             (drop)="onDrop($event, 'big_idea')">
-            <label class="align-vertical">
-              <img src="../../../assets/images/implementation.png">
-              Implementation
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
-              </div>
-            </label><br><br>
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/implementation.png">
+                Implementation
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
+                </div>
+              </label><br><br>
+            </div>
             <div [class.collapsed]="!isExpanded('implementation')">
               <textarea class="textos" (input)="autoResize($event)"></textarea>
             </div>
@@ -74,13 +71,15 @@
             [class.expanded]="isExpanded('evaluation')"
             (dragover)="onDragOver($event)"
             (drop)="onDrop($event, 'big_idea')">
-            <label class="align-vertical">
-              <img src="../../../assets/images/evaluation.png">
-              Evaluation
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
-              </div>
-            </label><br><br>
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/evaluation.png">
+                Evaluation
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
+                </div>
+              </label><br><br>
+            </div>
             <div [class.collapsed]="!isExpanded('evaluation')">
               <textarea class="textos" (input)="autoResize($event)"></textarea>
             </div>
@@ -88,12 +87,13 @@
         </form>
       </div>
       <div class="tab-container" [class.collapsed]="isTabCollapsed">
-        <app-toggleicon 
+        <!-- <app-toggleicon 
           [isCollapsed]="isTabCollapsed" 
           (toggle)="toggleTab()"
           class="toggle-icon">
-        </app-toggleicon>
-        <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+        </app-toggleicon> -->
+        <!-- <app-tab [isCollapsed]="isTabCollapsed"></app-tab> -->
+        <app-tab (toggleEvent)="handleTabToggle($event)"></app-tab>
       </div>
     </div>
 

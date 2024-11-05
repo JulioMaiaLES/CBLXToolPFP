@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter } from '@angular/core';
 import { TabelaComponent } from '../tabela/tabela.component';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -13,7 +13,11 @@ export class TabComponent implements OnInit {
   draggedItem: string | null = null;
   searchControl = new FormControl();
   // searchQuery: string = '';
-  @Input() isCollapsed: boolean = false;
+  // @Input() isCollapsed: boolean = false;
+  isCollapsed: boolean = false;
+// Output event to notify parent component about toggle state
+  @Output() toggleEvent = new EventEmitter<boolean>();
+
 
   items = [
     { label: 'Texto', icon: 'textos', component: 'Texto' },
@@ -38,6 +42,11 @@ export class TabComponent implements OnInit {
     );
   }
 
+  toggleTab(): void {
+    this.isCollapsed = !this.isCollapsed;
+    this.toggleEvent.emit(this.isCollapsed); // Emit the toggle state
+  }
+
   filterItems(value: string): any[] {
     const filterValue = value.toLowerCase();
     const filtered = this.items.filter(item =>
@@ -46,13 +55,6 @@ export class TabComponent implements OnInit {
     this.itemsToShow = filtered; // Update items in the grid
     return filtered;
   }
-
-  // private _filterItems(value: string): any[] {
-  //   const filterValue = value.toLowerCase();
-  //   return this.items.filter(item =>
-  //     item.label.toLowerCase().includes(filterValue)
-  //   );
-  // }
 
   onOptionSelected(option: string): void {
     console.log('Selected Option:', option);

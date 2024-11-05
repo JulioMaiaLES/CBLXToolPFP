@@ -104,13 +104,9 @@ header {
 .engage-container {
     display: flex;
     align-items: flex-start; // Align top with pagination and content
-    // padding-top: 20px; // Adjust spacing as needed
     width: 100%;
     transition: all 0.3s ease;
     
-    // &.full-width form {
-    //     width: 100%; 
-    // }
     &.full-width {
         flex-direction: column; // Stack elements vertically in full-width mode
     }
@@ -130,7 +126,7 @@ header {
     }
 
     .toggle-icon {
-        position: relative;
+        position: fixed;
         // top: 0;
         left: 200px;
         // padding-bottom: 300px;
@@ -142,46 +138,37 @@ header {
     // }
 }
 
-.pagination {
-    display: flex;
-    flex-direction: column;
-    color: white;
-    padding-left: 250px;
-    transition: width 0.3s ease;
-    // margin-right: 20px;
+// .pagination {
+//     display: flex;
+//     flex-direction: column;
+//     color: white;
+//     padding-left: 250px;
+//     transition: width 0.3s ease;
+// }
 
-    // When collapsed, hide the pagination blocks
-    // .pagination-container.collapsed & {
-    //     width: 0;
-    //     opacity: 0;
-    //     overflow: hidden;
-    //     padding-left: 0;
-    // }
-}
+// .current-block, .new-block {
+//     width: 178px;
+//     height: 100px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     border-radius: 10px;
+//     font-size: 26px;
+//     font-weight: 50;
+//     transition: opacity 0.3s ease;
+// }
 
-.current-block, .new-block {
-    width: 178px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    font-size: 26px;
-    font-weight: 50;
-    transition: opacity 0.3s ease;
-}
+// .current-block {
+//     background-color: #58BC68;
+//     border: 5px solid white;
+// }
 
-.current-block {
-    background-color: #58BC68;
-    border: 5px solid white;
-}
-
-.new-block {
-    background-color: #262626;
-    margin-top: 20px;
-    font-size: 40px;
-    cursor: pointer;
-}
+// .new-block {
+//     background-color: #262626;
+//     margin-top: 20px;
+//     font-size: 40px;
+//     cursor: pointer;
+// }
 
 
 form{
@@ -194,14 +181,14 @@ form{
     
      // Default form width when nothing is collapsed
     &.default-width {
-        max-width: 1085px; // Default width, adjust as needed
+        max-width: 1115px; // Default width, adjust as needed
         margin-left: 0;
     }
 
     // Expanded form width when pagination is collapsed, shifts left to cover more screen space
     &.expanded-width {
-        max-width: 1318px; // Fixed expanded width
-        margin-left: -50px; // Shift form left to give it more screen space
+        max-width: 1600px; // Fixed expanded width
+        margin-left: 0; // Shift form left to give it more screen space
     }
 
     // Full width when both pagination and tab are collapsed
@@ -235,7 +222,6 @@ form{
         line-height: 24px;
         outline: none;
         transition: height 0.2s ease; /* Smooth transition for resizing */
-        // max-height: 400px; /* Max height constraint */
     }
       
     .collapsed .textos {
@@ -258,16 +244,27 @@ form{
         overflow: hidden; /* Prevent content overflow */
         transition: height 0.5s ease-in-out, flex-grow 0.5s ease-in-out;
         flex-grow: 0;
-        cursor: pointer;
     }
+
     
     .step-container.expanded {
-        height: 500px; /* Expanded height */
+        min-height: 500px; /* Expanded height */
         flex-grow: 1; /* Allows this phase to take up more space smoothly */
     }
 
     .step-container.collapsed {
         max-height: 150px; /* Height when collapsed */
+    }
+
+    .step-container .header {
+        position: sticky;
+        top: 0;
+        background-color: inherit; /* Match the container's background */
+        padding-bottom: 10px;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .phase-controls {

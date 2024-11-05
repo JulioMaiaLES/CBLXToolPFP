@@ -49,8 +49,14 @@ export class EngageComponent implements OnInit{
   //   this.sidebarService.toggleSidebar();  // Delegate toggling to the SidebarService
   // }
 
-  toggleTab() {
-    this.isTabCollapsed = !this.isTabCollapsed;
+  // toggleTab() {
+  //   this.isTabCollapsed = !this.isTabCollapsed;
+  //   this.updateFormWidth();
+  // }
+
+  // Method to handle the toggle state from app-tab
+  handleTabToggle(isCollapsed: boolean): void {
+    this.isTabCollapsed = isCollapsed;
     this.updateFormWidth();
   }
 
@@ -373,23 +379,34 @@ export class EngageComponent implements OnInit{
     this.fileReader.readAsDataURL(file); // Read the image file as a Data URL
   }
   
-// Method to track if a phase is expanded
-isExpanded(phase: string): boolean {
-  return this.expandedPhase === phase;
-}
+  // Method to track if a phase is expanded
+  isExpanded(phase: string): boolean {
+    return this.expandedPhase === phase;
+  }
 
-// Toggle phase open or close based on `phase`
-togglePhase(phase: string): void {
-  this.expandedPhase = this.isExpanded(phase) ? null : phase;
-}
+  // Toggle phase open or close based on `phase`
+  togglePhase(phase: string): void {
+    this.expandedPhase = this.isExpanded(phase) ? null : phase;
+  }
 
-// Automatically resize the textarea height based on content
-autoResize(event: Event): void {
-  const target = event.target as HTMLTextAreaElement;
-  target.style.height = 'auto'; // Reset height to auto first
-  target.style.height = `${Math.min(target.scrollHeight, 400)}px`; // Restrict height, max 400px
-}
+  // Automatically resize the textarea height based on content
+  // autoResize(event: Event): void {
+  //   const target = event.target as HTMLTextAreaElement;
+  //   target.style.height = 'auto'; // Reset height to auto first
+  //   target.style.height = `${Math.min(target.scrollHeight, 400)}px`; // Restrict height, max 400px
+  // }
+  autoResize(event: Event): void {
+    const target = event.target as HTMLTextAreaElement;
+    target.style.height = 'auto'; // Reset height
+    target.style.height = target.scrollHeight + 'px'; // Set height to fit content
   
+    // Adjust the step-container height based on the textarea content
+    const stepContainer = target.closest('.step-container') as HTMLElement;
+    if (stepContainer) {
+      stepContainer.style.height = 'auto'; // Reset height
+      stepContainer.style.height = Math.max(target.scrollHeight + 40, 90) + 'px'; // Adjust as needed, 40px for padding
+    }
+  }
 }
 
 interface RenderedFile {

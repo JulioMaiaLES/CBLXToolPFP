@@ -127,7 +127,7 @@ header {
     }
 
     .toggle-icon {
-        position: relative;
+        position: fixed;
         left: 200px;
         transition: left 0.3s ease;
     }
@@ -176,16 +176,17 @@ form{
     width: 100%;
     
      // Default form width when nothing is collapsed
-    &.default-width {
-        max-width: 1085px; // Default width, adjust as needed
+     &.default-width {
+        max-width: 1115px; // Default width, adjust as needed
         margin-left: 0;
     }
 
     // Expanded form width when pagination is collapsed, shifts left to cover more screen space
     &.expanded-width {
-        max-width: 1318px; // Fixed expanded width
-        margin-left: -50px; // Shift form left to give it more screen space
+        max-width: 1600px; // Fixed expanded width
+        margin-left: 0; // Shift form left to give it more screen space
     }
+
 
     // Full width when both pagination and tab are collapsed
     &.full-width {
@@ -212,7 +213,6 @@ form{
         line-height: 24px;
         outline: none;
         transition: height 0.2s ease; /* Smooth transition for resizing */
-        max-height: 400px; /* Max height constraint */
     }
     
     .collapsed .textos {
@@ -236,14 +236,28 @@ form{
         overflow: hidden; /* Prevent content overflow */
         transition: height 0.5s ease-in-out, flex-grow 0.5s ease-in-out;
         flex-grow: 0;
-        // cursor: pointer;
     }
     
     .step-container.expanded {
-        height: 500px; /* Expanded height */
+        min-height: 500px; /* Expanded height */
         flex-grow: 1; /* Allows this phase to take up more space smoothly */
     }
-      
+
+    .step-container.collapsed {
+        max-height: 150px; /* Height when collapsed */
+    }
+
+    .step-container .header {
+        position: sticky;
+        top: 0;
+        background-color: inherit; /* Match the container's background */
+        padding-bottom: 10px;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     .phase-controls {
         position: absolute;
         top: 10px;

@@ -48,6 +48,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { TabModule } from './components/tab/tab.module';
 import { ToggleiconComponent } from './components/toggleicon/toggleicon.component';
 import { ToggleiconModule } from './components/toggleicon/toggleicon.module';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { PaginationModule } from './components/pagination/pagination.module';
 
   export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -109,6 +111,7 @@ import { ToggleiconModule } from './components/toggleicon/toggleicon.module';
         defaultLanguage: 'pt-br',
       }),
       TabModule,
+      // PaginationModule,
       // ToggleiconModule
     ],
     providers: [

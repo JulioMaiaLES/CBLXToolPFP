@@ -35,10 +35,20 @@
         Cancelar
       </button> -->
       <!-- <mat-form-field> -->
-        <button type="submit" class="confirm-button" mat-button>
-          Nome do Projeto
+      <div class="input-field">
+        <input
+          matInput
+          type="text"
+          placeholder="Nome do Projeto"
+          formControlName="projectName"
+        />
+      </div>
+      <div>
+        <button type="submit" class="confirm-button">
+          Criar Projeto
           <loading *ngIf="loading"></loading>
         </button>
+      </div>
       <!-- </mat-form-field> -->
     </mat-dialog-actions>
   </form>

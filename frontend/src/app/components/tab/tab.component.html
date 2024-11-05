@@ -1,20 +1,5 @@
-<div class="visual-tab" [class.collapsed]="isCollapsed">
-    <!-- <ul>
-      <li>
-        <div class="tab-selected">
-          <img src="../../../assets/images/conteudos.png">
-          <br>
-          Conteúdos
-        </div>
-      </li>
-      <li>
-        <div>
-          <img src="../../../assets/images/templates.png">
-          <br>
-          Templates
-        </div>
-      </li>
-    </ul> -->
+<!-- Versão antiga -->
+<!-- <div class="visual-tab" [class.collapsed]="isCollapsed">
     
     <div class="tab-search">
       <mat-form-field appearance="outline" class="search-field">
@@ -44,36 +29,45 @@
       </div>
     </div>
 
-    <!-- <div class="tab-search">
-      <mat-form-field appearance="outline" class="search-field">
-        <input
-          matInput
-          placeholder="Busca"
-          [formControl]="searchControl"
-          [matAutocomplete]="auto"
-        />
-      </mat-form-field>
-    
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option
-          *ngFor="let option of filteredItems | async"
-          [value]="option.label"
-          (click)="onOptionSelected(option.label)"
-        >
-          <div class="option-content">
-            <img [src]="option.icon" alt="{{ option.label }}" class="option-icon" />
-            <span>{{ option.label }}</span>
-          </div>
-        </mat-option>
-      </mat-autocomplete>
-    </div>
-    
-    <div class="filtered-grid">
-      <div *ngFor="let item of itemsToShow" class="grid-item">
-        <img [src]="item.icon" alt="{{ item.label }}" class="grid-icon" />
-        <span>{{ item.label }}</span>
-      </div>
-    </div>
-     -->
+  </div> -->
 
+<!-- Nova versão -->
+<div class="visual-tab" [class.collapsed]="isCollapsed">
+  <!-- Expand Icon (≡) - Shows when collapsed -->
+  <div *ngIf="isCollapsed" class="expand-icon" (click)="toggleTab()">
+      ≡
   </div>
+
+  <!-- Close Icon (X) - Shows when expanded -->
+  <div *ngIf="!isCollapsed" class="close-icon" (click)="toggleTab()">
+      X
+  </div>
+
+  <div *ngIf="!isCollapsed" class="tab-search">
+      <div class="search-field">
+          <input
+              type="text"
+              matInput
+              [formControl]="searchControl"
+              [matAutocomplete]="auto"
+              placeholder="Busca"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+              <mat-option
+                  *ngFor="let option of filteredItems | async"
+                  [value]="option.label"
+                  (click)="onOptionSelected(option.label)">
+                  {{ option.label }}
+              </mat-option>
+          </mat-autocomplete>
+      </div>
+      <img src="../../../assets/images/lupa.png" alt="Search Icon" />
+  </div>
+
+  <div *ngIf="!isCollapsed" class="filtered-items">
+      <div *ngFor="let item of filteredItems | async" class="item">
+          <img [src]="'../../../assets/images/' + item.icon + '.png'" alt="{{ item.label }}" />
+          <p>{{ item.label }}</p>
+      </div>
+  </div>
+</div>

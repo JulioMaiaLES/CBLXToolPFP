@@ -24,14 +24,7 @@
           class="toggle-icon">
         </app-toggleicon>
         
-        <div class="pagination">
-          <div class="current-block">
-            1
-          </div>
-          <div class="new-block">
-            +
-          </div>
-        </div>
+        <app-pagination [isCollapsed]="isPaginationCollapsed"></app-pagination>
       </div>
       
       <form 
@@ -41,14 +34,16 @@
         [class.default-width]="!isFullWidth && !isPaginationCollapsed"
       >
         <div formArrayName="big_idea" class="step-container" [class.expanded]="isExpanded('big_idea')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/big_idea.png" alt="lampada">
-            Big Idea
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('big_idea')">
-            </div>
-          </label><br><br>
-          <div [class.collapsed]="!isExpanded('big_idea')">
+          <div class="header">
+            <label class="align-vertical">
+              <img src="../../../assets/images/big_idea.png" alt="lampada">
+              Big Idea
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('big_idea')">
+              </div>
+            </label><br><br>
+          </div>
+          <div>
             <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
               <textarea
                 class="textos"
@@ -64,14 +59,16 @@
         </div>
         <br>
         <div formArrayName="essential_question" class="step-container" [class.expanded]="isExpanded('essential_question')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/essential_question.png" alt="pensando">
-            Essential Question
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('essential_question')">
-            </div>
-          </label><br><br>
-          <div [class.collapsed]="!isExpanded('essential_question')">
+          <div class="header">
+            <label class="align-vertical">
+              <img src="../../../assets/images/essential_question.png" alt="pensando">
+              Essential Question
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('essential_question')">
+              </div>
+            </label><br><br>
+          </div>
+          <div>
             <div *ngFor="let field of essentialQuestionFields.controls; let i = index" [formGroupName]="i">
               <textarea 
               class="textos" 
@@ -85,14 +82,16 @@
         </div>
         <br>
         <div formArrayName="challenge" class="step-container" [class.expanded]="isExpanded('challenge')">
-          <label class="align-vertical">
-            <img src="../../../assets/images/challenge.png" alt="alvo">
-            Challenge
-            <div class="phase-controls">
-              <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('challenge')">
-            </div>
-          </label><br><br>
-          <div [class.collapsed]="!isExpanded('challenge')">
+          <div class="header">
+            <label class="align-vertical">
+              <img src="../../../assets/images/challenge.png" alt="alvo">
+              Challenge
+              <div class="phase-controls">
+                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('challenge')">
+              </div>
+            </label><br><br>
+          </div>
+          <div>
             <div *ngFor="let field of challengeFields.controls; let i = index" [formGroupName]="i">
               <textarea 
               class="textos" 
@@ -109,12 +108,13 @@
   </div>
 
   <div class="tab-container" [class.collapsed]="isTabCollapsed">
-    <app-toggleicon 
+    <!-- <app-toggleicon 
       [isCollapsed]="isTabCollapsed" 
       (toggle)="toggleTab()"
       class="toggle-icon">
-    </app-toggleicon>
-    <app-tab [isCollapsed]="isTabCollapsed"></app-tab>
+    </app-toggleicon> -->
+    <!-- <app-tab [isCollapsed]="isTabCollapsed"></app-tab> -->
+    <app-tab (toggleEvent)="handleTabToggle($event)"></app-tab>
   </div>
 
   <div class="archives" *ngFor="let file of files">

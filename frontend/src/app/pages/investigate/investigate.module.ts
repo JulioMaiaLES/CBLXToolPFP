@@ -16,6 +16,7 @@ import { ModalInvestigateModule } from '@app/components/modals/modal-investigate
 import { TabComponent } from '@app/components/tab/tab.component';
 import { TabModule } from '@app/components/tab/tab.module';
 import { ToggleiconModule } from '@app/components/toggleicon/toggleicon.module';
+import { PaginationModule } from '@app/components/pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ToggleiconModule } from '@app/components/toggleicon/toggleicon.module';
     MenuComponent,
     CblCanvasModule,
     TabModule,
-    ToggleiconModule
+    ToggleiconModule,
+    PaginationModule
   ]
 })
 export class InvestigateModule { }

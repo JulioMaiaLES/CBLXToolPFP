@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TabComponent } from '@app/components/tab/tab.component';
 import { TabModule } from '@app/components/tab/tab.module';
 import { ToggleiconModule } from '@app/components/toggleicon/toggleicon.module';
+import { PaginationModule } from '@app/components/pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ToggleiconModule } from '@app/components/toggleicon/toggleicon.module';
     MenuComponent,
     ReactiveFormsModule,
     TabModule,
-    ToggleiconModule
+    ToggleiconModule,
+    PaginationModule
   ]
 })
 export class EngageModule { }
