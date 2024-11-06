@@ -6,55 +6,60 @@
     </div>
     <!-- <img src="../../../assets/images/cbl-back.png"> -->
     <div class="row">
-      <div class="lang">
+      <!-- <div class="lang">
         <lang-select></lang-select>
-      </div>
+      </div> -->
       <div class="col">
         <div class="form">
           <form (ngSubmit)="loginSubmitHandler()" [formGroup]="login_form">
-            <h1>{{ 'login-register.login-title' | translate }}</h1>
-            <h3>E-mail</h3>
-            <mat-form-field appearance="fill">
-              <mat-label>
+            <p class="welcome">{{ 'login-register.login-title' | translate }}</p>
+            <div class="space-margin">
+              <h4>E-mail</h4>
+            </div>
+            <!-- <mat-form-field appearance="fill"> -->
+              <!-- <label>
                 {{ 'login-register.email' | translate }}
-              </mat-label>
+              </label> -->
+            <div class="input-field">
               <input
-                matInput
                 type="email"
                 formControlName="email"
+                placeholder="Digite seu e-mail"
                 autocomplete="username"
               />
-              <mat-error>
-                {{ login_form.controls.email.errors | formError | translate }}
-              </mat-error>
-            </mat-form-field>
-            <h3>Senha</h3>
-            <mat-form-field appearance="fill">
-              <mat-label>
+            </div>
+            <mat-error *ngIf="login_form.controls.email.touched && login_form.controls.email.invalid">
+              {{ login_form.controls.email.errors | formError | translate }}
+            </mat-error>
+            <!-- </mat-form-field> -->
+            <div class="space-margin2">
+              <h4>Senha</h4>
+            </div>
+            <!-- <mat-form-field appearance="fill"> -->
+              <!-- <mat-label>
                 {{ 'login-register.password' | translate }}
-              </mat-label>
+              </mat-label> -->
+            <div class="input-field">
               <input
-                matInput
                 [type]="view_pass ? 'text' : 'password'"
                 formControlName="password"
                 autocomplete="current-password"
+                placeholder="Digite sua senha"              
               />
-
               <button
                 type="button"
-                mat-icon-button
-                matSuffix
+                class="view-pass-button"
                 aria-label="Ver senha"
                 (click)="view_pass = !view_pass"
               >
                 <i icon="view_pass" *ngIf="!view_pass"></i>
                 <i icon="hide_pass" *ngIf="view_pass"></i>
               </button>
-
-              <mat-error>
-                {{ login_form.controls.password.errors | formError | translate }}
-              </mat-error>
-            </mat-form-field>
+            </div>
+            <mat-error *ngIf="login_form.controls.password.touched && login_form.controls.password.invalid">
+              {{ login_form.controls.password.errors | formError | translate }}
+            </mat-error>
+            <!-- </mat-form-field> -->
 
             <div class="forgot-password">
               <a class="f-12" (click)="handleOpenForgotPasswordModal()">
@@ -69,7 +74,8 @@
             <label class="custom-checkbox">
               <input type="checkbox" formControlName="remember" />
               <span class="checkmark"></span>
-              <h3>{{ 'login-register.remember-me' | translate }}</h3>
+              <h3>Lembrar minha senha</h3>
+              <!-- <h3>{{ 'login-register.remember-me' | translate }}</h3> -->
             </label>
 
             <div class="buttons full">
@@ -83,7 +89,7 @@
                 <loading *ngIf="loading"></loading>
               </button>
             </div>
-            <p>
+            <p class="register-call">
               {{ 'login-register.not-registered' | translate }}
               <a routerLink="/register">{{
                 'login-register.go-register' | translate

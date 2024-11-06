@@ -4,9 +4,9 @@
       <img src="../../../assets/images/cbl-back.png" class="background-image" alt="background" />
     </div>
     <div class="row">
-      <div class="lang">
+      <!-- <div class="lang">
         <lang-select></lang-select>
-      </div>
+      </div> -->
       <!-- <div class="col">
         <div class="logo">
           <img src="assets/images/logocblxtool.png" alt="Logo" />
@@ -24,50 +24,63 @@
             </p>
 
             <h3>Nome</h3>
-            <mat-form-field appearance="outline">
-              <mat-label>
+            <!-- <mat-form-field appearance="outline"> -->
+              <!-- <mat-label>
                 {{ 'login-register.name' | translate }}
-              </mat-label>
-              <input matInput type="text" formControlName="name" />
-              <mat-error>
+              </mat-label> -->
+            <div class="space-margin">
+              <div class="input-field">
+                <input 
+                  matInput type="text" 
+                  formControlName="name"
+                  placeholder="Seu nome"
+                />
+              </div>
+              <mat-error *ngIf="register_form.controls.name.touched && register_form.controls.name.invalid">
                 {{ register_form.controls.name.errors | formError | translate }}
               </mat-error>
-            </mat-form-field>
+            </div>
+            <!-- </mat-form-field> -->
 
             <h3>E-mail</h3>
-            <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="outline">
               <mat-label>
                 {{ 'login-register.email-register' | translate }}
-              </mat-label>
-              <input
-                matInput
-                type="email"
-                autocomplete="username"
-                formControlName="email"
-              />
+              </mat-label> -->
+            <div class="space-margin">
 
-              <mat-error>
+              <div class="input-field">
+                <input
+                  type="email"
+                  autocomplete="username"
+                  formControlName="email"
+                  placeholder="Seu e-mail"
+                />
+              </div>
+              <mat-error *ngIf="register_form.controls.email.touched && register_form.controls.email.invalid">
                 {{ register_form.controls.email.errors | formError | translate }}
               </mat-error>
-            </mat-form-field>
-
+            </div>
+            <!-- </mat-form-field> -->
             <div class="row-container">
               <div class="half-width">
                 <h3>Telefone</h3>
-                <mat-form-field class="short-input" appearance="outline">
+                <div class="short-input">
+                <!-- <mat-form-field class="short-input" appearance="outline">
                   <mat-label>
                     {{ 'login-register.cellphone' | translate }}
-                  </mat-label>
+                  </mat-label> -->
                   <input
-                    matInput
                     type="text"
                     mask="(00) 00000-0000"
                     formControlName="phone"
+                    placeholder="Telefone"
                   />
-                  <mat-error>
-                    {{ register_form.controls.phone.errors | formError | translate }}
-                  </mat-error>
-                </mat-form-field>
+                </div>
+                <mat-error *ngIf="register_form.controls.phone.touched && register_form.controls.phone.invalid">
+                  {{ register_form.controls.phone.errors | formError | translate }}
+                </mat-error>
+                <!-- </mat-form-field> -->
               </div>
 
             <!-- <mat-form-field appearance="outline">
@@ -86,29 +99,31 @@
             </mat-form-field> -->
               <div class="half-width">
                 <h3>Data de nascimento</h3>
-                <mat-form-field class="short-input" appearance="outline">
+                <div class="input-field">
+                <!-- <mat-form-field class="short-input" appearance="outline">
                   <mat-label>
                     {{ 'login-register.birth-date' | translate }}
-                  </mat-label>
+                  </mat-label> -->
                   <input
-                    matInput
                     type="text"
                     [matDatepicker]="picker"
                     formControlName="birth_date"
                     [max]="now"
+                    placeholder="dd/mm/aaaa"
                   />
                   <mat-datepicker-toggle
                     matSuffix
                     [for]="picker"
+                    class="datepicker-toggle-button"
                   ></mat-datepicker-toggle>
-                  <mat-datepicker matSuffix #picker></mat-datepicker>
-
-                  <mat-error>
-                    {{
-                      register_form.controls.birth_date.errors | formError | translate
-                    }}
-                  </mat-error>
-                </mat-form-field>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div>
+                <mat-error *ngIf="register_form.controls.birth_date.touched && register_form.controls.birth_date.invalid">
+                  {{
+                    register_form.controls.birth_date.errors | formError | translate
+                  }}
+                </mat-error>
+                <!-- </mat-form-field> -->
               </div>
             </div>
 
@@ -134,28 +149,30 @@
             </mat-form-field> -->
 
             <h3>Senha</h3>
-            <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="outline">
               <mat-label>
                 {{ 'login-register.password-register' | translate }}
-              </mat-label>
-              <input
-                matInput
-                [type]="view_pass ? 'text' : 'password'"
-                autocomplete="new-password"
-                formControlName="password"
-              />
-              <button
-                type="button"
-                mat-icon-button
-                matSuffix
-                aria-label="Ver senha"
-                (click)="view_pass = !view_pass"
-              >
-                <i icon="view_pass" *ngIf="!view_pass"></i>
-                <i icon="hide_pass" *ngIf="view_pass"></i>
-              </button>
-
-              <mat-error [matTooltip]="this.password_warning">
+              </mat-label> -->
+            <div class="space-margin">
+              <div class="input-field">
+                <input
+                  [type]="view_pass ? 'text' : 'password'"
+                  autocomplete="new-password"
+                  formControlName="password"
+                  placeholder="Crie sua senha"
+                />
+              
+                <button
+                  type="button"
+                  class="view-pass-button"
+                  aria-label="Ver senha"
+                  (click)="view_pass = !view_pass"
+                >
+                  <i icon="view_pass" *ngIf="!view_pass"></i>
+                  <i icon="hide_pass" *ngIf="view_pass"></i>
+                </button>
+              </div>
+              <mat-error *ngIf="register_form.controls.password.touched && register_form.controls.password.invalid">
                 {{
                   this.password_warning ||
                     this.password_suggestions[0] ||
@@ -164,38 +181,41 @@
                       | translate)
                 }}
               </mat-error>
-            </mat-form-field>
+            </div>
+            <!-- </mat-form-field> -->
 
             <h3>Repetir senha</h3>
-            <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="outline">
               <mat-label>
                 {{ 'login-register.re-password' | translate }}
-              </mat-label>
-              <input
-                matInput
-                [type]="view_repass ? 'text' : 'password'"
-                autocomplete="new-password"
-                formControlName="re_password"
-              />
-              <button
-                type="button"
-                mat-icon-button
-                matSuffix
-                aria-label="Ver senha"
-                (click)="view_repass = !view_repass"
-              >
-                <i icon="view_pass" *ngIf="!view_repass"></i>
-                <i icon="hide_pass" *ngIf="view_repass"></i>
-              </button>
-
-              <mat-error>
+              </mat-label> -->
+            <div class="space-margin">
+              <div class="input-field">
+                <input
+                  [type]="view_repass ? 'text' : 'password'"
+                  autocomplete="new-password"
+                  formControlName="re_password"
+                  placeholder="Repita sua senha"
+                />
+                <button
+                  type="button"
+                  class="view-pass-button"
+                  aria-label="Ver senha"
+                  (click)="view_repass = !view_repass"
+                >
+                  <i icon="view_pass" *ngIf="!view_repass"></i>
+                  <i icon="hide_pass" *ngIf="view_repass"></i>
+                </button>
+              </div>
+              <mat-error *ngIf="register_form.controls.re_password.touched && register_form.controls.re_password.invalid">
                 {{
                   register_form.controls.re_password.errors
                     | formError
                     | translate
                 }}
               </mat-error>
-            </mat-form-field>
+            </div>
+          <!-- </mat-form-field> -->
 
             <div class="buttons full">
               <button
