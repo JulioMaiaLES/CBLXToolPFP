@@ -43,6 +43,7 @@
       X
   </div>
 
+  <!-- Expanded Tab Content -->
   <div *ngIf="!isCollapsed" class="tab-search">
       <div class="search-field">
           <input
@@ -64,10 +65,19 @@
       <img src="../../../assets/images/lupa.png" alt="Search Icon" />
   </div>
 
+  <!-- Expanded Content Icons and Titles -->
   <div *ngIf="!isCollapsed" class="filtered-items">
       <div *ngFor="let item of filteredItems | async" class="item">
           <img [src]="'../../../assets/images/' + item.icon + '.png'" alt="{{ item.label }}" />
           <p>{{ item.label }}</p>
       </div>
+  </div>
+
+  <!-- Collapsed Content Icons Column -->
+  <div *ngIf="isCollapsed" class="collapsed-content">
+    <div *ngFor="let item of filteredItems | async" class="collapsed-item">
+        <img [src]="'../../../assets/images/' + item.icon + '.png'" alt="{{ item.label }}" />
+        <p>{{ item.label }}</p>
+    </div>
   </div>
 </div>
