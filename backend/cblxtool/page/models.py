@@ -3,20 +3,19 @@ from django.db import models
 from content.models.content import Content
 
 class Page(models.Model):
-    # Alterar a ForeignKey para usar AUTH_USER_MODEL
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=0)
-    content = models.ManyToManyField(Content, related_name='paginas')
-    index_page = models.IntegerField(default=0)
+    PHASE_CHOICES = [
+        ('Engage', 'Engage'),
+        ('Act', 'Act'),
+        ('Investigate', 'Investigate'),
+    ]
 
-    def save(self, *args, **kwargs):
-        if not self.user_id:
-            try:
-                # Criar ou obter o usuário padrão
-                self.user = settings.AUTH_USER_MODEL.objects.get_or_create(
-                    username="default_user",  # O campo 'username' é obrigatório no modelo Profile
-                    email="default@exemplo.com",
-                    defaults={'password': 'default'}  # O campo 'password' deve ser criptografado ou tratado
-                )[0]
-            except settings.AUTH_USER_MODEL.DoesNotExist:
-                raise ValueError("Usuário padrão não encontrado ou não pode ser criado")
-        super(Page, self).save(*args, **kwargs)
+    order = models.PositiveIntegerField()
+    email = models.EmailField()
+    name = models.CharField(max_length=255)
+    html_path = models.CharField(max_length=255) # o caminho é media/pages/email/phase/order.html
+    phase = models.CharField(max_length=20, choices=PHASE_CHOICES)
+    project = models.ForeignKey('project.Project', on_delete=models.CASCADE, related_name='pages', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.phase} - {self.html_path} (Order: {self.order})"
