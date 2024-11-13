@@ -50,6 +50,7 @@ import { ToggleiconComponent } from './components/toggleicon/toggleicon.componen
 import { ToggleiconModule } from './components/toggleicon/toggleicon.module';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PaginationModule } from './components/pagination/pagination.module';
+import { ProfileComponent } from './components/modals/profile/profile.component';
 
   export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);

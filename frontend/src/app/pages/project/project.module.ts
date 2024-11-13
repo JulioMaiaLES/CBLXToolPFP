@@ -8,6 +8,7 @@ import { MatOptionModule } from '@angular/material/core';
 
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
+import { ProfileComponent } from '@app/components/modals/profile/profile.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ProjectComponent } from './project.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatOptionModule
+    MatOptionModule,
+    ProfileComponent
   ]
 })
 export class ProjectModule { }

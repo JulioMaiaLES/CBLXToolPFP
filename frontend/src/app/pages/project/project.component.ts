@@ -12,6 +12,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { CookiesLoginComponent } from '@components/modals/cookies-login/cookies-login.component';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ProfileComponent } from '@app/components/modals/profile/profile.component';
 
 
 @Component({
@@ -23,8 +24,8 @@ export class ProjectComponent implements OnInit {
   projects: any[] = [];
   filteredProjects!: Observable<any[]>;
   profileImage: string | undefined;
-
   searchControl = new FormControl('');
+  
 
   constructor(
     private fb: FormBuilder,
@@ -52,6 +53,13 @@ export class ProjectComponent implements OnInit {
       startWith(''),
       map(value => this.filterProjects(value || ''))
     );
+  }
+
+  openProfileModal(): void {
+    this.dialog.open(ProfileComponent, {
+      width: '1200px', // Customize width and height as needed
+      height: 'auto'
+    });
   }
 
   filterProjects(value: string): { id: number; name: string }[] {
@@ -123,6 +131,7 @@ export class ProjectComponent implements OnInit {
       }
     );
   }
+
 
   openCookieDialog() {
     console.log('Opening cookie dialog...');

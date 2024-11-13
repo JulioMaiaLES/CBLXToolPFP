@@ -26,7 +26,13 @@
             <img src="../../../assets/images/lupa.png">  
         </div> -->
         <div class="profile">
-            <img [src]="profileImage" alt="User Profile Image" (error)="profileImage = '../../../assets/images/perfil-prototipo.png'">
+            <img 
+                [src]="profileImage" 
+                alt="User Profile Image" 
+                (error)="profileImage = '../../../assets/images/perfil-prototipo.png'"
+                (click)="openProfileModal()"
+                class="profile-image">
+            <!-- <app-profile *ngIf="isProfileModalOpen" (close)="closeProfileModal()"></app-profile> -->
         </div>
     </div>
 </header>

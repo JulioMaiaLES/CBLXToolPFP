@@ -138,13 +138,13 @@ header {
     // }
 }
 
-// .pagination {
-//     display: flex;
-//     flex-direction: column;
-//     color: white;
-//     padding-left: 250px;
-//     transition: width 0.3s ease;
-// }
+.pagination {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-left: 250px;
+    transition: width 0.3s ease;
+}
 
 // .current-block, .new-block {
 //     width: 178px;
