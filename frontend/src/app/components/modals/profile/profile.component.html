@@ -1,0 +1,52 @@
+<div class="modal-perfil">
+    <button mat-icon-button class="close-button" (click)="closeModal()">
+      X
+    </button>
+    <img src="../../../../assets/images/perfil-prototipo.png" alt="Profile Image" class="profile-image">
+    <img src="../../../../assets/images/profile-edit.png" alt="Edit Image" class="edit-button">
+    
+    <div class="modal-content">
+      <h4>Dados Cadastrais</h4>
+      <div class="dados-cadastro">
+        <div>
+          <p>Nome</p>
+          <input placeholder="Nome" class="dados-input">
+        </div>
+        <div>
+          <p>E-mail</p>
+          <input placeholder="E-mail" class="dados-input">
+        </div>
+        <div>
+          <p>Telefone</p>
+          <input placeholder="(00)00000-0000" class="dados-input">
+        </div>
+        <div>
+          <p>Data de Nascimento</p>
+          <input placeholder="01/11/2010" class="dados-input">
+        </div>
+        <div></div> <!-- Empty cell for layout balance -->
+        <div></div> <!-- Empty cell for layout balance -->
+      </div>
+      <button mat-raised-button color="primary" class="form-button">Salvar Alterações</button>
+      
+      <h4>Alterar Senha</h4>
+      <div class="dados-senha">
+        <div>
+          <p>Senha Atual</p>
+          <input placeholder="Senha" class="dados-input">
+        </div>
+        <div>
+          <p>Nova Senha</p>
+          <input placeholder="Nova Senha" class="dados-input">
+        </div>
+        <div>
+          <p>Confirmar Senha</p>
+          <input placeholder="Confirmar Senha" class="dados-input">
+        </div>
+        <div></div> <!-- Empty cell for layout balance -->
+        <div></div> <!-- Empty cell for layout balance -->
+        <div></div> <!-- Empty cell for layout balance -->
+      </div>
+      <button mat-raised-button color="accent" class="form-button" id="alterar-senha">Alterar Senha</button>
+    </div>
+</div>
