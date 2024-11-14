@@ -6,11 +6,11 @@ import { PageErrorComponent } from '@components/shared/page-error/page-error.com
 const SPR = false;
 
 const routes: Routes = [
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('@pages/login/login.module').then((m) => m.LoginModule),
-  },
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('@pages/login/login.module').then((m) => m.LoginModule),
+  // },
   {
     path: 'register',
     loadChildren: () =>
@@ -37,13 +37,13 @@ const routes: Routes = [
         (m) => m.JornadaModule
       ),
   },
-  {
-    path: 'perfil',
-    loadChildren: () =>
-      import('@pages/perfil/perfil.module').then(
-        (m) => m.PerfilModule
-      ),
-  },
+  // {
+  //   path: 'perfil',
+  //   loadChildren: () =>
+  //     import('@pages/perfil/perfil.module').then(
+  //       (m) => m.PerfilModule
+  //     ),
+  // },
   {
     path: 'engage',
     loadChildren: () =>
@@ -67,13 +67,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: NavbarComponent,
+    // component: NavbarComponent,
     // canActivate: [authGuard], // ? Remover caso queira que mais rotas sejam acessadas sem autenticação
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('@pages/home/home.module').then((m) => m.HomeModule),
+          import('@pages/login/login.module').then((m) => m.LoginModule),
       },
       {
         path: '**',
@@ -82,6 +82,24 @@ const routes: Routes = [
       },
     ],
   },
+ //Implementação anterior 
+// {
+  //   path: '',
+  //   component: NavbarComponent,
+  //   // canActivate: [authGuard], // ? Remover caso queira que mais rotas sejam acessadas sem autenticação
+  //   children: [
+  //     {
+  //       path: '',
+  //       loadChildren: () =>
+  //         import('@pages/home/home.module').then((m) => m.HomeModule),
+  //     },
+  //     {
+  //       path: '**',
+  //       component: PageErrorComponent,
+  //       data: { code: 404 },
+  //     },
+  //   ],
+  // },
 ];
 
 @NgModule({

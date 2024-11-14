@@ -124,8 +124,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cblxtoolpfp',
         'USER': 'root',
-        # 'PASSWORD': 'Les$#@!1234',
-        'PASSWORD': '588654785',
+        'PASSWORD': 'Les$#@!1234',
+        # 'PASSWORD': '588654785',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
