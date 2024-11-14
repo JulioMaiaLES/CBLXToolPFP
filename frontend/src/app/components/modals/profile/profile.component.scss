@@ -6,7 +6,8 @@
     // text-align: center;
     padding: 20px;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
+    font-weight: 500;
 }
   
 .close-button {
@@ -17,9 +18,19 @@
     color: white;
     cursor: pointer;
     font-size: 28px;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.profile-image-edit{
+    padding-bottom: 300px;
+    margin-top: 6%;
+    margin-right: 50px;
+    position: relative;
 }
 
 .profile-image {
+    position: relative;
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -27,13 +38,21 @@
 }
 
 .edit-button{
+    position: absolute;
     width: 50px;
     height: 50px;
+    right: 0;
+    bottom: 65%;
     cursor: pointer;
 }
 
-.modal-content h4 {
-    margin-top: 20px;
+
+.modal-content{
+    position: flex;
+}
+
+.section-title {
+    margin: 30px 0;
 }
 
 .form-button {
@@ -42,29 +61,32 @@
     background-color: black;
     color: white;
     border: none;
-    padding: 10px 25px;
+    width: 150px;
+    height: 35px;
+    // padding: 10px 25px;
     border-radius: 50px;
     font-size: 12px;
+    cursor: pointer;
 }
 
-#alterar-senha{
-    padding: 10px 32px;
-}
+// #alterar-senha{
+//     padding: 10px 32px;
+// }
 
 .dados-cadastro{
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
     grid-template-rows: repeat(2, auto); /* 2 rows of dynamic height */
-    gap: 30px; /* Adjust spacing between grid items as needed */
-    padding: 10px;
+    gap: 5%; /* Adjust spacing between grid items as needed */
+    // padding: 10px;
 }
 
 .dados-senha{
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
     grid-template-rows: repeat(2, auto); /* 2 rows of dynamic height */
-    gap: 30px; /* Adjust spacing between grid items as needed */
-    padding: 10px;
+    gap: 5%; /* Adjust spacing between grid items as needed */
+    // padding: 10px;
 }
 
 .dados-input{
@@ -76,26 +98,3 @@
     width: 100%; /* Ensures the input takes up full width of grid cell */
     outline: none;
 }
-
-// .modal-perfil{
-//     background-color: #707070;
-//     width: 300px;
-//     height: 400px;
-// }
-
-// .form-button{
-//     background-color: black;
-//     border-radius: 100px;
-//     color: white;
-//     font-size: 14px;
-// }
-
-// .dados-cadastro{
-//     color: white;
-//     font-size: 16px;
-// }
-
-// .dados-senha{
-//     color: white;
-//     font-size: 16px;
-// }

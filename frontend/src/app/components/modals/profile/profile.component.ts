@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -9,10 +9,28 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ProfileComponent {
 
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+
   constructor(public dialogRef: MatDialogRef<ProfileComponent>) {}
 
   closeModal(): void {
     this.dialogRef.close();
   }
 
+  // Method to open the file explorer
+  onEditImageClick(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  // Handle file selection and validate file type
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input?.files?.[0];
+    
+    if (file) {
+      console.log('Selected file:', file);
+
+      // Handle the file here (e.g., upload, preview, etc.)
+    }
+  }
 }
