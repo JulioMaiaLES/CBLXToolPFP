@@ -63,6 +63,7 @@ class CreateProjectView(APIView):
             print("Erro desconhecido:", str(e))
             return Response({"error": "Erro desconhecido ao criar o projeto."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
+        
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([TokenAuthentication])
@@ -72,6 +73,7 @@ def user_projects(request):
         projects_data = [
             {
                 "name": project.name,
+                "id": project.id,
                 "image": request.build_absolute_uri(project.image.url) if project.image else None
             }
             for project in user_projects
@@ -79,3 +81,77 @@ def user_projects(request):
         return JsonResponse(projects_data, safe=False)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+    
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def get_project_pages(request, project_id):
+    try:
+        # Verifica se o projeto pertence ao usuário autenticado
+        project = Project.objects.filter(id=project_id, email=request.user.email).first()
+        if not project:
+            return Response({"error": "Projeto não encontrado ou não autorizado."}, status=404)
+
+        # Obtém todas as páginas associadas ao projeto
+        pages = Page.objects.filter(project=project)
+        pages_data = [
+            {
+                "order": page.order,
+                "phase": page.phase,
+                "html_path": page.html_path
+            }
+            for page in pages
+        ]
+        return Response({"pages": pages_data}, status=200)
+
+    except Exception as e:
+        print("Erro ao buscar páginas:", str(e))
+        return Response({"error": "Erro ao buscar páginas."}, status=500)
+
+# Função para definir o projeto atual na sessão
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def set_current_project(request):
+    try:
+        project_id = request.data.get('project_id')
+        # Verifica se o projeto pertence ao usuário autenticado
+        project = Project.objects.filter(id=project_id, email=request.user.email).first()
+        if not project:
+            return Response({"error": "Projeto não encontrado ou não autorizado."}, status=404)
+
+        # Salva o project_id na sessão
+        request.session['current_project_id'] = project_id
+
+        # Log para verificar se o projeto foi salvo na sessão
+        print(f"Projeto atual salvo na sessão: {request.session['current_project_id']}")
+
+        return Response({"message": "Projeto definido com sucesso!"}, status=200)
+    except Exception as e:
+        print("Erro ao definir projeto:", str(e))
+        return Response({"error": str(e)}, status=500)
+
+# Função para obter o projeto atual da sessão
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def get_current_project(request):
+    try:
+        project_id = request.session.get('current_project_id')
+        if not project_id:
+            return Response({"error": "Nenhum projeto selecionado."}, status=404)
+        
+        # Verifica se o projeto ainda pertence ao usuário autenticado
+        project = Project.objects.filter(id=project_id, email=request.user.email).first()
+        if not project:
+            return Response({"error": "Projeto não encontrado ou não autorizado."}, status=404)
+
+        return Response({
+            "project_id": project.id,
+            "name": project.name,
+            "email": project.email
+        }, status=200)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)

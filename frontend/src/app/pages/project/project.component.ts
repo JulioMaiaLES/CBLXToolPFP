@@ -1,4 +1,4 @@
-// project.component.ts
+//project.component.ts
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -12,7 +12,6 @@ import { ChangeDetectorRef } from '@angular/core';
 import { CookiesLoginComponent } from '@components/modals/cookies-login/cookies-login.component';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-project',
@@ -61,12 +60,39 @@ export class ProjectComponent implements OnInit {
     );
   }
 
-  onOptionSelected(selectedProject: string): void {
-    console.log('Selected Project:', selectedProject);
-    // Implement your logic here, e.g., navigate to the project details
-    const selected = this.projects.find(project => project.name === selectedProject);
-    if (selected) {
-      this.router.navigate(['/projects', selected.id]);
+  // Função para quando o usuário selecionar um projeto da lista
+  onOptionSelected(selectedProjectName: string): void {
+    const selectedProject = this.projects.find(project => project.name === selectedProjectName);
+    if (selectedProject) {
+      console.log('Projeto selecionado:', selectedProject);
+
+      // Chamar a função para definir o projeto atual na sessão
+      this.setCurrentProject(selectedProject.id);
+    }
+  }
+
+  setCurrentProject(project: any): void {
+    console.log('Definindo projeto atual:', project);
+  
+    if (project && project.id) {
+      try {
+        // Salvar o projeto completo no localStorage
+        const projectData = JSON.stringify(project);
+        console.log('Salvando no localStorage:', projectData);
+  
+        localStorage.setItem('currentProject', projectData);
+  
+        // Confirmação de que o projeto foi salvo corretamente
+        const savedProject = localStorage.getItem('currentProject');
+        console.log('Verificação após salvar (getItem):', savedProject);
+  
+        // Redirecionar para a página de jornada
+        this.router.navigate(['/jornada']);
+      } catch (error) {
+        console.error('Erro ao salvar projeto no localStorage:', error);
+      }
+    } else {
+      console.error('Erro: Projeto inválido ou sem ID:', project);
     }
   }
 
@@ -81,30 +107,29 @@ export class ProjectComponent implements OnInit {
   }
 
   handleCreateProject() {
-    console.log('Opening create project dialog...');
+    console.log('Abrindo diálogo de criação de projeto...');
     const dialogRef = this.dialog.open(NewProjectName, {
       data: {
         email: this.login_form.get('email')?.value,
         message: 'Insira o nome do novo projeto:'
       },
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.loadUserProjects();
       } else {
-        console.log('Create project dialog was closed without data.');
+        console.log('Diálogo de criação de projeto foi fechado sem dados.');
       }
     });
   }
-  
 
   loadUserProjects() {
     this.projectService.getUserProjects().subscribe(
       (data) => {
-        console.log('Projects loaded:', data);  // Verifica se os projetos estão sendo retornados
-        this.projects = data;  // Armazena os projetos retornados na variável `projects`
-        this.cdr.detectChanges();  // Força a atualização da tela
+        console.log('Projetos carregados:', data);
+        this.projects = data;
+        this.cdr.detectChanges();
       },
       (error) => {
         console.error('Erro ao carregar os projetos:', error);
@@ -119,13 +144,13 @@ export class ProjectComponent implements OnInit {
       },
       (error) => {
         console.error('Erro ao carregar o perfil do usuário:', error);
-        this.profileImage = '../../../assets/images/perfil-prototipo.png'; // Imagem padrão em caso de erro
+        this.profileImage = '../../../assets/images/perfil-prototipo.png';
       }
     );
   }
 
   openCookieDialog() {
-    console.log('Opening cookie dialog...');
+    console.log('Abrindo diálogo de cookies...');
     const dialogRef = this.dialog.open(CookiesLoginComponent, {
       panelClass: 'cookies-dialog',
       disableClose: true,
@@ -139,4 +164,6 @@ export class ProjectComponent implements OnInit {
       }
     });
   }
+
+  
 }

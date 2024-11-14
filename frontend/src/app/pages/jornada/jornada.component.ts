@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
-import { ProgressService } from '../../services/progress.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Router } from '@angular/router';
-import { ResizableModule } from 'angular-resizable-element';
-import { AngularSplitModule } from 'angular-split';
+//jornada.component.ts
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '@services/project.service';
 
 @Component({
   selector: 'app-jornada',
   templateUrl: './jornada.component.html',
   styleUrls: ['./jornada.component.scss'],
 })
-export class JornadaComponent{
+export class JornadaComponent implements OnInit {
+  projectName: string = 'Projeto CBL';
+  projects: any[] = [];
+  currentProject: any = null;
 
-  isMenuHidden = true;
+  constructor(private projectService: ProjectService) {}
 
-  toggleMenu() {
-    this.isMenuHidden = !this.isMenuHidden;
+  ngOnInit(): void {
+    this.loadCurrentProject();
   }
 
-  constructor( 
-    public progressService: ProgressService, 
-  ) {}
-
-
+  loadCurrentProject(): void {
+    const projectData = localStorage.getItem('currentProject');
+    if (projectData) {
+      this.currentProject = JSON.parse(projectData);
+      this.projectName = this.currentProject.name;
+      console.log('Projeto atual carregado:', this.currentProject);
+    } else {
+      console.error('Nenhum projeto encontrado no localStorage');
+    }
+  }
 }
