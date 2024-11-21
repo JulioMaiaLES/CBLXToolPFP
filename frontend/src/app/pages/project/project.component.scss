@@ -1,170 +1,351 @@
+// html, body {
+//     background-color: var(--main-color);
+//     min-height: 100vh;
+// }
+
+// header {
+//     background-color: var(--main-color);
+//     color: white;
+//     display: flex;
+//     justify-content: space-around;
+//     align-items: center;
+//     // margin: 0;
+//     position: relative;
+//     padding-top: 5%;
+//     padding-bottom: 2%;  
+
+//     h1{
+//         padding-right: 10%;
+//     }
+// }
+
+// .right-corner{
+//     display: flex; /* Use Flexbox to align items horizontally */
+//     align-items: center; /* Center vertically */
+//     justify-content: space-between; /* Add space between the search and profile */
+//     gap: 10px;
+// }
+
+// // .tab-search{
+//     // align-items: center;
+//     // display: flex;
+//     // justify-content: space-between;
+//     // background-color: white;
+//     // border-radius: 20px;
+//     // width: 300px; 
+//     // padding: 10px 10px;
+//     // // margin-bottom: 30px;
+
+//     // input{
+//     //     font-size: 16px;
+//     //     color: black;
+//     //     width: 250px;
+//     //     text-decoration: none;
+//     //     background: transparent;
+//     //     border: none;
+//     //     outline: none;
+//     // }
+// // }
+
+// .tab-search {
+//     display: flex;
+//     align-items: center; /* Center input and icon vertically */
+//     background-color: white;
+//     border-radius: 20px;
+//     padding: 5px 10px;
+//     width: 250px;
+// }
+  
+// .search-field {
+//     flex: 1; /* Take up remaining space */
+//     display: flex;
+//     align-items: center;
+//     margin-right: 10px; 
+//     width: 100%;
+// }
+  
+// .search-field input {
+//     border: none;
+//     outline: none;
+//     font-size: 16px;
+//     width: 100%; /* Use full width inside the field */
+//     background: transparent;
+// }
+
+  
+// .search-field .mat-form-field-wrapper {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
+  
+// .search-field .mat-form-field-outline {
+//     border: none; /* Remove outline borders */
+// }
+
+// .mat-mdc-form-field {
+//     flex-direction: row;
+//     border: none;
+//     outline: none;
+// }
+
+// ul {
+//     display: flex;
+//     align-items: center;
+//     list-style: none;
+//     padding: 0;
+//     color: white;
+//     font-size: 16px;
+
+//     li {
+//         display: inline-block;
+//         margin: 0px 25px;
+//     }
+    
+//     li div {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//         text-align: center;
+//     }
+// }
+
+// .projects-list{
+//     padding-left: 15%;
+// }
+
+// .projects-list .project img {
+//     width: 55px;
+//     height: 55px;
+//     border-radius: 50%;  /* Para que a imagem fique circular, como no exemplo */
+//     object-fit: cover;   /* Ajusta a imagem para preencher a área sem distorcer */
+// }
+
+// .profile img {
+//     width: 55px;
+//     height: 55px;
+//     border-radius: 50%;  /* Para que a imagem fique circular, como no exemplo */
+//     object-fit: cover;   /* Ajusta a imagem para preencher a área sem distorcer */
+//     cursor: pointer;
+// }
+
+
+// .project {
+//     display: flex;
+//     flex-direction: column; 
+//     align-items: center; 
+//     justify-content: center; 
+//     background-color: #262626;
+//     border-radius: 10px;
+//     color: white;
+//     padding: 40px;
+//     width: 180px;
+//     height: 180px; /* Ensures consistent size */
+//     text-align: center;
+// }
+
+// .new-project {
+//     display: flex;
+//     flex-direction: column; 
+//     align-items: center; 
+//     justify-content: center; 
+//     background-color: #262626;
+//     border-radius: 10px;
+//     color: white;
+//     padding: 40px;
+//     width: 180px;
+//     height: 180px; /* Ensures consistent size */
+//     text-align: center;
+// }
+
+
+
+// .new-project {
+//     cursor: pointer;
+// }
+
 html, body {
     background-color: var(--main-color);
     min-height: 100vh;
-}
-
-header {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+  }
+  
+  header {
     background-color: var(--main-color);
     color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    // margin: 0;
-    position: relative;
+    padding: 20px 5%;
     padding-top: 5%;
-    padding-bottom: 2%;  
-
-    h1{
-        padding-right: 10%;
-    }
-}
-
-.right-corner{
-    display: flex; /* Use Flexbox to align items horizontally */
-    align-items: center; /* Center vertically */
-    justify-content: space-between; /* Add space between the search and profile */
-    gap: 10px;
-}
-
-// .tab-search{
-    // align-items: center;
-    // display: flex;
-    // justify-content: space-between;
-    // background-color: white;
-    // border-radius: 20px;
-    // width: 300px; 
-    // padding: 10px 10px;
-    // // margin-bottom: 30px;
-
-    // input{
-    //     font-size: 16px;
-    //     color: black;
-    //     width: 250px;
-    //     text-decoration: none;
-    //     background: transparent;
-    //     border: none;
-    //     outline: none;
-    // }
-// }
-
-.tab-search {
+  }
+  
+  .right-corner {
     display: flex;
-    align-items: center; /* Center input and icon vertically */
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .tab-search {
+    display: flex;
+    align-items: center;
     background-color: white;
     border-radius: 20px;
     padding: 5px 10px;
-    width: 250px;
-}
+    width: 300px;
   
-.search-field {
-    flex: 1; /* Take up remaining space */
+    .search-field {
+      flex: 1;
+      display: flex;
+      align-items: center;
+  
+      input {
+        border: none;
+        outline: none;
+        font-size: 16px;
+        width: 100%;
+        background: transparent;
+      }
+    }
+  
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  .profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  main {
+    padding: 40px 5%;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  
+    li {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  .project,
+  .new-project {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-right: 10px; 
-    width: 100%;
-}
+    justify-content: center;
+    background-color: #262626;
+    border-radius: 10px;
+    padding: 20px;
+    width: 220px;
+    height: 220px;
+    color: white;
+    text-align: center;
+  }
   
-.search-field input {
-    border: none;
-    outline: none;
+  .project img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+  }
+  
+  .project-name {
     font-size: 16px;
-    width: 100%; /* Use full width inside the field */
-    background: transparent;
-}
-
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
   
-.search-field .mat-form-field-wrapper {
+  .project-date {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  .new-project .plus-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .projects-list {
+    display: flex;
+    flex-wrap: wrap; /* Ensure the projects wrap to the next line */
+    gap: 20px; /* Add space between project items */
+    padding-left: 15%;
+    justify-content: flex-start; /* Align projects to the left */
+    text-decoration: none;
+  }
+  
+  .projects-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: left; /* Center-align the text below the project box */
+    text-align: left;
+    width: 180px; /* Ensure consistent box width */
+  }
+  
+  .project {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+    background-color: #262626;
+    border-radius: 10px;
+    color: white;
+    width: 180px;
+    height: 180px; /* Ensure consistent size */
+  }
   
-.search-field .mat-form-field-outline {
-    border: none; /* Remove outline borders */
-}
-
-.mat-mdc-form-field {
-    flex-direction: row;
-    border: none;
-    outline: none;
-}
-
-ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    color: white;
+  .project img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .project-info {
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  .project-title {
     font-size: 16px;
-
-    li {
-        display: inline-block;
-        margin: 0px 25px;
-    }
-    
-    li div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-}
-
-.projects-list{
-    padding-left: 15%;
-}
-
-.projects-list .project img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;  /* Para que a imagem fique circular, como no exemplo */
-    object-fit: cover;   /* Ajusta a imagem para preencher a área sem distorcer */
-}
-
-.profile img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;  /* Para que a imagem fique circular, como no exemplo */
-    object-fit: cover;   /* Ajusta a imagem para preencher a área sem distorcer */
+    font-weight: bold;
+    color: white;
+  }
+  
+  .project-date {
+    font-size: 14px;
+    color: #aaaaaa; /* Lighter color for the date */
+  }
+  
+  .new-project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #262626;
+    border-radius: 10px;
+    color: white;
+    width: 180px;
+    height: 180px; /* Ensure consistent size */
+    text-align: center;
     cursor: pointer;
-}
+  }
 
-
-.project {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    background-color: #262626;
-    border-radius: 10px;
-    color: white;
-    padding: 40px;
-    width: 180px;
-    height: 180px; /* Ensures consistent size */
-    text-align: center;
-}
-
-.new-project {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    background-color: #262626;
-    border-radius: 10px;
-    color: white;
-    padding: 40px;
-    width: 180px;
-    height: 180px; /* Ensures consistent size */
-    text-align: center;
-}
-
-.big-font{
+  .big-font{
     font-size: 89px;
     font-weight: 100;
     color: white;
-}
-
-.new-project {
-    cursor: pointer;
 }

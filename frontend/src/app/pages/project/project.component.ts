@@ -131,6 +131,25 @@ export class ProjectComponent implements OnInit {
     });
   }
 
+
+  // Método abaixo, tentativa de inclusão de data
+
+  // loadUserProjects() {
+  //   this.projectService.getUserProjects().subscribe(
+  //     (data) => {
+  //       console.log('Projetos carregados:', data);
+  //       this.projects = data.map(project => ({
+  //         ...project,
+  //         date: project.createdAt || 'N/A' // Add date if available
+  //       }));
+  //       this.cdr.detectChanges();
+  //     },
+  //     (error) => {
+  //       console.error('Erro ao carregar os projetos:', error);
+  //     }
+  //   );
+  // }
+
   loadUserProjects() {
     this.projectService.getUserProjects().subscribe(
       (data) => {

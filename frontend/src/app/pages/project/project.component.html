@@ -1,64 +1,56 @@
+<html>
 <header>
     <h1>Projetos</h1>
     <div class="right-corner">
-        <div class="tab-search">
-            <div class="search-field">
-              <input
-                type="text"
-                matInput
-                [formControl]="searchControl"
-                [matAutocomplete]="auto"
-                placeholder="Busca projeto"
-              />
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option
-                  *ngFor="let project of filteredProjects | async"
-                  [value]="project.name"
-                  (click)="onOptionSelected(project.name)">
-                  {{ project.name }}
-                </mat-option>
-              </mat-autocomplete>
-            </div>
-            <img src="../../../assets/images/lupa.png" alt="Search Icon" />
-          </div>
-        <!-- <div class="tab-search">
-            <input placeholder="Busca">
-            <img src="../../../assets/images/lupa.png">  
-        </div> -->
-        <div class="profile">
-            <img 
-                [src]="profileImage" 
-                alt="User Profile Image" 
-                (error)="profileImage = '../../../assets/images/perfil-prototipo.png'"
-                (click)="openProfileModal()"
-                class="profile-image">
-            <!-- <app-profile *ngIf="isProfileModalOpen" (close)="closeProfileModal()"></app-profile> -->
+      <div class="tab-search">
+        <div class="search-field">
+          <input
+            type="text"
+            [formControl]="searchControl"
+            placeholder="Buscar projeto"
+          />
         </div>
+        <img src="../../../assets/images/lupa.png" alt="Search Icon" />
+      </div>
+      <div class="profile">
+        <img 
+          [src]="profileImage" 
+          alt="User Profile Image" 
+          (error)="profileImage = '../../../assets/images/perfil-prototipo.png'"
+          (click)="openProfileModal()"
+          class="profile-image"
+        />
+      </div>
     </div>
-</header>
-
-<body>
+  </header>
+  
+  <main>
     <ul class="projects-list">
         <li *ngFor="let project of projects">
-            <a routerLink="/jornada">
-                <div class="project">
-                    <img [src]="project.image || '../../../assets/images/cbl-back.png'" 
-                         alt="Project Image" 
-                         (error)="project.image = '../../../assets/images/cbl-back.png'">
-                    <br>
-                    {{ project.name }}
-                </div>
-            </a>
+          <a routerLink="/jornada">
+            <div class="project">
+              <img
+                [src]="project.image || '../../../assets/images/cbl-back.png'"
+                alt="Project Image"
+                (error)="project.image = '../../../assets/images/cbl-back.png'"
+              />
+            </div>
+        </a>
+        <div class="project-info">
+            <div class="project-title">{{ project.name }}</div>
+            <div class="project-date">{{ project.date || '21/11/2024' }}</div>
+        </div>  
         </li>
         <li>
-            <div class="new-project" (click)="handleCreateProject()">
-                <br>
-                <div class="big-font">+</div>
-                <br>
-                <br>
-                Novo Projeto
-                <br>
-            </div>
+          <div class="new-project" (click)="handleCreateProject()">
+            <br />
+            <div class="big-font">+</div>
+            <br />
+            <br />
+            Novo Projeto
+            <br />
+          </div>
         </li>
-    </ul>    
-</body>
+      </ul>
+  </main>
+</html>
