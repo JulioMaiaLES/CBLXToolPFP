@@ -32,6 +32,9 @@ export class InvestigateComponent {
   files: File[] = [];  // No changes needed, already correctly typed
   renderedFiles: RenderedFile[] = [];  // Properly typed with the interface defined
   images: { name: string; value: string }[] = [];  // No changes needed, correctly typed
+  pages: any[] = []; // List of pages with their content
+  currentPage: number = 1; // Default to Page 1
+
 
   private debounceTimer!: ReturnType<typeof setTimeout>;  // Correct type declaration for debounceTimer
   private fileReader: FileReader = new FileReader();  // No changes needed, properly initialized
@@ -39,6 +42,7 @@ export class InvestigateComponent {
 
 
   investigateForm: FormGroup;
+  otherPageForm!: FormGroup;
 
   constructor(
     private progressService: ProgressService,
@@ -65,6 +69,29 @@ export class InvestigateComponent {
         this.expandedPhase = phase;
       }
     });
+
+    // Initialize with a default page
+    this.addNewPage();
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+  }
+
+  addNewPage(): void {
+    const newPage = {
+      id: this.pages.length + 1,
+      icon: 'default-icon.png', // Placeholder for the page icon
+      title: `New Page ${this.pages.length + 1}`, // Default title
+      content: '', // Placeholder for page content
+    };
+
+    this.pages.push(newPage);
+    // this.currentPage = newPage; // Automatically select the new page
+  }
+
+  selectPage(pageId: number): void {
+    this.currentPage = this.pages.find((page) => page.id === pageId) || null;
   }
 
   // Method to handle the toggle state from app-tab

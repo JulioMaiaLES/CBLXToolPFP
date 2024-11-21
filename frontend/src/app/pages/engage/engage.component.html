@@ -27,95 +27,139 @@
         <app-pagination 
           [backgroundColor]="'#58BC68'" 
           [isCollapsed]="isPaginationCollapsed"
-          (pageSelected)="onPageChange($event)">
+          (pageSelected)="onPageChange($event)"
+          >
         </app-pagination>
-        <ng-container *ngIf="currentPage">
+        <!-- <ng-container *ngIf="currentPage">
           <app-page-content
             [pageNumber]="currentPage"
             [title]="'Page ' + currentPage"
           ></app-page-content>
-        </ng-container>
+        </ng-container> -->
       </div>
-      
-      <form 
-        [formGroup]="engageForm" 
-        [class.full-width]="isFullWidth"
-        [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
-        [class.default-width]="!isFullWidth && !isPaginationCollapsed"
-      >
-        <div formArrayName="big_idea" class="step-container" [class.expanded]="isExpanded('big_idea')">
-          <div class="header">
-            <label class="align-vertical">
-              <img src="../../../assets/images/big_idea.png" alt="lampada">
-              Big Idea
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('big_idea')">
+
+      <ng-container *ngIf="currentPage === 1; else otherPageContent">
+        <!-- Original Content -->
+        <form 
+          [formGroup]="engageForm" 
+          [class.full-width]="isFullWidth"
+          [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+          [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+        >
+          <div formArrayName="big_idea" class="step-container" [class.expanded]="isExpanded('big_idea')">
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/big_idea.png" alt="lampada">
+                Big Idea
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('big_idea')">
+                </div>
+              </label><br><br>
+            </div>
+            <div>
+              <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
+                <textarea
+                  class="textos"
+                  formControlName="content"
+                  (keydown.enter)="onFormSubmit($event, 'big_idea', i)" 
+                  (input)="autoResize($event)"
+                ></textarea>
               </div>
-            </label><br><br>
+            </div>
+            <!-- <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
+              <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'big_idea', i)" type="text"></textarea>
+            </div> -->
           </div>
-          <div>
-            <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
+          <br>
+          <div formArrayName="essential_question" class="step-container" [class.expanded]="isExpanded('essential_question')">
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/essential_question.png" alt="pensando">
+                Essential Question
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('essential_question')">
+                </div>
+              </label><br><br>
+            </div>
+            <div>
+              <div *ngFor="let field of essentialQuestionFields.controls; let i = index" [formGroupName]="i">
+                <textarea 
+                class="textos" 
+                formControlName="content" 
+                (keydown.enter)="onFormSubmit($event, 'essential_question', i)"
+                (input)="autoResize($event)"
+                type="text">
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div formArrayName="challenge" class="step-container" [class.expanded]="isExpanded('challenge')">
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/challenge.png" alt="alvo">
+                Challenge
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('challenge')">
+                </div>
+              </label><br><br>
+            </div>
+            <div>
+              <div *ngFor="let field of challengeFields.controls; let i = index" [formGroupName]="i">
+                <textarea 
+                class="textos" 
+                formControlName="content" 
+                (keydown.enter)="onFormSubmit($event, 'challenge', i)"
+                (input)="autoResize($event)"
+                type="text">
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+      </ng-container>
+      <ng-template #otherPageContent>
+        <form
+          [formGroup]="otherPageForm"
+          [class.full-width]="isFullWidth"
+          [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+          [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+        >
+          <div
+            class="step-container"
+            [class.expanded]="isExpanded('custom')"
+          >
+            <div class="header">
+              <label class="align-vertical">
+                <img
+                  src="../../../assets/images/edit-icon.png"
+                  alt="edit icon"
+                />
+                Título
+                <div class="phase-controls">
+                  <img
+                    src="../../../assets/images/expand.png"
+                    class="toggle-symbol"
+                    (click)="togglePhase('custom')"
+                  />
+                </div>
+              </label>
+            </div>
+            <div>
               <textarea
                 class="textos"
                 formControlName="content"
-                (keydown.enter)="onFormSubmit($event, 'big_idea', i)" 
+                (keydown.enter)="onFormSubmit($event, 'custom', 0)"
                 (input)="autoResize($event)"
               ></textarea>
             </div>
           </div>
-          <!-- <div *ngFor="let field of bigIdeaFields.controls; let i = index" [formGroupName]="i">
-            <textarea class="textos" formControlName="content" (keydown.enter)="onFormSubmit($event, 'big_idea', i)" type="text"></textarea>
-          </div> -->
-        </div>
-        <br>
-        <div formArrayName="essential_question" class="step-container" [class.expanded]="isExpanded('essential_question')">
-          <div class="header">
-            <label class="align-vertical">
-              <img src="../../../assets/images/essential_question.png" alt="pensando">
-              Essential Question
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('essential_question')">
-              </div>
-            </label><br><br>
-          </div>
-          <div>
-            <div *ngFor="let field of essentialQuestionFields.controls; let i = index" [formGroupName]="i">
-              <textarea 
-              class="textos" 
-              formControlName="content" 
-              (keydown.enter)="onFormSubmit($event, 'essential_question', i)"
-              (input)="autoResize($event)"
-              type="text">
-              </textarea>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div formArrayName="challenge" class="step-container" [class.expanded]="isExpanded('challenge')">
-          <div class="header">
-            <label class="align-vertical">
-              <img src="../../../assets/images/challenge.png" alt="alvo">
-              Challenge
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('challenge')">
-              </div>
-            </label><br><br>
-          </div>
-          <div>
-            <div *ngFor="let field of challengeFields.controls; let i = index" [formGroupName]="i">
-              <textarea 
-              class="textos" 
-              formControlName="content" 
-              (keydown.enter)="onFormSubmit($event, 'challenge', i)"
-              (input)="autoResize($event)"
-              type="text">
-              </textarea>
-            </div>
-          </div>
-        </div>
-      </form>
+        </form>
+      </ng-template>
     </div>
   </div>
+
+  
 
 
   <!-- <div class="pages-container">

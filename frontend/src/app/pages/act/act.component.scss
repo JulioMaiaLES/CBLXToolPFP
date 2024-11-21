@@ -113,22 +113,46 @@ header {
 
 }
 
+// .pagination-container {
+//     display: flex;
+//     align-items: center;
+//     transition: all 0.3s ease;
+    
+//     &.collapsed .pagination {
+//         width: 0;
+//         overflow: hidden;
+//     }
+
+//     .toggle-icon {
+//         position: relative;
+//         left: 200px;
+//         transition: left 0.3s ease;
+//     }
+
+// }
+
 .pagination-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align the toggle icon at the top */
+    position: relative; /* Ensure relative positioning for placement */
     transition: all 0.3s ease;
-    
+
     &.collapsed .pagination {
         width: 0;
         overflow: hidden;
     }
 
     .toggle-icon {
-        position: fixed;
-        left: 200px;
-        transition: left 0.3s ease;
+        position: absolute; /* Absolute positioning inside the container */
+        top: 10px; /* Adjust to match the desired margin from the top */
+        left: 45%; /* Move it outside the pagination for proper alignment */
+        z-index: 10; /* Ensure it's above other elements */
+        transition: left 0.3s ease, top 0.3s ease;
     }
 
+    &.collapsed .toggle-icon {
+        left: 10px; /* Adjust position for the collapsed state */
+    }
 }
 
 .pagination {

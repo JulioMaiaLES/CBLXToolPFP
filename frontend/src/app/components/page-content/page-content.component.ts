@@ -5,10 +5,13 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="page-container">
       <div class="page-header">
-        <h2><i class="material-icons">edit</i> {{ title || 'Título' }}</h2>
+        <h2><i class="material-icons">edit</i> {{ title || 'Título' }}
+      </h2>
       </div>
       <div class="page-content">
-        <p>Content for page {{ pageNumber }}</p>
+        <p>
+          <!-- {{ pageNumber }} -->
+        </p>
       </div>
     </div>
   `,

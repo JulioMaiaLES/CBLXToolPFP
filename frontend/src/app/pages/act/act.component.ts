@@ -26,12 +26,15 @@ export class ActComponent {
   files: File[] = [];  // No changes needed, already correctly typed
   renderedFiles: RenderedFile[] = [];  // Properly typed with the interface defined
   images: { name: string; value: string }[] = [];  // No changes needed, correctly typed
+  pages: any[] = []; // List of pages with their content
+  currentPage: number = 1; // Default to Page 1
 
   private debounceTimer!: ReturnType<typeof setTimeout>;  // Correct type declaration for debounceTimer
   private fileReader: FileReader = new FileReader();  // No changes needed, properly initialized
   private objectUrls: string[] = [];
 
   // actForm: FormGroup;
+  // otherPageForm!: FormGroup;
 
   // Use ViewChild to reference the file input element
   @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
@@ -57,7 +60,31 @@ export class ActComponent {
         this.expandedPhase = phase;
       }
     });
+
+    // Initialize with a default page
+    this.addNewPage();
   }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+  }
+
+  addNewPage(): void {
+    const newPage = {
+      id: this.pages.length + 1,
+      icon: 'default-icon.png', // Placeholder for the page icon
+      title: `New Page ${this.pages.length + 1}`, // Default title
+      content: '', // Placeholder for page content
+    };
+
+    this.pages.push(newPage);
+    // this.currentPage = newPage; // Automatically select the new page
+  }
+
+  selectPage(pageId: number): void {
+    this.currentPage = this.pages.find((page) => page.id === pageId) || null;
+  }
+
 
  // Method to handle the toggle state from app-tab
   handleTabToggle(isCollapsed: boolean): void {

@@ -23,7 +23,7 @@ export class EngageComponent implements OnInit{
   isPaginationCollapsed: boolean = false;
   isFullWidth: boolean = false;
   pages: any[] = []; // List of pages with their content
-  currentPage: any | null = null; // Active page
+  currentPage: number = 1; // Default to Page 1
 
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
@@ -40,13 +40,12 @@ export class EngageComponent implements OnInit{
   images: { name: string; value: string }[] = [];  // No changes needed, correctly typed
 
   engageForm!: FormGroup;  // Initialized in ngOnInit, so non-null assertion is fine
+  otherPageForm!: FormGroup;
 
   private debounceTimer!: ReturnType<typeof setTimeout>;  // Correct type declaration for debounceTimer
   private fileReader: FileReader = new FileReader();  // No changes needed, properly initialized
   private objectUrls: string[] = [];  // Initialized properly to hold URLs
   private saveTimeout!: ReturnType<typeof setTimeout>; // Declare saveTimeout
-
-
 
   constructor(
     private fb: FormBuilder,
@@ -77,6 +76,10 @@ export class EngageComponent implements OnInit{
       }
     });
 
+    this.otherPageForm = this.fb.group({
+      content: [''],
+    });
+
     // Initialize with a default page
     this.addNewPage();
   }
@@ -85,6 +88,7 @@ export class EngageComponent implements OnInit{
   onPageChange(page: number): void {
     this.currentPage = page;
   }
+  
   
   // Method to handle the toggle state from app-tab
   handleTabToggle(isCollapsed: boolean): void {
@@ -110,14 +114,12 @@ export class EngageComponent implements OnInit{
     };
 
     this.pages.push(newPage);
-    this.currentPage = newPage; // Automatically select the new page
+    // this.currentPage = newPage; // Automatically select the new page
   }
 
   selectPage(pageId: number): void {
     this.currentPage = this.pages.find((page) => page.id === pageId) || null;
   }
-
-
 
    // Method to handle textarea resizing and content wrapper expansion
    handleTextareaResize(event: Event): void {

@@ -22,69 +22,113 @@
             class="toggle-icon">
           </app-toggleicon>
           
-          <app-pagination [backgroundColor]="'#428CD3'" [isCollapsed]="isPaginationCollapsed"></app-pagination>
+          <app-pagination 
+            [backgroundColor]="'#428CD3'" 
+            [isCollapsed]="isPaginationCollapsed"
+            (pageSelected)="onPageChange($event)"
+            >
+          </app-pagination>
         </div>
      
         <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
-        <form
-          [class.full-width]="isFullWidth"
-          [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
-          [class.default-width]="!isFullWidth && !isPaginationCollapsed"
-        >
-          <div class="step-container" 
-            [class.expanded]="isExpanded('solution')" 
-            (dragover)="onDragOver($event)"
-            (drop)="onDrop($event, 'big_idea')">
-            <div class="header">
-              <label class="align-vertical">
-                <img src="../../../assets/images/solution.png">
-                Solution
-                <div class="phase-controls">
-                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
-                </div>
-              </label><br><br>
+        <ng-container *ngIf="currentPage === 1; else otherPageContent">
+          
+          <form
+            [class.full-width]="isFullWidth"
+            [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+            [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+          >
+            <div class="step-container" 
+              [class.expanded]="isExpanded('solution')" 
+              (dragover)="onDragOver($event)"
+              (drop)="onDrop($event, 'big_idea')">
+              <div class="header">
+                <label class="align-vertical">
+                  <img src="../../../assets/images/solution.png">
+                  Solution
+                  <div class="phase-controls">
+                    <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('solution')">
+                  </div>
+                </label><br><br>
+              </div>
+              <div [class.collapsed]="!isExpanded('solution')">
+                <textarea class="textos" (input)="autoResize($event)"></textarea>
+              </div>
             </div>
-            <div [class.collapsed]="!isExpanded('solution')">
-              <textarea class="textos" (input)="autoResize($event)"></textarea>
+            <br>
+            <div class="step-container" 
+              [class.expanded]="isExpanded('implementation')"
+              (dragover)="onDragOver($event)"
+              (drop)="onDrop($event, 'big_idea')">
+              <div class="header">
+                <label class="align-vertical">
+                  <img src="../../../assets/images/implementation.png">
+                  Implementation
+                  <div class="phase-controls">
+                    <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
+                  </div>
+                </label><br><br>
+              </div>
+              <div [class.collapsed]="!isExpanded('implementation')">
+                <textarea class="textos" (input)="autoResize($event)"></textarea>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="step-container" 
-            [class.expanded]="isExpanded('implementation')"
-            (dragover)="onDragOver($event)"
-            (drop)="onDrop($event, 'big_idea')">
-            <div class="header">
-              <label class="align-vertical">
-                <img src="../../../assets/images/implementation.png">
-                Implementation
-                <div class="phase-controls">
-                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('implementation')">
-                </div>
-              </label><br><br>
+            <br>
+            <div class="step-container" 
+              [class.expanded]="isExpanded('evaluation')"
+              (dragover)="onDragOver($event)"
+              (drop)="onDrop($event, 'big_idea')">
+              <div class="header">
+                <label class="align-vertical">
+                  <img src="../../../assets/images/evaluation.png">
+                  Evaluation
+                  <div class="phase-controls">
+                    <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
+                  </div>
+                </label><br><br>
+              </div>
+              <div [class.collapsed]="!isExpanded('evaluation')">
+                <textarea class="textos" (input)="autoResize($event)"></textarea>
+              </div>
             </div>
-            <div [class.collapsed]="!isExpanded('implementation')">
-              <textarea class="textos" (input)="autoResize($event)"></textarea>
+          </form>
+        </ng-container>
+        <ng-template #otherPageContent>
+          <form
+            [class.full-width]="isFullWidth"
+            [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+            [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+          >
+            <div
+              class="step-container"
+              [class.expanded]="isExpanded('custom')"
+            >
+              <div class="header">
+                <label class="align-vertical">
+                  <img
+                    src="../../../assets/images/edit-icon.png"
+                    alt="edit icon"
+                  />
+                  Título
+                  <div class="phase-controls">
+                    <img
+                      src="../../../assets/images/expand.png"
+                      class="toggle-symbol"
+                      (click)="togglePhase('custom')"
+                    />
+                  </div>
+                </label>
+              </div>
+              <div>
+                <textarea
+                  class="textos"
+                  formControlName="content"
+                  (input)="autoResize($event)"
+                ></textarea>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="step-container" 
-            [class.expanded]="isExpanded('evaluation')"
-            (dragover)="onDragOver($event)"
-            (drop)="onDrop($event, 'big_idea')">
-            <div class="header">
-              <label class="align-vertical">
-                <img src="../../../assets/images/evaluation.png">
-                Evaluation
-                <div class="phase-controls">
-                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('evaluation')">
-                </div>
-              </label><br><br>
-            </div>
-            <div [class.collapsed]="!isExpanded('evaluation')">
-              <textarea class="textos" (input)="autoResize($event)"></textarea>
-            </div>
-          </div>
-        </form>
+          </form>
+        </ng-template>
       </div>
       <div class="tab-container" [class.collapsed]="isTabCollapsed">
         <!-- <app-toggleicon 

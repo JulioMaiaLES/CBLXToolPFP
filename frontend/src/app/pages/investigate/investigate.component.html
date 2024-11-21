@@ -23,60 +23,103 @@
           class="toggle-icon">
         </app-toggleicon>
         
-        <app-pagination [backgroundColor]="'#F5C949'" [isCollapsed]="isPaginationCollapsed"></app-pagination>
+        <app-pagination 
+          [backgroundColor]="'#F5C949'" 
+          [isCollapsed]="isPaginationCollapsed"
+          (pageSelected)="onPageChange($event)">
+        </app-pagination>
       </div>
    
       <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
-      <form
-        [class.full-width]="isFullWidth"
-        [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
-        [class.default-width]="!isFullWidth && !isPaginationCollapsed"
-      >
-        <div class="step-container" [class.expanded]="isExpanded('guiding_questions')" >
-          <div class="header">
-            <label class="align-vertical">
-              <img src="../../../assets/images/guiding-questions.png">
-              Guiding Questions
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('guiding_questions')">
-              </div>
-            </label><br><br>
+      <ng-container *ngIf="currentPage === 1; else otherPageContent">
+        
+        <form
+          [class.full-width]="isFullWidth"
+          [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+          [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+        >
+          <div class="step-container" [class.expanded]="isExpanded('guiding_questions')" >
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/guiding-questions.png">
+                Guiding Questions
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('guiding_questions')">
+                </div>
+              </label><br><br>
+            </div>
+            <div [class.collapsed]="!isExpanded('guiding_questions')">
+              <textarea class="textos" (input)="autoResize($event)"></textarea>
+            </div>
           </div>
-          <div [class.collapsed]="!isExpanded('guiding_questions')">
-            <textarea class="textos" (input)="autoResize($event)"></textarea>
+          <br>
+          <div class="step-container" [class.expanded]="isExpanded('activities')">
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/activities.png">
+                Activities and Resources
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('activities')">
+                </div>
+              </label><br><br>
+            </div>
+            <div [class.collapsed]="!isExpanded('activities')">
+              <textarea class="textos" (input)="autoResize($event)"></textarea>
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="step-container" [class.expanded]="isExpanded('activities')">
-          <div class="header">
-            <label class="align-vertical">
-              <img src="../../../assets/images/activities.png">
-              Activities and Resources
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('activities')">
-              </div>
-            </label><br><br>
+          <br>
+          <div class="step-container" [class.expanded]="isExpanded('synthesis')">
+            <div class="header">
+              <label class="align-vertical">
+                <img src="../../../assets/images/synthesis.png">
+                Synthesis
+                <div class="phase-controls">
+                  <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('synthesis')">
+                </div>
+              </label><br><br>
+            </div>
+            <div [class.collapsed]="!isExpanded('synthesis')">
+              <textarea class="textos" (input)="autoResize($event)"></textarea>
+            </div>
           </div>
-          <div [class.collapsed]="!isExpanded('activities')">
-            <textarea class="textos" (input)="autoResize($event)"></textarea>
+        </form>
+      </ng-container>
+      <ng-template #otherPageContent>
+        <form
+          [class.full-width]="isFullWidth"
+          [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
+          [class.default-width]="!isFullWidth && !isPaginationCollapsed"
+        >
+          <div
+            class="step-container"
+            [class.expanded]="isExpanded('custom')"
+          >
+            <div class="header">
+              <label class="align-vertical">
+                <img
+                  src="../../../assets/images/edit-icon.png"
+                  alt="edit icon"
+                />
+                Título
+                <div class="phase-controls">
+                  <img
+                    src="../../../assets/images/expand.png"
+                    class="toggle-symbol"
+                    (click)="togglePhase('custom')"
+                  />
+                </div>
+              </label>
+            </div>
+            <div>
+              <textarea
+                class="textos"
+                formControlName="content"
+                (input)="autoResize($event)"
+              ></textarea>
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="step-container" [class.expanded]="isExpanded('synthesis')">
-          <div class="header">
-            <label class="align-vertical">
-              <img src="../../../assets/images/synthesis.png">
-              Synthesis
-              <div class="phase-controls">
-                <img src="../../../assets/images/expand.png" class="toggle-symbol" (click)="togglePhase('synthesis')">
-              </div>
-            </label><br><br>
-          </div>
-          <div [class.collapsed]="!isExpanded('synthesis')">
-            <textarea class="textos" (input)="autoResize($event)"></textarea>
-          </div>
-        </div>
-      </form>
+        </form>
+      </ng-template>
     </div>
     <div class="tab-container" [class.collapsed]="isTabCollapsed">
       <!-- <app-toggleicon 
