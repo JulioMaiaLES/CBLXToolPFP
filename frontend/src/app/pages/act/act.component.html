@@ -106,10 +106,26 @@
               <div class="header">
                 <label class="align-vertical">
                   <img
-                    src="../../../assets/images/edit-icon.png"
+                    src="../../../assets/images/edit-icon-blue.png"
                     alt="edit icon"
                   />
-                  Título
+                  <div class="editable-title">
+                    <span
+                      *ngIf="!isEditingTitle"
+                      (click)="startEditingTitle()"
+                      class="custom-title"
+                      title="Click to edit"
+                    >
+                      {{ title || 'Título' }}
+                    </span>
+                    <input
+                      *ngIf="isEditingTitle"
+                      [value]="title"
+                      (blur)="stopEditingTitle($event)"
+                      (keydown.enter)="stopEditingTitle($event)"
+                      class="title-input"
+                    />
+                  </div>
                   <div class="phase-controls">
                     <img
                       src="../../../assets/images/expand.png"

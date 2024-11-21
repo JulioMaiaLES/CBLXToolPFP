@@ -379,20 +379,29 @@ form{
     margin-top: 10px;
 }
 
-// .container{
-//     margin-left: 100px;
-// }
-
-// textarea{
-//     font-family: Roboto, 'Helvetica Neue', sans-serif;
-//     color: white;
-//     border: none;
-//     background-color: transparent;
-//     outline: none;
-//     min-width: 90%;
-//     resize: none;
-//     // overflow: hidden;
-//     font-size: 16px;
-//     overflow-y: hidden;
-//     height: auto;
-// }
+.editable-title {
+    display: flex;
+    align-items: center;
+  
+    .custom-title {
+      cursor: pointer;
+      font-size: 28px;
+      color: white;
+      margin: 0;
+    }
+  
+    .title-input {
+      font-size: 28px;
+      color: white;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid white;
+      outline: none;
+      width: auto;
+      min-width: 150px;
+    }
+  
+    .title-input:focus {
+      border-bottom: 2px solid #428CD3; /* Green color for focus */
+    }
+}

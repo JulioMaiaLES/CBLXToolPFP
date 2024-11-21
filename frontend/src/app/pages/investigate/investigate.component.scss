@@ -396,3 +396,30 @@ p{
 .images{
     margin-left: 100px;
 }
+
+.editable-title {
+    display: flex;
+    align-items: center;
+  
+    .custom-title {
+      cursor: pointer;
+      font-size: 28px;
+      color: white;
+      margin: 0;
+    }
+  
+    .title-input {
+      font-size: 28px;
+      color: white;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid white;
+      outline: none;
+      width: auto;
+      min-width: 150px;
+    }
+  
+    .title-input:focus {
+      border-bottom: 2px solid #F5C949; /* Green color for focus */
+    }
+}

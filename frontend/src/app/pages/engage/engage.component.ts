@@ -24,6 +24,8 @@ export class EngageComponent implements OnInit{
   isFullWidth: boolean = false;
   pages: any[] = []; // List of pages with their content
   currentPage: number = 1; // Default to Page 1
+  title: string = 'Título'; // Default title for new pages
+  isEditingTitle: boolean = false;
 
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
@@ -84,6 +86,15 @@ export class EngageComponent implements OnInit{
     this.addNewPage();
   }
 
+  startEditingTitle(): void {
+    this.isEditingTitle = true;
+  }
+
+  stopEditingTitle(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.title = input.value;
+    this.isEditingTitle = false;
+  }
 
   onPageChange(page: number): void {
     this.currentPage = page;

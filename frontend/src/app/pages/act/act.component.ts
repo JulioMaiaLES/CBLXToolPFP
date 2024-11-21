@@ -28,6 +28,8 @@ export class ActComponent {
   images: { name: string; value: string }[] = [];  // No changes needed, correctly typed
   pages: any[] = []; // List of pages with their content
   currentPage: number = 1; // Default to Page 1
+  title: string = 'Título'; // Default title for new pages
+  isEditingTitle: boolean = false;
 
   private debounceTimer!: ReturnType<typeof setTimeout>;  // Correct type declaration for debounceTimer
   private fileReader: FileReader = new FileReader();  // No changes needed, properly initialized
@@ -63,6 +65,16 @@ export class ActComponent {
 
     // Initialize with a default page
     this.addNewPage();
+  }
+
+  startEditingTitle(): void {
+    this.isEditingTitle = true;
+  }
+
+  stopEditingTitle(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.title = input.value;
+    this.isEditingTitle = false;
   }
 
   onPageChange(page: number): void {

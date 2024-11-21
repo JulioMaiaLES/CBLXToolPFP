@@ -135,7 +135,23 @@
                   src="../../../assets/images/edit-icon.png"
                   alt="edit icon"
                 />
-                Título
+                <div class="editable-title">
+                  <span
+                    *ngIf="!isEditingTitle"
+                    (click)="startEditingTitle()"
+                    class="custom-title"
+                    title="Click to edit"
+                  >
+                    {{ title || 'Título' }}
+                  </span>
+                  <input
+                    *ngIf="isEditingTitle"
+                    [value]="title"
+                    (blur)="stopEditingTitle($event)"
+                    (keydown.enter)="stopEditingTitle($event)"
+                    class="title-input"
+                  />
+                </div>
                 <div class="phase-controls">
                   <img
                     src="../../../assets/images/expand.png"

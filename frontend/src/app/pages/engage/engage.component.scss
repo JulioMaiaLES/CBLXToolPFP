@@ -333,3 +333,30 @@ form{
 .file-list > div p {
     margin: 0; /* Remover margem padrão */
 }
+
+.editable-title {
+    display: flex;
+    align-items: center;
+  
+    .custom-title {
+      cursor: pointer;
+      font-size: 28px;
+      color: white;
+      margin: 0;
+    }
+  
+    .title-input {
+      font-size: 28px;
+      color: white;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid white;
+      outline: none;
+      width: auto;
+      min-width: 150px;
+    }
+  
+    .title-input:focus {
+      border-bottom: 2px solid #58bc68; /* Green color for focus */
+    }
+}
