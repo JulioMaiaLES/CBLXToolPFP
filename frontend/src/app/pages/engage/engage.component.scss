@@ -114,11 +114,9 @@ header {
 }
 
 .pagination-container {
-    // position: relative;
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-    // margin-right: 20px;
     
     &.collapsed .pagination {
         width: 0;
@@ -127,52 +125,46 @@ header {
 
     .toggle-icon {
         position: fixed;
-        // top: 0;
         left: 200px;
-        // padding-bottom: 300px;
         transition: left 0.3s ease;
     }
-
-    // &.collapsed .toggle-icon {
-    //     left: 100px; /* Keeps the toggle icon in place when collapsed */
-    // }
 }
 
-// .pagination {
-//     display: flex;
-//     flex-direction: column;
-//     color: white;
-//     padding-left: 250px;
-//     transition: width 0.3s ease;
-// }
+.pagination {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-left: 250px;
+    transition: width 0.3s ease;
+}
 
-// .current-block, .new-block {
-//     width: 178px;
-//     height: 100px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     border-radius: 10px;
-//     font-size: 26px;
-//     font-weight: 50;
-//     transition: opacity 0.3s ease;
-// }
+.current-block, .new-block {
+    width: 178px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 26px;
+    font-weight: 50;
+    transition: opacity 0.3s ease;
+}
 
-// .current-block {
-//     background-color: #58BC68;
-//     border: 5px solid white;
-// }
+.current-block {
+    background-color: #58BC68;
+    border: 5px solid white;
+}
 
-// .new-block {
-//     background-color: #262626;
-//     margin-top: 20px;
-//     font-size: 40px;
-//     cursor: pointer;
-// }
+.new-block {
+    background-color: #262626;
+    margin-top: 20px;
+    font-size: 40px;
+    cursor: pointer;
+}
 
 
 form{
-    padding: 0 80px;
+    padding: 0 100px;
     position: relative;
     flex-grow: 1; // Allows the form to take up the remaining space
     transition: width 0.3s ease, max-width 0.3s ease;
@@ -203,11 +195,14 @@ form{
         color: white;
     }
 
-    .content-wrapper {
-        overflow: hidden;
-        transition: height 0.3s ease;
-        max-height: 800px; /* Matches the max height set in the component */
-    }
+
+    //----------------------
+    // .content-wrapper {
+    //     overflow: hidden;
+    //     transition: height 0.3s ease;
+    //     max-height: 800px; /* Matches the max height set in the component */
+    // }
+    //--------------------
 
     .textos {
         width: 100%;

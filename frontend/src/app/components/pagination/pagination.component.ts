@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -7,11 +7,17 @@ import { Component, Input } from '@angular/core';
 })
 export class PaginationComponent {
   
-  pages: number[] = [1];  // Start with one page
+  // pages: number[] = [1];  // Start with one page
   selectedPage: number = 1;  // Start with the first page selected
   maxPages: number = 5;  // Maximum number of pages
   @Input() backgroundColor: string = '#58BC68';
   @Input() isCollapsed: boolean = false;
+
+  @Input() pages: any[] = [];
+  @Output() addPage = new EventEmitter<void>();
+  @Output() selectPage = new EventEmitter<number>();
+  @Output() pageSelected = new EventEmitter<number>();
+
   // Function to add a new page if below the maxPages limit
   addNewPage(): void {
     if (this.pages.length < this.maxPages) {
@@ -21,7 +27,7 @@ export class PaginationComponent {
   }
 
   // Function to set the selected page when clicked
-  selectPage(pageNumber: number): void {
+  pageSelect(pageNumber: number): void {
     this.selectedPage = pageNumber;
   }
 

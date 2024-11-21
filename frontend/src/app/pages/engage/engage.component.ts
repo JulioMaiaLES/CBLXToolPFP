@@ -22,6 +22,8 @@ export class EngageComponent implements OnInit{
   isTabCollapsed: boolean = false;
   isPaginationCollapsed: boolean = false;
   isFullWidth: boolean = false;
+  pages: any[] = []; // List of pages with their content
+  currentPage: any | null = null; // Active page
 
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
@@ -45,29 +47,6 @@ export class EngageComponent implements OnInit{
   private saveTimeout!: ReturnType<typeof setTimeout>; // Declare saveTimeout
 
 
-  // toggleMenu(): void {
-  //   this.sidebarService.toggleSidebar();  // Delegate toggling to the SidebarService
-  // }
-
-  // toggleTab() {
-  //   this.isTabCollapsed = !this.isTabCollapsed;
-  //   this.updateFormWidth();
-  // }
-
-  // Method to handle the toggle state from app-tab
-  handleTabToggle(isCollapsed: boolean): void {
-    this.isTabCollapsed = isCollapsed;
-    this.updateFormWidth();
-  }
-
-  togglePagination(): void {
-    this.isPaginationCollapsed = !this.isPaginationCollapsed;
-    this.updateFormWidth();
-  }
-
-  private updateFormWidth(): void {
-    this.isFullWidth = this.isTabCollapsed || (this.isTabCollapsed && this.isPaginationCollapsed);
-  }
 
   constructor(
     private fb: FormBuilder,
@@ -97,7 +76,48 @@ export class EngageComponent implements OnInit{
         this.expandedPhase = phase;
       }
     });
+
+    // Initialize with a default page
+    this.addNewPage();
   }
+
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+  }
+  
+  // Method to handle the toggle state from app-tab
+  handleTabToggle(isCollapsed: boolean): void {
+    this.isTabCollapsed = isCollapsed;
+    this.updateFormWidth();
+  }
+
+  togglePagination(): void {
+    this.isPaginationCollapsed = !this.isPaginationCollapsed;
+    this.updateFormWidth();
+  }
+
+  private updateFormWidth(): void {
+    this.isFullWidth = this.isTabCollapsed || (this.isTabCollapsed && this.isPaginationCollapsed);
+  }
+
+  addNewPage(): void {
+    const newPage = {
+      id: this.pages.length + 1,
+      icon: 'default-icon.png', // Placeholder for the page icon
+      title: `New Page ${this.pages.length + 1}`, // Default title
+      content: '', // Placeholder for page content
+    };
+
+    this.pages.push(newPage);
+    this.currentPage = newPage; // Automatically select the new page
+  }
+
+  selectPage(pageId: number): void {
+    this.currentPage = this.pages.find((page) => page.id === pageId) || null;
+  }
+
+
 
    // Method to handle textarea resizing and content wrapper expansion
    handleTextareaResize(event: Event): void {

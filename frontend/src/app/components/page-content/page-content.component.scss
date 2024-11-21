@@ -1,0 +1,23 @@
+.page-container {
+  padding: 20px;
+  background-color: #262626;
+  border-radius: 10px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+
+  i {
+    margin-right: 10px;
+    color: #58BC68; // Adjust based on the theme of the Engage page
+  }
+}
+
+.page-content {
+  font-size: 16px;
+}

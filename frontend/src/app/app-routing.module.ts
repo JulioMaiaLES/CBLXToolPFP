@@ -67,7 +67,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: NavbarComponent,
+    // component: NavbarComponent,
     // canActivate: [authGuard], // ? Remover caso queira que mais rotas sejam acessadas sem autenticação
     children: [
       {

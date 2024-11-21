@@ -51,6 +51,7 @@ import { ToggleiconModule } from './components/toggleicon/toggleicon.module';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { PaginationModule } from './components/pagination/pagination.module';
 import { ProfileComponent } from './components/modals/profile/profile.component';
+import { PageContentComponent } from './components/page-content/page-content.component';
 
   export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);

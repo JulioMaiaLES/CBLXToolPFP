@@ -11,7 +11,7 @@
     </ul>
   </div>
 </header>
-<app-menu></app-menu>
+<!-- <app-menu></app-menu> -->
 
 <body>
 
@@ -24,7 +24,17 @@
           class="toggle-icon">
         </app-toggleicon>
         
-        <app-pagination [isCollapsed]="isPaginationCollapsed"></app-pagination>
+        <app-pagination 
+          [backgroundColor]="'#58BC68'" 
+          [isCollapsed]="isPaginationCollapsed"
+          (pageSelected)="onPageChange($event)">
+        </app-pagination>
+        <ng-container *ngIf="currentPage">
+          <app-page-content
+            [pageNumber]="currentPage"
+            [title]="'Page ' + currentPage"
+          ></app-page-content>
+        </ng-container>
       </div>
       
       <form 
@@ -106,6 +116,17 @@
       </form>
     </div>
   </div>
+
+
+  <!-- <div class="pages-container">
+    <app-page-content
+      *ngFor="let page of pages"
+      [icon]="page.icon"
+      [title]="page.title"
+      [pageId]="page.id"
+      (blockClick)="onPageSelect($event)">
+    </app-page-content>
+  </div> -->
 
   <div class="tab-container" [class.collapsed]="isTabCollapsed">
     <!-- <app-toggleicon 

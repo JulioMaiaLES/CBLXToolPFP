@@ -4,7 +4,7 @@
       *ngFor="let page of pages"
       class="current-block"
       [class.selected]="page === selectedPage"
-      (click)="selectPage(page)"
+      (click)="pageSelect(page)"
       [ngStyle]="{'background-color': backgroundColor}"
     >
       {{ page }}
