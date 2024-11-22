@@ -245,3 +245,23 @@
         margin: 0;
     }
 }
+
+.drag-source {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    margin-right: 20px;
+    width: 200px;
+}
+  
+.drag-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

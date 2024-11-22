@@ -1,0 +1,38 @@
+.image-container {
+  width: 100%;
+  padding: 10px;
+  background-color: #262626;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.image-input {
+  margin-bottom: 10px;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+}
+
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  background-color: #58bc68;
+  border-radius: 50%;
+  cursor: nwse-resize;
+}

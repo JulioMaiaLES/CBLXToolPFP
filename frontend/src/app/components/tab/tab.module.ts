@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { TabComponent } from './tab.component';
 
@@ -17,7 +18,8 @@ import { TabComponent } from './tab.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatOptionModule
+    MatOptionModule,
+    DragDropModule
   ],
   exports: [TabComponent],
 })

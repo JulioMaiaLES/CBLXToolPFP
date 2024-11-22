@@ -18,6 +18,12 @@ export class TabComponent implements OnInit {
 // Output event to notify parent component about toggle state
   @Output() toggleEvent = new EventEmitter<boolean>();
 
+  blocks = [
+    { type: 'text', icon: 'text-icon' },
+    { type: 'image', icon: 'image-icon' },
+    { type: 'table', icon: 'table-icon' },
+    { type: 'file', icon: 'file-icon' },
+  ];
 
   items = [
     { label: 'Texto', icon: 'textos', component: 'Texto' },

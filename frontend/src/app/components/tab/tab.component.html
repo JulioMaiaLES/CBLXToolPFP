@@ -31,53 +31,63 @@
 
   </div> -->
 
-<!-- Nova versão -->
-<div class="visual-tab" [class.collapsed]="isCollapsed">
-  <!-- Expand Icon (≡) - Shows when collapsed -->
-  <div *ngIf="isCollapsed" class="expand-icon" (click)="toggleTab()">
-      ≡
-  </div>
-
-  <!-- Close Icon (X) - Shows when expanded -->
-  <div *ngIf="!isCollapsed" class="close-icon" (click)="toggleTab()">
-      X
-  </div>
-
-  <!-- Expanded Tab Content -->
-  <div *ngIf="!isCollapsed" class="tab-search">
-      <div class="search-field">
-          <input
-              type="text"
-              matInput
-              [formControl]="searchControl"
-              [matAutocomplete]="auto"
-              placeholder="Busca"
-          />
-          <mat-autocomplete #auto="matAutocomplete">
-              <mat-option
-                  *ngFor="let option of filteredItems | async"
-                  [value]="option.label"
-                  (click)="onOptionSelected(option.label)">
-                  {{ option.label }}
-              </mat-option>
-          </mat-autocomplete>
-      </div>
-      <img src="../../../assets/images/lupa.png" alt="Search Icon" />
-  </div>
-
-  <!-- Expanded Content Icons and Titles -->
-  <div *ngIf="!isCollapsed" class="filtered-items">
-      <div *ngFor="let item of filteredItems | async" class="item">
-          <img [src]="'../../../assets/images/' + item.icon + '.png'" alt="{{ item.label }}" />
-          <p>{{ item.label }}</p>
-      </div>
-  </div>
-
-  <!-- Collapsed Content Icons Column -->
-  <div *ngIf="isCollapsed" class="collapsed-content">
-    <div *ngFor="let item of filteredItems | async" class="collapsed-item">
-        <img [src]="'../../../assets/images/' + item.icon + '.png'" alt="{{ item.label }}" />
-        <p>{{ item.label }}</p>
+  <div class="visual-tab" [class.collapsed]="isCollapsed">
+    <!-- Expand Icon (≡) - Shows when collapsed -->
+    <div *ngIf="isCollapsed" class="expand-icon" (click)="toggleTab()">
+        ≡
     </div>
-  </div>
+  
+    <!-- Close Icon (X) - Shows when expanded -->
+    <div *ngIf="!isCollapsed" class="close-icon" (click)="toggleTab()">
+        X
+    </div>
+  
+    <!-- Expanded Tab Content -->
+    <div *ngIf="!isCollapsed" class="tab-search">
+        <div class="search-field">
+            <input
+                type="text"
+                matInput
+                [formControl]="searchControl"
+                [matAutocomplete]="auto"
+                placeholder="Busca"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                    *ngFor="let option of filteredItems | async"
+                    [value]="option.label"
+                    (click)="onOptionSelected(option.label)">
+                    {{ option.label }}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <img src="../../../assets/images/lupa.png" alt="Search Icon" />
+    </div>
+  
+    <!-- Expanded Content Icons and Titles (Draggable Items) -->
+    <div *ngIf="!isCollapsed" class="filtered-items" cdkDropList id="tab-drag-source" [cdkDropListConnectedTo]="['drop-zone']">
+        <div
+            *ngFor="let item of filteredItems | async"
+            cdkDrag
+            [cdkDragData]="item"
+            class="draggable-item"
+        >
+            <img [src]="'../../../assets/images/' + item.icon + '.png'" alt="{{ item.label }}" />
+            <p>{{ item.label }}</p>
+        </div>
+    </div>
+  
+    <!-- Collapsed Content Icons Column (Draggable Items) -->
+    <div *ngIf="isCollapsed" class="collapsed-content" cdkDropList id="tab-drag-source-collapsed" [cdkDropListConnectedTo]="['drop-zone']">
+        <div
+            *ngFor="let item of filteredItems | async"
+            cdkDrag
+            [cdkDragData]="item"
+            class="collapsed-item draggable-item"
+        >
+            <img [src]="'../../../assets/images/' + item.icon + '.png'" alt="{{ item.label }}" />
+            <p>{{ item.label }}</p>
+        </div>
+    </div>
 </div>
+

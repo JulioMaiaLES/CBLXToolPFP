@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 interface TableData {
@@ -11,6 +11,7 @@ interface TableData {
   styleUrls: ['./tabelavariavel.component.scss']
 })
 export class TabelaVariavelComponent implements OnInit {
+  @Input() data: { rows: any[] } = { rows: [['']] };
   dataSource: MatTableDataSource<TableData> = new MatTableDataSource<TableData>([]);
   displayedColumns: string[] = ['guidingQuestions', 'guidingActivities', 'guidingResources', 'resultados'];
   columnNames: { [key: string]: string } = {

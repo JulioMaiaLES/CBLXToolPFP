@@ -1,7 +1,7 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import {
   DateAdapter,
@@ -52,6 +52,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { PaginationModule } from './components/pagination/pagination.module';
 import { ProfileComponent } from './components/modals/profile/profile.component';
 import { PageContentComponent } from './components/page-content/page-content.component';
+import { TextComponent } from './components/text/text.component';
+import { ImageComponent } from './components/image/image.component';
+import { FileComponent } from './components/file/file.component';
 
   export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -83,7 +86,6 @@ import { PageContentComponent } from './components/page-content/page-content.com
       FormsModule,
       MatButtonModule,
       TabelaModule,
-      TabelaVariavelModule,
       CblCanvasModule,
       AppRoutingModule,
       BrowserAnimationsModule,
@@ -138,5 +140,6 @@ import { PageContentComponent } from './components/page-content/page-content.com
       provideEnvironmentNgxMask(),
     ],
     bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], 
   })
   export class AppModule {}

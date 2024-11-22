@@ -175,7 +175,19 @@
     </div>
   </div>
 
-  
+  <div
+    cdkDropList
+    id="drop-zone"
+    class="drop-zone"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <ng-container *ngFor="let block of droppedBlocks">
+      <app-text *ngIf="block.type === 'text'" [data]="block.data"></app-text>
+      <app-image *ngIf="block.type === 'image'" [data]="block.data"></app-image>
+      <app-tabelavariavel *ngIf="block.type === 'table'" [data]="block.data"></app-tabelavariavel>
+      <app-file *ngIf="block.type === 'file'" [data]="block.data"></app-file>
+    </ng-container>
+  </div>
 
 
   <!-- <div class="pages-container">

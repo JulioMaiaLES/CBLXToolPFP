@@ -1,5 +1,5 @@
 // engage.component.ts
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { ProgressService } from '../../services/progress.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalComponent } from '@app/components/modal/modal.component';
@@ -8,6 +8,7 @@ import { FormArray, FormControl, FormGroup, Validators, FormBuilder} from '@angu
 import { Observable } from 'rxjs';
 import { SidebarService } from '../../../app/services/sidebar.service'
 import { ActivatedRoute } from '@angular/router';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-engage',
@@ -26,6 +27,9 @@ export class EngageComponent implements OnInit{
   currentPage: number = 1; // Default to Page 1
   title: string = 'Título'; // Default title for new pages
   isEditingTitle: boolean = false;
+  blocks: Array<{ type: string; data: any }> = [];
+  droppedBlocks: any[] = []; // Stores the blocks added to the screen
+
 
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
@@ -49,6 +53,13 @@ export class EngageComponent implements OnInit{
   private objectUrls: string[] = [];  // Initialized properly to hold URLs
   private saveTimeout!: ReturnType<typeof setTimeout>; // Declare saveTimeout
 
+  dataBlocks = [
+    { type: 'text', data: 'Default Text' },
+    { type: 'image', data: 'path/to/image.jpg' },
+    { type: 'table', data: {} },
+    { type: 'file', data: 'path/to/file.pdf' },
+  ];
+
   constructor(
     private fb: FormBuilder,
     private engageService: EngageService,
@@ -56,7 +67,8 @@ export class EngageComponent implements OnInit{
     public dialogRef: MatDialogRef<ModalComponent>,
     private progressService: ProgressService,
     private sidebarService: SidebarService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -84,7 +96,28 @@ export class EngageComponent implements OnInit{
 
     // Initialize with a default page
     this.addNewPage();
+    this.blocks.push({ type: 'text', data: { text: 'Sample Text' } });
   }
+
+  onDrop(event: CdkDragDrop<any>) {
+    console.log('Drop Event Triggered:', event);
+  
+    if (event.previousContainer !== event.container) {
+      const droppedBlock = event.item.data;
+      console.log('Dropped Block:', droppedBlock);
+  
+      // Add the dropped block to the `blocks` array
+      this.blocks.push({
+        type: droppedBlock.component.toLowerCase(),
+        data: droppedBlock.component === 'Texto' ? { text: 'New Text' } : {},
+      });
+  
+      console.log('Updated Blocks:', this.blocks);
+      this.cdr.detectChanges(); // Force view update
+      
+    }
+  }
+  
 
   startEditingTitle(): void {
     this.isEditingTitle = true;

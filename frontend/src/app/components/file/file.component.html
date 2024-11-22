@@ -1,0 +1,22 @@
+<div class="file-container">
+  <input
+    type="file"
+    (change)="onFileSelected($event)"
+    multiple
+    class="file-input"
+    accept=".pdf,.txt,.docx,.xlsx,.csv,.zip,.rar"
+  />
+
+  <div class="rendered-files">
+    <div *ngFor="let file of renderedFiles" class="file-item">
+      <div *ngIf="file.renderType === 'pdf'" class="pdf-file">
+        <a [href]="file.downloadUrl" target="_blank">{{ file.file.name }}</a>
+      </div>
+
+      <div *ngIf="file.renderType === 'other'" class="other-file">
+        <p>{{ file.file.name }}</p>
+        <button (click)="downloadFile(file.file)">Download</button>
+      </div>
+    </div>
+  </div>
+</div>
