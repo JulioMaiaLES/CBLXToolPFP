@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { SidebarService } from '../../../app/services/sidebar.service'
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DragDropService } from '@app/services/drag-drop.service';
 
 @Component({
   selector: 'app-engage',
@@ -29,7 +30,7 @@ export class EngageComponent implements OnInit{
   isEditingTitle: boolean = false;
   blocks: Array<{ type: string; data: any }> = [];
   droppedBlocks: any[] = []; // Stores the blocks added to the screen
-
+  droppedBlocks$ = this.dragDropService.blocks$;
 
   engageData: {
     [key: string]: string[];  // Allow indexing with a string key
@@ -68,7 +69,8 @@ export class EngageComponent implements OnInit{
     private progressService: ProgressService,
     private sidebarService: SidebarService,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dragDropService: DragDropService
   ) {}
 
   ngOnInit() {
@@ -96,8 +98,27 @@ export class EngageComponent implements OnInit{
 
     // Initialize with a default page
     this.addNewPage();
-    this.blocks.push({ type: 'text', data: { text: 'Sample Text' } });
+    this.blocks = [];
   }
+
+  // onDrop(event: CdkDragDrop<any>): void {
+  //   console.log('Drop Event Triggered:', event);
+  
+  //   // Ensure item is moved only from a different container
+  //   if (event.previousContainer !== event.container) {
+  //     const droppedBlock = event.item.data;
+  //     console.log('Dropped Block:', droppedBlock);
+  
+  //     // Add dropped block to droppedBlocks array
+  //     this.droppedBlocks.push({
+  //       type: droppedBlock.type,
+  //       data: droppedBlock.type === 'text' ? { text: 'New Text' } : droppedBlock.data,
+  //     });
+  
+  //     console.log('Updated Dropped Blocks:', this.droppedBlocks);
+  //   }
+  // }
+  
 
   onDrop(event: CdkDragDrop<any>) {
     console.log('Drop Event Triggered:', event);
@@ -108,16 +129,28 @@ export class EngageComponent implements OnInit{
   
       // Add the dropped block to the `blocks` array
       this.blocks.push({
-        type: droppedBlock.component.toLowerCase(),
-        data: droppedBlock.component === 'Texto' ? { text: 'New Text' } : {},
+        type: droppedBlock.component.toLowerCase(), // Ensure consistent lowercase type
+        data: this.initializeBlockData(droppedBlock.component),
       });
   
       console.log('Updated Blocks:', this.blocks);
-      this.cdr.detectChanges(); // Force view update
-      
     }
   }
-  
+
+  initializeBlockData(type: string): any {
+    switch (type.toLowerCase()) {
+      case 'text':
+        return { text: 'Default text content' };
+      case 'image':
+        return { src: 'path/to/default-image.jpg', alt: 'Default image description' };
+      case 'table':
+        return { rows: [[{ value: 'Cell 1' }, { value: 'Cell 2' }]], columns: ['Column 1', 'Column 2'] };
+      case 'file':
+        return { fileName: 'example.pdf', filePath: 'path/to/example.pdf' };
+      default:
+        return {};
+    }
+  }
 
   startEditingTitle(): void {
     this.isEditingTitle = true;

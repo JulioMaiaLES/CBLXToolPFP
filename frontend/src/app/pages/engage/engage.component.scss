@@ -361,6 +361,19 @@ form{
     }
 }
 
+// .drop-zone {
+//     min-height: 300px;
+//     width: 100%;
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 10px;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     padding: 20px;
+//     position: relative;
+// }
+
 .drop-zone {
     min-height: 300px;
     width: 100%;
@@ -372,4 +385,4 @@ form{
     justify-content: center;
     padding: 20px;
     position: relative;
-}
+  }

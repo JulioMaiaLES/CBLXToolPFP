@@ -15,7 +15,7 @@ export class TabelaVariavelComponent implements OnInit {
   dataSource: MatTableDataSource<TableData> = new MatTableDataSource<TableData>([]);
   displayedColumns: string[] = ['guidingQuestions', 'guidingActivities', 'guidingResources', 'resultados'];
   columnNames: { [key: string]: string } = {
-    guidingQuestions: 'Cococ do julio',
+    guidingQuestions: 'Guiding Questions',
     guidingActivities: 'Guiding Activities',
     guidingResources: 'Guiding Resources',
     resultados: 'Resultados'

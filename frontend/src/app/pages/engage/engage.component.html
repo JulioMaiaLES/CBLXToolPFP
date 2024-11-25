@@ -175,7 +175,7 @@
     </div>
   </div>
 
-  <div
+  <!-- <div
     cdkDropList
     id="drop-zone"
     class="drop-zone"
@@ -187,8 +187,29 @@
       <app-tabelavariavel *ngIf="block.type === 'table'" [data]="block.data"></app-tabelavariavel>
       <app-file *ngIf="block.type === 'file'" [data]="block.data"></app-file>
     </ng-container>
-  </div>
+  </div> -->
 
+
+  <div cdkDropList id="drop-zone" class="drop-zone" (cdkDropListDropped)="onDrop($event)">
+    
+    <ng-container *ngFor="let block of blocks">
+      <ng-container [ngSwitch]="block.type">
+        <div *ngSwitchCase="'text'">
+          <app-text [data]="block.data"></app-text>
+        </div>
+        <div *ngSwitchCase="'image'">
+          <app-image [data]="block.data"></app-image>
+        </div>
+        <div *ngSwitchCase="'table'">
+          <app-tabelavariavel [data]="block.data"></app-tabelavariavel>
+        </div>
+        <div *ngSwitchCase="'file'">
+          <app-file [data]="block.data"></app-file>
+        </div>
+        <p *ngSwitchDefault>Unknown block type: {{ block.type }}</p>
+      </ng-container>
+    </ng-container>
+  </div>
 
   <!-- <div class="pages-container">
     <app-page-content

@@ -1,7 +1,12 @@
 <div class="image-wrapper" *ngIf="data.imageUrl; else uploadPlaceholder">
-  <img [src]="data.imageUrl" [style.width.px]="data.width" [style.height.px]="data.height" />
-  <button class="resize-button" (click)="onResizeStart($event)">Resize</button>
+  <img
+    #resizableImage
+    [src]="data.imageUrl"
+    [style.width.px]="data.width"
+    [style.height.px]="data.height"
+  />
+  <button class="resize-button" (mousedown)="onResizeStart($event)">Resize</button>
 </div>
 <ng-template #uploadPlaceholder>
-  <input type="file" (change)="onFileSelected($event)" />
+  <input #fileInput type="file" (change)="onFileSelected($event)" hidden />
 </ng-template>

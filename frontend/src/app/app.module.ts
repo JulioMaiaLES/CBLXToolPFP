@@ -55,6 +55,7 @@ import { PageContentComponent } from './components/page-content/page-content.com
 import { TextComponent } from './components/text/text.component';
 import { ImageComponent } from './components/image/image.component';
 import { FileComponent } from './components/file/file.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
   export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -95,6 +96,7 @@ import { FileComponent } from './components/file/file.component';
       NbLayoutModule,
       MenuComponent,
       TabModule,
+      DragDropModule,
       NbSidebarModule.forRoot(), 
       ResizableModule, 
       NbThemeModule.forRoot({ name: 'default' }),

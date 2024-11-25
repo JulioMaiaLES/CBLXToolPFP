@@ -1,103 +1,105 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter } from '@angular/core';
-import { TabelaComponent } from '../tabela/tabela.component';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter, Type } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { TextComponent } from '../text/text.component';
+import { ImageComponent } from '../image/image.component';
+import { FileComponent } from '../file/file.component';
+import { TabelaVariavelComponent } from '../tabelavariavel/tabelavariavel.component';
+import { DynamicComponentData } from '@app/interfaces/dynamic-component-data';
 
 @Component({
   selector: 'app-tab',
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.scss'],
 })
-export class TabComponent implements OnInit {
-  draggedItem: string | null = null;
-  searchControl = new FormControl();
-  // searchQuery: string = '';
-  // @Input() isCollapsed: boolean = false;
+export class TabComponent implements OnInit, DynamicComponentData {
   isCollapsed: boolean = false;
-// Output event to notify parent component about toggle state
   @Output() toggleEvent = new EventEmitter<boolean>();
 
-  blocks = [
-    { type: 'text', icon: 'text-icon' },
-    { type: 'image', icon: 'image-icon' },
-    { type: 'table', icon: 'table-icon' },
-    { type: 'file', icon: 'file-icon' },
-  ];
+  searchControl = new FormControl();
+  filteredItems!: Observable<any[]>;
 
   items = [
-    { label: 'Texto', icon: 'textos', component: 'Texto' },
-    { label: 'Imagem', icon: 'imagens', component: 'Imagem' },
-    { label: 'Tabela', icon: 'tabelas', component: 'Tabela' },
-    { label: 'Arquivo', icon: 'arquivos', component: 'Arquivo' },
-    // { label: 'Tabela Investigate', icon: 'table-investigate-icon', component: 'Tabela Investigate' },
-    // { label: 'Essential Questioning', icon: 'question-icon', component: 'Essential Questioning' },
-    // { label: 'Template Act', icon: 'template-act-icon', component: 'Template Act' },
-    // { label: 'Template Engage', icon: 'template-engage-icon', component: 'Template Engage' },
-    // { label: 'CBL Canvas', icon: 'cbl-canvas-icon', component: 'CBL Canvas' }
-  ]; // All available items to display
+    { label: 'Texto', icon: 'textos', component: 'Text' },
+    { label: 'Imagem', icon: 'imagens', component: 'Image' },
+    { label: 'Tabela', icon: 'tabelas', component: 'Table' },
+    { label: 'Arquivo', icon: 'arquivos', component: 'File' },
+  ];
 
-  // filteredItems = [...this.items]; // Initialize with all items
-  filteredItems!: Observable<any[]>;
-  itemsToShow = [...this.items]; // Initially show all items
+  @ViewChild('dropContainer', { read: ViewContainerRef, static: true })
+  dropContainer!: ViewContainerRef;
+
+  constructor(private resolver: ComponentFactoryResolver) {}
+  data: any;
 
   ngOnInit(): void {
     this.filteredItems = this.searchControl.valueChanges.pipe(
       startWith(''),
-      map(value => this.filterItems(value || ''))
+      map((value) => this.filterItems(value || ''))
     );
   }
 
   toggleTab(): void {
     this.isCollapsed = !this.isCollapsed;
-    this.toggleEvent.emit(this.isCollapsed); // Emit the toggle state
+    this.toggleEvent.emit(this.isCollapsed);
   }
 
   filterItems(value: string): any[] {
     const filterValue = value.toLowerCase();
-    const filtered = this.items.filter(item =>
+    return this.items.filter((item) =>
       item.label.toLowerCase().includes(filterValue)
     );
-    this.itemsToShow = filtered; // Update items in the grid
-    return filtered;
   }
 
-  onOptionSelected(option: string): void {
-    console.log('Selected Option:', option);
-    // Additional logic on selection, if needed
+  // Handle item drop
+  onDrop(event: CdkDragDrop<any>) {
+    const droppedItem = event.item.data;
+    console.log('Dropped Item:', droppedItem);
+
+    // Dynamically add the component
+    this.addDynamicComponent(droppedItem.component);
   }
 
-  // Reference to the drop container
-  @ViewChild('dropContainer', { read: ViewContainerRef, static: true })
-  dropContainer!: ViewContainerRef;
-
-  constructor(private resolver: ComponentFactoryResolver) {}
-
-  // Start dragging and store the item type
-  onDragStart(event: DragEvent, itemType: string) {
-    this.draggedItem = itemType;
-  }
-
-  // Allow dropping by preventing default behavior
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-  }
-
-  // Handle the drop event and dynamically add the TabelaComponent
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-
-    if (this.draggedItem === 'table') {
-      this.addTableComponent(); // Dynamically add the table
+  private addDynamicComponent(componentType: string) {
+    let component: Type<any>;
+    let data: any;
+  
+    // Select the appropriate component and prepare data
+    switch (componentType.toLowerCase()) {
+      case 'texto':
+        component = TextComponent;
+        data = { text: `Dropped content for ${componentType}` };
+        break;
+      case 'imagem':
+        component = ImageComponent;
+        data = { imageUrl: 'path/to/image.jpg', width: 300, height: 200 };
+        break;
+      case 'tabela':
+        component = TabelaVariavelComponent;
+        data = { tableData: [] }; // Replace with actual table data
+        break;
+      case 'arquivo':
+        component = FileComponent;
+        data = { fileName: 'example.pdf', filePath: 'path/to/file.pdf' };
+        break;
+      default:
+        console.warn(`Unknown component type: ${componentType}`);
+        return;
     }
-
-    this.draggedItem = null; // Reset the dragged item
-  }
-
-  // Dynamically create the TabelaComponent
-  private addTableComponent() {
-    const factory = this.resolver.resolveComponentFactory(TabelaComponent);
+  
+    // Dynamically create the component
+    const factory = this.resolver.resolveComponentFactory(component);
     const componentRef = this.dropContainer.createComponent(factory);
-    // You can pass any input data to the component here if needed
+  
+    // Cast `componentRef.instance` to the proper interface
+    const instance = componentRef.instance as DynamicComponentData;
+  
+    // Pass data to the created component
+    if (instance.data !== undefined) {
+      instance.data = data;
+    }
   }
+  
 }

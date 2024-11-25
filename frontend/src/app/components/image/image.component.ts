@@ -14,7 +14,7 @@ export class ImageComponent {
     width: 200,
     height: 200,
   };
-  
+
   imageUrl: string | null = null;
   isResizing: boolean = false;
   initialWidth: number = 0;
@@ -23,6 +23,17 @@ export class ImageComponent {
   initialMouseY: number = 0;
 
   @ViewChild('resizableImage') resizableImage!: ElementRef<HTMLImageElement>;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>; // Reference to the file input
+
+  ngAfterViewInit(): void {
+    if (!this.data.imageUrl) {
+      this.openFileExplorer(); // Trigger file explorer if no image is provided
+    }
+  }
+
+  openFileExplorer(): void {
+    this.fileInput.nativeElement.click(); // Simulate a click on the file input element
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -31,6 +42,7 @@ export class ImageComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.imageUrl = reader.result as string;
+        this.data.imageUrl = this.imageUrl; // Update the data object
       };
       reader.readAsDataURL(file);
     }
