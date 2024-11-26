@@ -25,6 +25,9 @@ export class ImageComponent {
   @ViewChild('resizableImage') resizableImage!: ElementRef<HTMLImageElement>;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>; // Reference to the file input
 
+  maxWidth: number = window.innerWidth * 0.7; // 90% of screen width
+  maxHeight: number = window.innerHeight * 0.7; // 90% of screen height
+
   ngAfterViewInit(): void {
     if (!this.data.imageUrl) {
       this.openFileExplorer(); // Trigger file explorer if no image is provided
@@ -43,6 +46,8 @@ export class ImageComponent {
       reader.onload = () => {
         this.imageUrl = reader.result as string;
         this.data.imageUrl = this.imageUrl; // Update the data object
+        this.data.width = Math.min(this.data.width, this.maxWidth);
+        this.data.height = Math.min(this.data.height, this.maxHeight);
       };
       reader.readAsDataURL(file);
     }
@@ -64,8 +69,12 @@ export class ImageComponent {
     const deltaX = event.clientX - this.initialMouseX;
     const deltaY = event.clientY - this.initialMouseY;
 
-    const newWidth = this.initialWidth + deltaX;
-    const newHeight = this.initialHeight + deltaY;
+    const newWidth = Math.min(this.initialWidth + deltaX, this.maxWidth);
+    const newHeight = Math.min(this.initialHeight + deltaY, this.maxHeight);
+
+    // Ensure image dimensions are constrained to 80% of the viewport
+    this.data.width = Math.max(50, newWidth); // Set a minimum width (e.g., 50px)
+    this.data.height = Math.max(50, newHeight); // Set a minimum height (e.g., 50px)
 
     if (this.resizableImage) {
       this.resizableImage.nativeElement.style.width = `${newWidth}px`;

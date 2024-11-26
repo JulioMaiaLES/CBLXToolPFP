@@ -1,7 +1,22 @@
-<div class="text-container">
+<!-- V1 -->
+<!-- <div class="text-container">
     <textarea 
       [(ngModel)]="data.text"
       class="text-area" 
       placeholder="Type your text here...">
     </textarea>
+</div> -->
+
+<!-- V2 -->
+<div
+  class="text-container"
+  [class.full-width]="isTabCollapsed && isPaginationCollapsed"
+  [class.expanded-width]="!isPaginationCollapsed && isTabCollapsed"
+  [class.default-width]="!isTabCollapsed && !isPaginationCollapsed"
+>
+  <textarea
+    class="textos"
+    placeholder="Digite..."
+    (input)="onInput($event)"
+  ></textarea>
 </div>

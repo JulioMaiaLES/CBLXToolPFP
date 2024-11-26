@@ -1,5 +1,5 @@
 .text-container {
-    width: 100%;
+    width: 920px;
     padding: 10px;
     background-color: #262626;
     border-radius: 10px;
@@ -7,9 +7,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .text-area {
+  .textos {
     width: 100%;
     height: 100px;
     resize: none;
@@ -19,4 +19,52 @@
     font-size: 16px;
     padding: 5px;
     outline: none;
-  }
+}
+
+
+// .text-container {
+//   padding: 20px;
+//   background-color: #262626;
+//   border-radius: 10px;
+//   transition: width 0.3s ease, max-width 0.3s ease, height 0.5s ease-in-out;
+
+//   // Default width (when neither tab nor pagination is collapsed)
+//   &.default-width {
+//     max-width: 1115px;
+//     margin-left: 0;
+//   }
+
+//   // Expanded width (when pagination is collapsed and tab is expanded)
+//   &.expanded-width {
+//     max-width: 1600px;
+//     margin-left: 0;
+//   }
+
+//   // Full width (when both pagination and tab are collapsed)
+//   &.full-width {
+//     max-width: none;
+//     margin-left: -5px;
+//   }
+
+//   .textos {
+//     width: 100%;
+//     min-width: 150px;
+//     resize: none;
+//     overflow-y: hidden;
+//     background-color: transparent;
+//     color: white;
+//     border: none;
+//     font-family: "Helvetica Neue", Helvetica, sans-serif;
+//     font-size: 22px;
+//     line-height: 24px;
+//     outline: none;
+//     transition: height 0.2s ease;
+//   }
+
+
+//   // Adjust height dynamically when collapsed
+//   &.collapsed .textos {
+//     max-height: 60px; /* Height when collapsed */
+//     overflow-y: auto; /* Show scroll when height is exceeded */
+//   }
+// }

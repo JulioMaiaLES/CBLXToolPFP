@@ -175,32 +175,22 @@
     </div>
   </div>
 
-  <!-- <div
-    cdkDropList
-    id="drop-zone"
-    class="drop-zone"
-    (cdkDropListDropped)="onDrop($event)"
-  >
-    <ng-container *ngFor="let block of droppedBlocks">
-      <app-text *ngIf="block.type === 'text'" [data]="block.data"></app-text>
-      <app-image *ngIf="block.type === 'image'" [data]="block.data"></app-image>
-      <app-tabelavariavel *ngIf="block.type === 'table'" [data]="block.data"></app-tabelavariavel>
-      <app-file *ngIf="block.type === 'file'" [data]="block.data"></app-file>
-    </ng-container>
-  </div> -->
-
-
   <div cdkDropList id="drop-zone" class="drop-zone" (cdkDropListDropped)="onDrop($event)">
     
     <ng-container *ngFor="let block of blocks">
-      <ng-container [ngSwitch]="block.type">
+      <ng-container [ngSwitch]="block.type" class="drop-container">
         <div *ngSwitchCase="'text'">
-          <app-text [data]="block.data"></app-text>
+          <app-text 
+            [data]="block.data" 
+            [isTabCollapsed]="isTabCollapsed"
+            [isPaginationCollapsed]="isPaginationCollapsed"
+            >
+          </app-text>
         </div>
         <div *ngSwitchCase="'image'">
           <app-image [data]="block.data"></app-image>
         </div>
-        <div *ngSwitchCase="'table'">
+        <div *ngSwitchCase="'table'" class="tabela">
           <app-tabelavariavel [data]="block.data"></app-tabelavariavel>
         </div>
         <div *ngSwitchCase="'file'">

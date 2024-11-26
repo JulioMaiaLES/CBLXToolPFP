@@ -17,10 +17,8 @@
 
 }
 
-
-
 .tablecell {
-  width: 100%;
+  max-width: 900px;
   min-width: 150px;
   resize: none;
   overflow: hidden;
@@ -28,6 +26,16 @@
   border: none;
   padding: 0;
   outline: none; /* Remove a borda ao focar no textarea */
+}
+
+.table-scroll-container {
+  max-width: 900px; /* Set a fixed maximum width for the table */
+  resize: none;
+  overflow: hidden;
+  background-color: #f1f3f8;
+  border: none;
+  padding: 0;
+  outline: none;
 }
 
 td {
@@ -88,7 +96,6 @@ td {
 
 .mat-table {
   margin-right: 20px;
-  
 }
 
 .cell-container {
@@ -169,12 +176,12 @@ textarea {
 }
 
 .table-container {
-  max-width: 100%;
+  max-width: 1130px;
   overflow-x: auto; /* Habilita a rolagem horizontal */
 }
 
 table {
-  min-width: 100%;
+  min-width: 1130px;
 }
 
 .no-columns-container {

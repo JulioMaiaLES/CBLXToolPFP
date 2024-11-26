@@ -8,6 +8,8 @@ import { ActService } from '@app/services/act.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SidebarService } from '../../../app/services/sidebar.service'
 import { ActivatedRoute } from '@angular/router';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DragDropService } from '@app/services/drag-drop.service';
 
 @Component({
   selector: 'app-act',
@@ -30,6 +32,9 @@ export class ActComponent {
   currentPage: number = 1; // Default to Page 1
   title: string = 'Título'; // Default title for new pages
   isEditingTitle: boolean = false;
+  blocks: Array<{ type: string; data: any }> = [];
+  droppedBlocks: any[] = []; // Stores the blocks added to the screen
+  droppedBlocks$ = this.dragDropService.blocks$;
 
   private debounceTimer!: ReturnType<typeof setTimeout>;  // Correct type declaration for debounceTimer
   private fileReader: FileReader = new FileReader();  // No changes needed, properly initialized
@@ -41,11 +46,19 @@ export class ActComponent {
   // Use ViewChild to reference the file input element
   @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
 
+  dataBlocks = [
+    { type: 'text', data: 'Default Text' },
+    { type: 'image', data: 'path/to/image.jpg' },
+    { type: 'table', data: {} },
+    { type: 'file', data: 'path/to/file.pdf' },
+  ];
+
   constructor(
     public dialog: MatDialog, 
     public dialogRef: MatDialogRef<ModalComponent>, 
     private sidebarService: SidebarService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dragDropService: DragDropService
     // private actService: ActService
   ) {
       // this.actForm = new FormGroup({
@@ -65,6 +78,38 @@ export class ActComponent {
 
     // Initialize with a default page
     this.addNewPage();
+  }
+
+  onDropZone(event: CdkDragDrop<any>) {
+    console.log('Drop Event Triggered:', event);
+  
+    if (event.previousContainer !== event.container) {
+      const droppedBlock = event.item.data;
+      console.log('Dropped Block:', droppedBlock);
+  
+      // Add the dropped block to the `blocks` array
+      this.blocks.push({
+        type: droppedBlock.component.toLowerCase(), // Ensure consistent lowercase type
+        data: this.initializeBlockData(droppedBlock.component),
+      });
+  
+      console.log('Updated Blocks:', this.blocks);
+    }
+  }
+
+  initializeBlockData(type: string): any {
+    switch (type.toLowerCase()) {
+      case 'text':
+        return { text: 'Default text content' };
+      case 'image':
+        return { src: 'path/to/default-image.jpg', alt: 'Default image description' };
+      case 'table':
+        return { rows: [[{ value: 'Cell 1' }, { value: 'Cell 2' }]], columns: ['Column 1', 'Column 2'] };
+      case 'file':
+        return { fileName: 'example.pdf', filePath: 'path/to/example.pdf' };
+      default:
+        return {};
+    }
   }
 
   startEditingTitle(): void {

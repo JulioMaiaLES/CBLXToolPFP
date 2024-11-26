@@ -1,13 +1,19 @@
 html, body{
     background-color: var(--main-color);
     min-height: 100vh;
+    width: auto;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
+    margin: 0; /* Removes any default margin that might cause the white background */
+    padding: 0; /* Removes any default padding */
 }
+
 
 .tab-container {
     position: relative;
     display: flex;
     align-items: center;
+    z-index: 10;
+
 }
 
 .toggle-icon {
@@ -361,28 +367,27 @@ form{
     }
 }
 
-// .drop-zone {
-//     min-height: 300px;
-//     width: 100%;
-//     display: flex;
-//     flex-wrap: wrap;
-//     gap: 10px;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     padding: 20px;
-//     position: relative;
-// }
 
 .drop-zone {
-    min-height: 300px;
-    width: 100%;
+    min-height: 300px; // Keep the height
+    width: auto; // Adjust to content width
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    align-items: flex-start; // Align items to the start of the container
+    justify-content: flex-start; // Adjust alignment to the top
+    padding: 20px 525px;
     position: relative;
-  }
+    margin: 20px auto 0; // Center horizontally with a top margin
+    background-color: transparent; // Optional: Add a background color if needed
+    // border: 2px dashed #58bc68; // Optional: Add a border for better visibility
+    max-width: 100%; // Limit the width to fit within the content area
+    box-sizing: border-box; // Include padding and border in the width calculation
+    z-index: 1;
+}
+
+.tabela{
+    margin-left: -100px;
+    padding: 0;
+}

@@ -8,6 +8,7 @@ html, body {
     position: relative;
     display: flex;
     align-items: center;
+    z-index: 10;
 }
 
 .toggle-icon {
@@ -404,4 +405,28 @@ form{
     .title-input:focus {
       border-bottom: 2px solid #428CD3; /* Green color for focus */
     }
+}
+
+.drop-zone {
+    min-height: 300px; // Keep the height
+    width: auto; // Adjust to content width
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start; // Align items to the start of the container
+    justify-content: flex-start; // Adjust alignment to the top
+    padding: 20px 510px;
+    position: relative;
+    margin: 20px auto 0; // Center horizontally with a top margin
+    background-color: transparent; // Optional: Add a background color if needed
+    // border: 2px dashed #58bc68; // Optional: Add a border for better visibility
+    max-width: 100%; // Limit the width to fit within the content area
+    box-sizing: border-box; // Include padding and border in the width calculation
+    z-index: 1;
+}
+
+.tabela{
+    margin-left: -100px;
+    padding: 0;
 }

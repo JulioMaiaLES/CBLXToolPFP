@@ -18,7 +18,30 @@
 .image-wrapper {
   position: relative;
   display: inline-block;
+
+  .resizable-image {
+    display: block;
+    border-radius: 5px;
+    max-width: 50%; /* Prevents exceeding the container width */
+    max-height: 50%; /* Prevents exceeding the container height */
+  }
+
+  .resize-icon {
+    position: absolute;
+    top: 10px; /* Adjust the distance from the top */
+    left: 10px; /* Adjust the distance from the left */
+    width: 20px;
+    height: 20px;
+    cursor: nw-resize; /* Indicates resizing */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 1; /* Make it more visible when hovered */
+    }
+  }
 }
+
 
 .image-preview {
   max-width: 100%;

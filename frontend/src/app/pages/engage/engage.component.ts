@@ -488,12 +488,6 @@ export class EngageComponent implements OnInit{
     this.expandedPhase = this.isExpanded(phase) ? null : phase;
   }
 
-  // Automatically resize the textarea height based on content
-  // autoResize(event: Event): void {
-  //   const target = event.target as HTMLTextAreaElement;
-  //   target.style.height = 'auto'; // Reset height to auto first
-  //   target.style.height = `${Math.min(target.scrollHeight, 400)}px`; // Restrict height, max 400px
-  // }
   autoResize(event: Event): void {
     const target = event.target as HTMLTextAreaElement;
     target.style.height = 'auto'; // Reset height

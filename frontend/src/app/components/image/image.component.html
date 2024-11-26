@@ -4,8 +4,16 @@
     [src]="data.imageUrl"
     [style.width.px]="data.width"
     [style.height.px]="data.height"
-  />
-  <button class="resize-button" (mousedown)="onResizeStart($event)">Resize</button>
+    [style.maxWidth.px]="maxWidth"
+    [style.maxHeight.px]="maxHeight"
+    class="resizable-image"
+    />
+    <img
+      src="../../../assets/images/resize.png"
+      alt="Resize Icon"
+      class="resize-icon"
+      (mousedown)="onResizeStart($event)"
+    />
 </div>
 <ng-template #uploadPlaceholder>
   <input #fileInput type="file" (change)="onFileSelected($event)" hidden />

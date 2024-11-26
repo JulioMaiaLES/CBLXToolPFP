@@ -146,6 +146,9 @@
           </form>
         </ng-template>
       </div>
+
+      
+
       <div class="tab-container" [class.collapsed]="isTabCollapsed">
         <!-- <app-toggleicon 
           [isCollapsed]="isTabCollapsed" 
@@ -155,6 +158,32 @@
         <!-- <app-tab [isCollapsed]="isTabCollapsed"></app-tab> -->
         <app-tab (toggleEvent)="handleTabToggle($event)"></app-tab>
       </div>
+    </div>
+
+    <div cdkDropList id="drop-zone" class="drop-zone" (cdkDropListDropped)="onDropZone($event)">
+    
+      <ng-container *ngFor="let block of blocks">
+        <ng-container [ngSwitch]="block.type" class="drop-container">
+          <div *ngSwitchCase="'text'">
+            <app-text 
+              [data]="block.data" 
+              [isTabCollapsed]="isTabCollapsed"
+              [isPaginationCollapsed]="isPaginationCollapsed"
+              >
+            </app-text>
+          </div>
+          <div *ngSwitchCase="'image'">
+            <app-image [data]="block.data"></app-image>
+          </div>
+          <div *ngSwitchCase="'table'" class="tabela">
+            <app-tabelavariavel [data]="block.data"></app-tabelavariavel>
+          </div>
+          <div *ngSwitchCase="'file'">
+            <app-file [data]="block.data"></app-file>
+          </div>
+          <p *ngSwitchDefault>Unknown block type: {{ block.type }}</p>
+        </ng-container>
+      </ng-container>
     </div>
 
   </body>
