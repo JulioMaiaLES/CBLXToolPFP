@@ -27,7 +27,10 @@
         <app-pagination 
           [backgroundColor]="'#58BC68'" 
           [isCollapsed]="isPaginationCollapsed"
-          (pageSelected)="onPageChange($event)"
+          [pages]="pages"
+          [currentPage]="currentPageId"
+          (pageSelected)="selectPage($event)"
+          (addPage)="addNewPage()"
           >
         </app-pagination>
         <!-- <ng-container *ngIf="currentPage">
@@ -38,7 +41,8 @@
         </ng-container> -->
       </div>
 
-      <ng-container *ngIf="currentPage === 1; else otherPageContent">
+      <ng-container *ngIf="currentPageId === 1; else dynamicPageContent">
+
         <!-- Original Content -->
         <form 
           [formGroup]="engageForm" 
@@ -118,7 +122,25 @@
           </div>
         </form>
       </ng-container>
-      <ng-template #otherPageContent>
+      <ng-template #dynamicPageContent >
+        <!-- Dynamic Page Content for other pages -->
+        <app-page-content
+          [pageNumber]="currentPage?.id"
+          [title]="currentPage?.title"
+          [isEditingTitle]="isEditingTitle"
+          (togglePhaseEvent)="togglePhase($event)"
+          (stopEditingTitleEvent)="stopEditingTitle($event)"
+          (startEditingTitleEvent)="startEditingTitle()"
+          (formSubmitEvent)="onFormSubmit($event, 'custom', 0)"
+          (autoResizeEvent)="autoResize($event)"
+          [formGroup]="currentPage?.formGroup"
+          [isTabCollapsed]="isTabCollapsed"
+          [isPaginationCollapsed]="isPaginationCollapsed"
+          >
+        </app-page-content>
+      </ng-template>
+    </div>
+      <!-- <ng-template #otherPageContent>
         <form
           [formGroup]="otherPageForm"
           [class.full-width]="isFullWidth"
@@ -171,8 +193,7 @@
             </div>
           </div>
         </form>
-      </ng-template>
-    </div>
+      </ng-template> -->
   </div>
 
   <div cdkDropList id="drop-zone" class="drop-zone" (cdkDropListDropped)="onDrop($event)">

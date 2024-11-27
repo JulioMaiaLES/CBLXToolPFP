@@ -21,6 +21,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TextComponent } from '@app/components/text/text.component';
 import { ImageComponent } from '@app/components/image/image.component';
 import { FileComponent } from '@app/components/file/file.component';
+import { PageContentComponent } from '@app/components/page-content/page-content.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { FileComponent } from '@app/components/file/file.component';
     TextComponent,
     ImageComponent,
     FileComponent,
+    PageContentComponent
   ]
 })
 export class InvestigateModule { }

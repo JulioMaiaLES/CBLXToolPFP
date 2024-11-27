@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '@app/components/modal/modal.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActService } from '@app/services/act.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SidebarService } from '../../../app/services/sidebar.service'
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
@@ -18,6 +18,7 @@ import { DragDropService } from '@app/services/drag-drop.service';
 })
 export class ActComponent {
 
+  actIconPath: string = '../../../assets/images/edit-icon-blue.png';
   isTabCollapsed: boolean = false;
   isPaginationCollapsed: boolean = false;
   isFullWidth: boolean = false;
@@ -28,8 +29,9 @@ export class ActComponent {
   files: File[] = [];  // No changes needed, already correctly typed
   renderedFiles: RenderedFile[] = [];  // Properly typed with the interface defined
   images: { name: string; value: string }[] = [];  // No changes needed, correctly typed
-  pages: any[] = []; // List of pages with their content
-  currentPage: number = 1; // Default to Page 1
+  pages: Array<{ id: number; title: string; formGroup: FormGroup }> = [];
+  currentPageId: number = 1; // Default to Page 1
+  currentPage: any; 
   title: string = 'Título'; // Default title for new pages
   isEditingTitle: boolean = false;
   blocks: Array<{ type: string; data: any }> = [];
@@ -54,6 +56,7 @@ export class ActComponent {
   ];
 
   constructor(
+    private fb: FormBuilder,
     public dialog: MatDialog, 
     public dialogRef: MatDialogRef<ModalComponent>, 
     private sidebarService: SidebarService,
@@ -61,11 +64,7 @@ export class ActComponent {
     private dragDropService: DragDropService
     // private actService: ActService
   ) {
-      // this.actForm = new FormGroup({
-      //   image: new FormControl('', Validators.required),
-      //   file: new FormControl('', Validators.required),
-      //   text_input: new FormControl('', Validators.required),
-      // });
+    this.updateCurrentPage();
   }
 
   ngOnInit() {
@@ -127,19 +126,29 @@ export class ActComponent {
   }
 
   addNewPage(): void {
+    const newPageId = this.pages.length + 1;
     const newPage = {
-      id: this.pages.length + 1,
-      icon: 'default-icon.png', // Placeholder for the page icon
-      title: `New Page ${this.pages.length + 1}`, // Default title
-      content: '', // Placeholder for page content
+      id: newPageId,
+      title: `Página ${newPageId}`,
+      formGroup: this.fb.group({ content: [''] }),
     };
-
     this.pages.push(newPage);
-    // this.currentPage = newPage; // Automatically select the new page
+    // this.selectPage(newPageId); 
   }
 
+  // Update the current page object based on currentPageId
+  private updateCurrentPage(): void {
+    this.currentPage = this.pages.find((page) => page.id === this.currentPageId);
+  }
+  
+
   selectPage(pageId: number): void {
-    this.currentPage = this.pages.find((page) => page.id === pageId) || null;
+    this.currentPageId = pageId;
+    this.updateCurrentPage();
+  }
+
+  getCurrentPage(): any {
+    return this.pages.find((page) => page.id === this.currentPageId);
   }
 
 
@@ -194,6 +203,8 @@ export class ActComponent {
 
     this.draggedItem = null; // Reset dragged item
   }
+
+  
 
   onFileSelected(event: any): void {
     const inputElement = event?.target as HTMLInputElement;

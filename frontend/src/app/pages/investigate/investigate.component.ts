@@ -9,7 +9,7 @@ import { CblCanvasComponent } from '@app/components/cbl-canvas/cbl-canvas.compon
 import { ModalComponent } from '@app/components/modal/modal.component';
 import { ModalInvestigateComponent } from '@app/components/modals/modal-investigate/modal-investigate.component';
 import { InvestigateService } from '@app/services/investigate.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SidebarService } from '../../../app/services/sidebar.service'
 import { ActivatedRoute } from '@angular/router';
@@ -24,7 +24,8 @@ import { DragDropService } from '@app/services/drag-drop.service';
 export class InvestigateComponent {
   @ViewChild('componenteContainer', { read: ViewContainerRef }) componenteContainer!: ViewContainerRef;
   @ViewChild(ModalInvestigateComponent) modal!: ModalInvestigateComponent;
-  
+ 
+  investigateIconPath = '../../../assets/images/edit-icon-yellow.png';
   isTabCollapsed: boolean = false;
   isPaginationCollapsed: boolean = false;
   isFullWidth: boolean = false;
@@ -34,8 +35,9 @@ export class InvestigateComponent {
   files: File[] = [];  // No changes needed, already correctly typed
   renderedFiles: RenderedFile[] = [];  // Properly typed with the interface defined
   images: { name: string; value: string }[] = [];  // No changes needed, correctly typed
-  pages: any[] = []; // List of pages with their content
-  currentPage: number = 1; // Default to Page 1
+  pages: Array<{ id: number; title: string; formGroup: FormGroup }> = [];
+  currentPageId: number = 1; // Default to Page 1
+  currentPage: any;
   title: string = 'Título'; // Default title for new pages
   isEditingTitle: boolean = false;
   blocks: Array<{ type: string; data: any }> = [];
@@ -58,6 +60,7 @@ export class InvestigateComponent {
   ];
 
   constructor(
+    private fb: FormBuilder,
     private progressService: ProgressService,
     private investigateService: InvestigateService,
     public dialog: MatDialog, 
@@ -74,6 +77,8 @@ export class InvestigateComponent {
       date_start: new FormControl('', Validators.required),
       date_end: new FormControl('', Validators.required)
     });
+
+    this.updateCurrentPage();
   }
 
   ngOnInit() {
@@ -135,19 +140,29 @@ export class InvestigateComponent {
   }
 
   addNewPage(): void {
+    const newPageId = this.pages.length + 1;
     const newPage = {
-      id: this.pages.length + 1,
-      icon: 'default-icon.png', // Placeholder for the page icon
-      title: `New Page ${this.pages.length + 1}`, // Default title
-      content: '', // Placeholder for page content
+      id: newPageId,
+      title: `Página ${newPageId}`,
+      formGroup: this.fb.group({ content: [''] }),
     };
-
     this.pages.push(newPage);
-    // this.currentPage = newPage; // Automatically select the new page
+    // this.selectPage(newPageId); 
   }
 
+  // Update the current page object based on currentPageId
+  private updateCurrentPage(): void {
+    this.currentPage = this.pages.find((page) => page.id === this.currentPageId);
+  }
+  
+
   selectPage(pageId: number): void {
-    this.currentPage = this.pages.find((page) => page.id === pageId) || null;
+    this.currentPageId = pageId;
+    this.updateCurrentPage();
+  }
+
+  getCurrentPage(): any {
+    return this.pages.find((page) => page.id === this.currentPageId);
   }
 
   // Method to handle the toggle state from app-tab

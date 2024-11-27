@@ -26,12 +26,16 @@
         <app-pagination 
           [backgroundColor]="'#F5C949'" 
           [isCollapsed]="isPaginationCollapsed"
-          (pageSelected)="onPageChange($event)">
+          [pages]="pages"
+          [currentPage]="currentPageId"
+          (pageSelected)="selectPage($event)"
+          (addPage)="addNewPage()"
+          >
         </app-pagination>
       </div>
    
       <!-- Melhorar implementação posteriormente acessando Engage para ter referência --> 
-      <ng-container *ngIf="currentPage === 1; else otherPageContent">
+      <ng-container *ngIf="currentPageId === 1; else dynamicPageContent">
         
         <form
           [class.full-width]="isFullWidth"
@@ -84,57 +88,22 @@
           </div>
         </form>
       </ng-container>
-      <ng-template #otherPageContent>
-        <form
-          [class.full-width]="isFullWidth"
-          [class.expanded-width]="isPaginationCollapsed && !isTabCollapsed"
-          [class.default-width]="!isFullWidth && !isPaginationCollapsed"
-        >
-          <div
-            class="step-container"
-            [class.expanded]="isExpanded('custom')"
+      <ng-template #dynamicPageContent >
+        <!-- Dynamic Page Content for other pages -->
+        <app-page-content
+          [pageNumber]="currentPage?.id"
+          [title]="currentPage?.title"
+          [isEditingTitle]="isEditingTitle"
+          (togglePhaseEvent)="togglePhase($event)"
+          (stopEditingTitleEvent)="stopEditingTitle($event)"
+          (startEditingTitleEvent)="startEditingTitle()"
+          (autoResizeEvent)="autoResize($event)"
+          [formGroup]="currentPage?.formGroup"
+          [isTabCollapsed]="isTabCollapsed"
+          [isPaginationCollapsed]="isPaginationCollapsed"
+          [iconPath]="investigateIconPath"
           >
-            <div class="header">
-              <label class="align-vertical">
-                <img
-                  src="../../../assets/images/edit-icon-yellow.png"
-                  alt="edit icon"
-                />
-                <div class="editable-title">
-                  <span
-                    *ngIf="!isEditingTitle"
-                    (click)="startEditingTitle()"
-                    class="custom-title"
-                    title="Click to edit"
-                  >
-                    {{ title || 'Título' }}
-                  </span>
-                  <input
-                    *ngIf="isEditingTitle"
-                    [value]="title"
-                    (blur)="stopEditingTitle($event)"
-                    (keydown.enter)="stopEditingTitle($event)"
-                    class="title-input"
-                  />
-                </div>
-                <div class="phase-controls">
-                  <img
-                    src="../../../assets/images/expand.png"
-                    class="toggle-symbol"
-                    (click)="togglePhase('custom')"
-                  />
-                </div>
-              </label>
-            </div>
-            <div>
-              <textarea
-                class="textos"
-                formControlName="content"
-                (input)="autoResize($event)"
-              ></textarea>
-            </div>
-          </div>
-        </form>
+        </app-page-content>
       </ng-template>
     </div>
     <div class="tab-container" [class.collapsed]="isTabCollapsed">

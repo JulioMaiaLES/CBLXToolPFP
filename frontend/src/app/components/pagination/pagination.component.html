@@ -3,11 +3,11 @@
     <div
       *ngFor="let page of pages"
       class="current-block"
-      [class.selected]="page === selectedPage"
-      (click)="pageSelect(page)"
+      [class.selected]="page.id === selectedPage"
+      (click)="selectPage(page.id)"
       [ngStyle]="{'background-color': backgroundColor}"
     >
-      {{ page }}
+      {{ page.id }}
     </div>
   
     <!-- Button to add new pages -->

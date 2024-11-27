@@ -1,5 +1,47 @@
-<!-- <div class="page-block" (click)="onBlockClick()">
-    <img [src]="icon" alt="Page Icon" />
-    <h3>{{ title || 'Untitled Page' }}</h3>
-    <textarea class="page-textarea">Teste</textarea>
-</div> -->
+<form
+  [formGroup]="formGroup"
+  [class]="dynamicPageWidthClass"
+>
+  <div 
+    class="step-container" 
+    [class.expanded]="isExpanded"
+    [class.collapsed]="!isExpanded">
+    <div class="header">
+      <label class="align-vertical">
+        <img [src]="iconPath" alt="edit icon" />
+        <div class="editable-title">
+          <span
+            *ngIf="!isEditingTitle"
+            (click)="startEditingTitle()"
+            class="custom-title"
+            title="Click to edit"
+          >
+            {{ title || 'Título' }}
+          </span>
+          <input
+            *ngIf="isEditingTitle"
+            [value]="title"
+            (blur)="stopEditingTitle($event)"
+            (keydown.enter)="stopEditingTitle($event)"
+            class="title-input"
+          />
+        </div>
+        <div class="phase-controls">
+          <img
+            src="../../../assets/images/expand.png"
+            class="toggle-symbol"
+            (click)="toggleExpand()"
+          />
+        </div>
+      </label>
+    </div>
+    <div>
+      <textarea
+        class="textos"
+        formControlName="content"
+        (keydown.enter)="onFormSubmit($event)"
+        (input)="autoResize($event)"
+      ></textarea>
+    </div>
+  </div>
+</form>

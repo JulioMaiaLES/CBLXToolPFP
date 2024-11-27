@@ -24,8 +24,10 @@ export class EngageComponent implements OnInit{
   isTabCollapsed: boolean = false;
   isPaginationCollapsed: boolean = false;
   isFullWidth: boolean = false;
-  pages: any[] = []; // List of pages with their content
-  currentPage: number = 1; // Default to Page 1
+  isHalfWidth: boolean = false;
+  pages: Array<{ id: number; title: string; formGroup: FormGroup }> = [];
+  currentPageId: number = 1; // Default to Page 1
+  currentPage: any; 
   title: string = 'Título'; // Default title for new pages
   isEditingTitle: boolean = false;
   blocks: Array<{ type: string; data: any }> = [];
@@ -71,7 +73,9 @@ export class EngageComponent implements OnInit{
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private dragDropService: DragDropService
-  ) {}
+  ) {
+    this.updateCurrentPage();
+  }
 
   ngOnInit() {
     // Initialize the form with FormArrays for each phase
@@ -99,26 +103,11 @@ export class EngageComponent implements OnInit{
     // Initialize with a default page
     this.addNewPage();
     this.blocks = [];
-  }
 
-  // onDrop(event: CdkDragDrop<any>): void {
-  //   console.log('Drop Event Triggered:', event);
-  
-  //   // Ensure item is moved only from a different container
-  //   if (event.previousContainer !== event.container) {
-  //     const droppedBlock = event.item.data;
-  //     console.log('Dropped Block:', droppedBlock);
-  
-  //     // Add dropped block to droppedBlocks array
-  //     this.droppedBlocks.push({
-  //       type: droppedBlock.type,
-  //       data: droppedBlock.type === 'text' ? { text: 'New Text' } : droppedBlock.data,
-  //     });
-  
-  //     console.log('Updated Dropped Blocks:', this.droppedBlocks);
-  //   }
-  // }
-  
+    if (this.pages.length > 0) {
+      this.currentPageId = this.pages[0].id; // Set the default page to the first page
+    }
+  }
 
   onDrop(event: CdkDragDrop<any>) {
     console.log('Drop Event Triggered:', event);
@@ -152,18 +141,26 @@ export class EngageComponent implements OnInit{
     }
   }
 
+  stopEditingTitle(event: KeyboardEvent): void {
+    console.log('Stop editing title', event);
+  }
+
   startEditingTitle(): void {
     this.isEditingTitle = true;
   }
 
-  stopEditingTitle(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.title = input.value;
-    this.isEditingTitle = false;
-  }
+  // startEditingTitle(): void {
+  //   this.isEditingTitle = true;
+  // }
+
+  // stopEditingTitle(event: Event): void {
+  //   const input = event.target as HTMLInputElement;
+  //   this.title = input.value;
+  //   this.isEditingTitle = false;
+  // }
 
   onPageChange(page: number): void {
-    this.currentPage = page;
+    this.currentPageId = page;
   }
   
   
@@ -183,19 +180,29 @@ export class EngageComponent implements OnInit{
   }
 
   addNewPage(): void {
+    const newPageId = this.pages.length + 1;
     const newPage = {
-      id: this.pages.length + 1,
-      icon: 'default-icon.png', // Placeholder for the page icon
-      title: `New Page ${this.pages.length + 1}`, // Default title
-      content: '', // Placeholder for page content
+      id: newPageId,
+      title: `Página ${newPageId}`,
+      formGroup: this.fb.group({ content: [''] }),
     };
-
     this.pages.push(newPage);
-    // this.currentPage = newPage; // Automatically select the new page
+    // this.selectPage(newPageId); 
   }
 
+  // Update the current page object based on currentPageId
+  private updateCurrentPage(): void {
+    this.currentPage = this.pages.find((page) => page.id === this.currentPageId);
+  }
+  
+
   selectPage(pageId: number): void {
-    this.currentPage = this.pages.find((page) => page.id === pageId) || null;
+    this.currentPageId = pageId;
+    this.updateCurrentPage();
+  }
+
+  getCurrentPage(): any {
+    return this.pages.find((page) => page.id === this.currentPageId);
   }
 
    // Method to handle textarea resizing and content wrapper expansion
@@ -230,7 +237,6 @@ export class EngageComponent implements OnInit{
       error: (error) => console.error('Failed to load engage data:', error),
     });
   }
-  
 
   populateForm(): void {
     // Destructure engageData with default values
@@ -254,8 +260,6 @@ export class EngageComponent implements OnInit{
     }
     return []; // Return an empty array if the data is null or not a valid string
   }
-  
-  
   
   setFields(fieldName: string, fieldData: string[]): void {
     const formArray = this.engageForm.get(fieldName) as FormArray;

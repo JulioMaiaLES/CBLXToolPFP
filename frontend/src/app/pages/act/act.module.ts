@@ -19,6 +19,7 @@ import { TextComponent } from '@app/components/text/text.component';
 import { ImageComponent } from '@app/components/image/image.component';
 import { FileComponent } from '@app/components/file/file.component';
 import { TabelaVariavelModule } from '@app/components/tabelavariavel/tabelavariavel.module';
+import { PageContentComponent } from '@app/components/page-content/page-content.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { TabelaVariavelModule } from '@app/components/tabelavariavel/tabelavaria
     TextComponent,
     ImageComponent,
     FileComponent,
-    TabelaVariavelModule
+    TabelaVariavelModule,
+    PageContentComponent
   ]
 })
 export class ActModule { }
