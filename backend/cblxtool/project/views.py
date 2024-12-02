@@ -8,6 +8,8 @@ from page.models import Page
 import json
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
+import traceback
+import os
 
 class CreateProjectView(APIView):
     authentication_classes = [TokenAuthentication]
@@ -34,12 +36,36 @@ class CreateProjectView(APIView):
 
             # Cria o projeto
             project = Project.objects.create(name=project_name, email=user_email)
+
+            # Criar pastas para o projeto
+            base_directory = "media/user"  # caminho no servidor
+            user_directory = os.path.join(base_directory, user_email)
+            content_directory = os.path.join(user_directory, "content")
+            projects_directory = os.path.join(content_directory, "Projects")
+            new_project_directory = os.path.join(projects_directory, project_name)
+
+            try:
+                os.makedirs(os.path.join(new_project_directory, "Engage"), exist_ok=True)
+                os.makedirs(os.path.join(new_project_directory, "Investigate"), exist_ok=True)
+                os.makedirs(os.path.join(new_project_directory, "Act"), exist_ok=True)
+                
+                print(f"Pasta criada com sucesso: {user_directory}")
+            except Exception as e:
+                print(f"Erro ao criar pasta: {traceback.format_exc()}")
+                return JsonResponse({"error": "Erro ao criar pasta para o usuário."}, status=500)
+
+
+
             
             # Criar páginas associadas ao projeto
             phases = ['Engage', 'Act', 'Investigate']
+            create_engage_template("1.html", "Engage", "", os.path.join(new_project_directory, "Engage"))
+            create_act_template("1.html", "Act", "", os.path.join(new_project_directory, "Act"))
+            create_investigate_template("1.html", "Investigate", "", os.path.join(new_project_directory, "Investigate"))
             for phase in phases:
                 # Gerar o caminho dinâmico para o arquivo HTML
-                html_path = f"media/pages/{user_email}/{phase}/1.html"
+                html_path = f"media/user/{user_email}/{phase}/1.html"
+
                 
                 # Criar a página associada ao projeto com 'order' fixo em 1
                 Page.objects.create(
@@ -155,3 +181,99 @@ def get_current_project(request):
 
     except Exception as e:
         return Response({"error": str(e)}, status=500)
+    
+def create_engage_template(filename, title, body_content, path):
+    try:
+        os.makedirs(path, exist_ok=True)
+
+        # Caminho completo do arquivo
+        file_path = os.path.join(path, filename)
+
+        # Conteúdo do arquivo HTML
+        html_content = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{title}</title>
+        </head>
+        <body>
+            Teste um dois três
+        </body>
+        </html>
+        """
+
+        # Cria o arquivo e escreve o conteúdo
+        with open(file_path, 'w') as html_file:
+            html_file.write(html_content)
+
+        print(f"Arquivo HTML criado com sucesso: {file_path}")
+        return file_path
+    except Exception as e:
+        print(f"Erro ao criar o arquivo HTML: {e}")
+        return None
+    
+def create_investigate_template(filename, title, body_content, path):
+    try:
+        os.makedirs(path, exist_ok=True)
+
+        # Caminho completo do arquivo
+        file_path = os.path.join(path, filename)
+
+        # Conteúdo do arquivo HTML
+        html_content = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{title}</title>
+        </head>
+        <body>
+            Teste um dois três
+        </body>
+        </html>
+        """
+
+        # Cria o arquivo e escreve o conteúdo
+        with open(file_path, 'w') as html_file:
+            html_file.write(html_content)
+
+        print(f"Arquivo HTML criado com sucesso: {file_path}")
+        return file_path
+    except Exception as e:
+        print(f"Erro ao criar o arquivo HTML: {e}")
+        return None
+    
+def create_act_template(filename, title, body_content, path):
+    try:
+        os.makedirs(path, exist_ok=True)
+
+        # Caminho completo do arquivo
+        file_path = os.path.join(path, filename)
+
+        # Conteúdo do arquivo HTML
+        html_content = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{title}</title>
+        </head>
+        <body>
+            Teste um dois três
+        </body>
+        </html>
+        """
+
+        # Cria o arquivo e escreve o conteúdo
+        with open(file_path, 'w') as html_file:
+            html_file.write(html_content)
+
+        print(f"Arquivo HTML criado com sucesso: {file_path}")
+        return file_path
+    except Exception as e:
+        print(f"Erro ao criar o arquivo HTML: {e}")
+        return None

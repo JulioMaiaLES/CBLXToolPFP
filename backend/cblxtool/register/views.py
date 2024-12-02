@@ -10,6 +10,7 @@ from django.contrib.auth import get_user_model
 from user.models.user import Profile # Importar o modelo Perfil
 from datetime import datetime
 import traceback
+import os
 
 def parse_iso_datetime(date_str):
     try:
@@ -77,6 +78,24 @@ def register_user(request):
             return JsonResponse({"error": "Erro ao atualizar perfil."}, status=400)
 
         print("Usuário e perfil criados com sucesso.")
+        
+        base_directory = "media/user"  # caminho no servidor
+        user_directory = os.path.join(base_directory, user.email)
+        content_directory = os.path.join(user_directory, "content")
+
+    
+        try:
+            # Cria a pasta se ela não existir
+            os.makedirs(user_directory, exist_ok=True)
+            os.makedirs(content_directory, exist_ok=True)
+            os.makedirs(os.path.join(content_directory, "Projects"), exist_ok=True)
+
+            print(f"Pasta criada com sucesso: {user_directory}")
+        except Exception as e:
+            print(f"Erro ao criar pasta: {traceback.format_exc()}")
+            return JsonResponse({"error": "Erro ao criar pasta para o usuário."}, status=500)
+
+
         return JsonResponse({"message": "Usuário e perfil criados com sucesso."}, status=201)
 
     except Exception as e:
