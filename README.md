@@ -1,5 +1,6 @@
 {
-  
+  Guia de Instruções:
+
   Passo 1: Clonar o repositório, acessando a aba Code do Github na pasta que será o diretório da aplicação em sua máquina.
   
   Passo 2: Abrir o diretório do projeto na máquina local.
