@@ -8,9 +8,11 @@
   Passo 3: Abrir um terminal.
   
   Passo 4: Navegar até a pasta frontend.
+            
             cd frontend
   
   Passo 5: Digitar o seguinte comando na linha de comando do terminal:
+            
             ng serve
   
   Passo 6: Acessar a aplicação por meio da url http://localhost:4200/ em um browser.
@@ -18,12 +20,17 @@
   Passo 7: Abrir outro terminal.
 
   Passo 8: Navegar até a pasta backend/cblxtool através do comando:
+            
             cd backend/cblxtool
   
   Passo 9: Executar o seguinte comando no terminal:
+          
           Usuário Windows:
+          
               py manage.py runserver
+          
           Usuário Linux/Mac:
+          
               python3 manage.py runserver
   
   Passo 10: Na aplicação acessada por meio da url http://localhost:4200/ clicar no botão "Cadastre-se!" em amarelo.
