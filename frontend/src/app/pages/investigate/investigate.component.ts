@@ -258,13 +258,13 @@ export class InvestigateComponent {
     a.click();
   }
 
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.key === '/') {
-      clearTimeout(this.debounceTimer);
-      this.debounceTimer = setTimeout(() => this.openModal(), 300);
-    }
-  }
+  // @HostListener('document:keydown', ['$event'])
+  // handleKeyboardEvent(event: KeyboardEvent) {
+  //   if (event.key === '/') {
+  //     clearTimeout(this.debounceTimer);
+  //     this.debounceTimer = setTimeout(() => this.openModal(), 300);
+  //   }
+  // }
 
   // Helper method to process files
   private processFiles(files: FileList): void {

@@ -6,11 +6,11 @@ import { PageErrorComponent } from '@components/shared/page-error/page-error.com
 const SPR = false;
 
 const routes: Routes = [
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('@pages/login/login.module').then((m) => m.LoginModule),
-  },
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('@pages/login/login.module').then((m) => m.LoginModule),
+  // },
   {
     path: 'register',
     loadChildren: () =>
@@ -71,9 +71,12 @@ const routes: Routes = [
     // canActivate: [authGuard], // ? Remover caso queira que mais rotas sejam acessadas sem autenticação
     children: [
       {
+        // path: '',
+        // loadChildren: () =>
+        //   import('@pages/home/home.module').then((m) => m.HomeModule),
         path: '',
         loadChildren: () =>
-          import('@pages/home/home.module').then((m) => m.HomeModule),
+          import('@pages/login/login.module').then((m) => m.LoginModule),
       },
       {
         path: '**',

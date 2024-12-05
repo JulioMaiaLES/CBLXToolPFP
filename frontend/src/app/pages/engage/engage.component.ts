@@ -427,13 +427,13 @@ export class EngageComponent implements OnInit{
     a.click();
   }
 
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.key === '/') {
-      clearTimeout(this.debounceTimer);
-      this.debounceTimer = setTimeout(() => this.openModal(), 300);
-    }
-  }
+  // @HostListener('document:keydown', ['$event'])
+  // handleKeyboardEvent(event: KeyboardEvent) {
+  //   if (event.key === '/') {
+  //     clearTimeout(this.debounceTimer);
+  //     this.debounceTimer = setTimeout(() => this.openModal(), 300);
+  //   }
+  // }
 
 
   openModal(): void {
