@@ -69,7 +69,7 @@ class CreateProjectView(APIView):
                 
                 # Criar a página associada ao projeto com 'order' fixo em 1
                 Page.objects.create(
-                    order=1,  # Sempre definir o order como 1
+                    order=1,  # Sempre definir o order como 1 (é a primeira)
                     email=user_email,
                     html_path=html_path,
                     phase=phase,

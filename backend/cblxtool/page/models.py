@@ -12,7 +12,7 @@ class Page(models.Model):
     order = models.PositiveIntegerField()
     email = models.EmailField()
     name = models.CharField(max_length=255)
-    html_path = models.CharField(max_length=255) # o caminho é media/pages/email/phase/order.html
+    html_path = models.CharField(max_length=255) # o caminho é media/user/'user.email'/'project.projectname'/'fasename'/'order'.html
     phase = models.CharField(max_length=20, choices=PHASE_CHOICES)
     project = models.ForeignKey('project.Project', on_delete=models.CASCADE, related_name='pages', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
