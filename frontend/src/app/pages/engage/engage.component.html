@@ -125,7 +125,7 @@
       <ng-template #dynamicPageContent >
         <!-- Dynamic Page Content for other pages -->
         <app-page-content
-          [pageNumber]="currentPage?.id"
+          [pageNumber]="currentPage?.order"
           [title]="currentPage?.title"
           [isEditingTitle]="isEditingTitle"
           (togglePhaseEvent)="togglePhase($event)"

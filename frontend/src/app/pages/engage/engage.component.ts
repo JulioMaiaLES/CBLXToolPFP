@@ -10,6 +10,7 @@ import { SidebarService } from '../../../app/services/sidebar.service'
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { DragDropService } from '@app/services/drag-drop.service';
+import { ProjectService } from '@services/project.service';
 
 @Component({
   selector: 'app-engage',
@@ -70,6 +71,7 @@ export class EngageComponent implements OnInit{
     public dialogRef: MatDialogRef<ModalComponent>,
     private progressService: ProgressService,
     private sidebarService: SidebarService,
+    private projectService: ProjectService,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private dragDropService: DragDropService
@@ -179,16 +181,41 @@ export class EngageComponent implements OnInit{
     this.isFullWidth = this.isTabCollapsed || (this.isTabCollapsed && this.isPaginationCollapsed);
   }
 
+  // addNewPage(): void {
+  //   const newPageId = this.pages.length + 1;
+  //   const newPage = {
+  //     id: newPageId,
+  //     title: `Página ${newPageId}`,
+  //     formGroup: this.fb.group({ content: [''] }),
+  //   };
+  //   this.pages.push(newPage);
+  //   // this.selectPage(newPageId); 
+  // }
+
+  
   addNewPage(): void {
-    const newPageId = this.pages.length + 1;
-    const newPage = {
-      id: newPageId,
-      title: `Página ${newPageId}`,
-      formGroup: this.fb.group({ content: [''] }),
-    };
-    this.pages.push(newPage);
-    // this.selectPage(newPageId); 
+    const currentProjectId = this.projectService.getCurrentProjectId(); // Obter o ID do projeto atual
+    if (!currentProjectId) {
+      console.error('Erro: Nenhum projeto atual definido.');
+      return;
+    }
+    this.engageService.createPage('Engage', currentProjectId).subscribe(
+      (response) => {
+        const newPage = {
+          id: response.page.id,
+          title: response.page.title || `Página ${response.page.id}`,
+          formGroup: this.fb.group({ content: [''] }),
+        };
+        console.log('Nova página criada:', newPage);
+        this.pages.push(newPage);
+        this.selectPage(newPage.id);
+      },
+      (error) => {
+        console.error('Erro ao criar nova página:', error);
+      }
+    );
   }
+  
 
   // Update the current page object based on currentPageId
   private updateCurrentPage(): void {

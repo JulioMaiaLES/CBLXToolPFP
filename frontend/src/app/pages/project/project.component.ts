@@ -75,6 +75,7 @@ export class ProjectComponent implements OnInit {
 
       // Chamar a função para definir o projeto atual na sessão
       this.setCurrentProject(selectedProject.id);
+      console.log('Projeto atual setado');
     }
   }
 

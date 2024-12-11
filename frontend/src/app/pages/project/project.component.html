@@ -27,8 +27,8 @@
   <main>
     <ul class="projects-list">
         <li *ngFor="let project of projects">
-          <a routerLink="/jornada">
-            <div class="project">
+          <a routerLink="/jornada" (click)="setCurrentProject(project)">
+            <div class= "project">
               <img
                 [src]="project.image || '../../../assets/images/cbl-back.png'"
                 alt="Project Image"

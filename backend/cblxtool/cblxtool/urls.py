@@ -26,6 +26,7 @@ from user import urls as profile_urls  # Alteração: renomeado para mais clarez
 from project import urls as project_urls
 from django.conf import settings
 from django.conf.urls.static import static
+from page.views import CreatePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,4 +37,5 @@ urlpatterns = [
     path('', include(login_urls)),
     path('', include(register_urls)),
     path('api/user/', include(profile_urls)),  # Adicione o prefixo 'api/user/'
+    path('pages/create/', CreatePageView.as_view(), name='create_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -43,16 +43,26 @@ export class ProjectService {
     return this.http.get(`${this.apiUrl}/user-projects/`, { headers });
   }
 
-  setCurrentProject(projectId: number): void {
-    console.log('Definindo projeto atual no localStorage:', projectId);
-    localStorage.setItem('currentProjectId', projectId.toString());
-  }
+  setCurrentProject(project: { id: number; name: string; image: string | null }): void {
+    console.log('Definindo projeto atual no localStorage:', project);
+    localStorage.setItem('currentProject', JSON.stringify(project)); // Salva o objeto completo
+  }  
 
   getCurrentProjectId(): number | null {
-    const projectId = localStorage.getItem('currentProjectId');
-    return projectId ? parseInt(projectId) : null;
-  }
-
+    console.log('Obtendo projeto atual do localStorage');
+    const projectData = localStorage.getItem('currentProject');
+    if (!projectData) {
+      return null; // Retorna null se não houver um projeto salvo
+    }
+  
+    try {
+      const project = JSON.parse(projectData); // Converte o JSON em um objeto
+      return project.id || null; // Retorna o ID se existir
+    } catch (error) {
+      console.error('Erro ao parsear projeto atual do localStorage:', error);
+      return null; // Retorna null em caso de erro
+    }
+  }  
 
   // Salva todos os projetos no localStorage
   saveProjects(projects: any[]): void {
